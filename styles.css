@@ -85,21 +85,24 @@ body {
   background-color: #000000;
   font-family: "Montserrat", sans-serif;
   color: white;
-  padding: 56px 0px 0px 61px;
 }
 
 .window-shutter {
-    width: 335px;
-    top: 44px;
-    position: absolute;
-    cursor: pointer;
+  width: 394px;
+  top: 0;
+  position: absolute;
+  cursor: pointer;
 }
 
-.window-mask{
-    width: 395px;
-    height: 528px;
-    top : 0;
-    position: absolute;
+.window-mask {
+  width: 395px;
+  height: 528px;
+  top: 0;
+  position: absolute;
+}
+
+.zoomed-in {
+  padding: 56px 0px 0px 61px;
 }
 
 .zoomed-in__heading {
@@ -204,8 +207,292 @@ body {
   border: 4px solid var(--unnamed-color-24cad2);
   border: 4px solid #24cad2;
   border-radius: 35px;
-  padding : 10px 0 10px 0;
+  padding: 10px 0 10px 0;
   width: 343px;
   cursor: pointer;
   user-select: none;
+}
+
+.world-map {
+  position: relative;
+  width: 100%;
+  max-height: 99vh;
+  overflow: hidden;
+  display: none;
+}
+
+.world-map__map-img {
+  margin: 0 auto;
+  display: block;
+  height: 125vh;
+}
+
+.world-map__map-border {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -9%);
+  z-index: 2;
+  height: 147vh;
+}
+
+.world-map__heading {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 93%);
+  text-align: center;
+  font: normal normal bold 43px/53px Montserrat;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+@media screen and (max-height: 738px) {
+  .world-map__heading {
+    transform: translate(-50%, 45%);
+    font: normal normal bold 33px/53px Montserrat;
+  }
+}
+
+.world-map__skycana-logo {
+  position: absolute;
+  top: 5%;
+  left: 0.3%;
+  transform: scale(0.8);
+}
+
+.world-map__time-now {
+  font: normal normal 300 50px/61px Montserrat;
+  letter-spacing: 0px;
+  position: absolute;
+  position: absolute;
+  top: 12%;
+  left: 2%;
+}
+
+.world-map__day {
+  text-align: left;
+  font: normal normal 600 28px/34px Montserrat;
+  letter-spacing: 0px;
+  position: absolute;
+  top: 19%;
+  left: 2%;
+}
+
+.world-map__temp {
+  position: absolute;
+  top: 24%;
+  left: 2.3%;
+  display: flex;
+  align-items: center;
+}
+
+.world-map__temp img {
+  width: 47px;
+  height: 37px;
+}
+
+.world-map__temp-value {
+  font: var(--unnamed-font-style-normal) normal 600 28px/34px
+    var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+  text-align: left;
+  font: normal normal 600 28px/34px Montserrat;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  margin-left: 5px;
+}
+
+.world-map__bordered {
+  transform: scale(1.2) translateY(-6%);
+}
+
+.world-map__windows {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+}
+
+.world-map__single-window {
+  margin: 0 30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.world-map__single-window img {
+  width: 150px;
+}
+
+.world-map__destinations {
+  position: absolute;
+  top: 0;
+}
+
+.world-map__destination-point {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: var(--unnamed-color-e59c26);
+}
+
+.nuestra-flota__airplane_name {
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  font-size: 31px;
+  transform: translate(-50%, 0px);
+}
+
+.nuestra-flota {
+  display: none;
+}
+
+.nuestra-flota__destination {
+  position: absolute;
+  top: 23%;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  text-align: center;
+}
+
+.nuestra-flota__destination__title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nuestra-flota__destination__value {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--unnamed-color-e59c26);
+}
+
+.nuestra-flota__all-planes__plane-slider {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+
+.nuestra-flota__all-planes__plane-slider__single-plane {
+  width: 70%;
+  margin: 0 auto;
+  display: block;
+}
+.nuestra-flota__clouds__top {
+  position: absolute;
+  top: 24%;
+  width: 16%;
+  left: 26%;
+}
+.nuestra-flota__clouds__bottom {
+  position: absolute;
+  top: 51%;
+  width: 18%;
+  right: 35%;
+}
+
+.nuestra-flota__plus-buttons img {
+  cursor: pointer;
+  z-index: 4;
+  transition: all 0.3s;
+}
+.nuestra-flota__plus-buttons img:hover{
+  transform: scale(1.1);
+}
+.nuestra-flota__plus-buttons img:active{
+  transform: scale(0.9);
+}
+
+.nuestra-flota__plus-buttons__one {
+  position: absolute;
+  top: 37%;
+  left: 39%;
+  width: 34px;
+}
+
+.nuestra-flota__plus-buttons__two {
+  position: absolute;
+  top: 37%;
+  right: 45%;
+  width: 34px;
+}
+
+.nuestra-flota__plus-buttons__three {
+  position: absolute;
+  top: 54%;
+  left: 41%;
+  width: 34px;
+}
+
+.nuestra-flota__plus-buttons__four {
+  position: absolute;
+  top: 54%;
+  right: 41%;
+  width: 34px;
+}
+
+.nuestra-flota__slide-arrows img {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+}
+.nuestra-flota__slide-arrows img:hover {
+  transform: scale(1.1);
+}
+.nuestra-flota__slide-arrows img:active {
+  transform: scale(0.9);
+}
+
+.nuestra-flota__left-arrow {
+  width: 101px;
+  position: absolute;
+  top: 42%;
+  left: 25%;
+  z-index: 4;
+}
+.nuestra-flota__right-arrow {
+  width: 101px;
+  position: absolute;
+  top: 42%;
+  right: 25%;
+  z-index: 4;
+}
+.nuestra-flota__final-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff 0% 0% no-repeat;
+  border: 4px solid #24cad2;
+  border-radius: 29px;
+  z-index: 5;
+  padding: 2em;
+  width: 25%;
+  display: none;
+}
+
+.nuestra-flota__final-popup__heading {
+  text-align: center;
+  font: normal normal bold 32px/39px Montserrat;
+  letter-spacing: 0px;
+  color: #035f7e;
+  opacity: 1;
+  margin-bottom: 1em;
+}
+
+.nuestra-flota__final-popup p {
+  font: normal normal bold 22px/27px Montserrat;
+  letter-spacing: 0px;
+  color: #035f7e;
+  margin-top: 0.6em;
+  text-align: left;
 }
