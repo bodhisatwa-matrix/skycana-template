@@ -1,217 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SkyCana</title>
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <!-- ************************* SCREEN ONE *********************************** -->
-    <div class="zoomed-in">
-      <div class="zoomed-in__heading">
-        <p class="time-now">13:05</p>
-        <img
-          class="logo"
-          src="./Assets/Images/logo@2x_white.png"
-          alt="SkyCana"
-        />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyCana</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <!-- ************************* SCREEN ONE *********************************** -->
+  <div class="zoomed-in">
+    <div class="zoomed-in__heading">
+      <p class="time-now">13:05</p>
+      <img class="logo" src="./Assets/Images/logo@2x_white.png" alt="SkyCana" />
+    </div>
+    <div class="zoomed-in__day">Martes, 1 de Marzo</div>
+    <div class="zoomed-in__welcome-msg">
+      <div class="temp">
+        <img src="./Assets/Images/cloud-icon.png" alt="cloud-icon" />
+        <p class="temp__value">30 &#x2103;</p>
       </div>
-      <div class="zoomed-in__day">Martes, 1 de Marzo</div>
-      <div class="zoomed-in__welcome-msg">
-        <div class="temp">
-          <img src="./Assets/Images/cloud-icon.png" alt="cloud-icon" />
-          <p class="temp__value">30 &#x2103;</p>
-        </div>
-        <div class="welcome-msg">Te damos la Bienvenida</div>
+      <div class="welcome-msg">Te damos la Bienvenida</div>
+    </div>
+    <br />
+    <div class="zoomed-in__hashtag">#DespeguemosRD</div>
+    <br />
+    <div class="zoomed-in__windows">
+      <div class="zoomed-in__single-window">
+        <img src="./Assets/Images/Vuelos_Actuales_Closed.png" alt="" class="window-shutter" id="vuelos-shutter" />
+        <img src="./Assets/Images/Vuelos_Actuales_Open.png" class="open-window" />
+
+        <p>Vuelos actuales</p>
       </div>
-      <br />
-      <div class="zoomed-in__hashtag">#DespeguemosRD</div>
-      <br />
-      <div class="zoomed-in__windows">
-        <div class="zoomed-in__single-window">
-          <img
-            src="./Assets/Images/Vuelos_Actuales_Closed.png"
-            alt=""
-            class="window-shutter"
-            id="vuelos-shutter"
-          />
-          <img
-            src="./Assets/Images/Vuelos_Actuales_Open.png"
-            class="open-window"
-          />
+      <div class="zoomed-in__single-window">
+        <img src="./Assets/Images/Destinos_Closed.png" alt="" class="window-shutter" id="destinos-shutter" />
+        <img src="./Assets/Images/Destinos_Open.png" class="open-window" />
 
-          <p>Vuelos actuales</p>
+        <p>Destinos Skycana</p>
+      </div>
+      <div class="zoomed-in__single-window">
+        <img src="./Assets/Images/Flota_Closed.png" alt="" class="window-shutter" id="flota-shutter" />
+        <img src="./Assets/Images/Flota_Open.png" class="open-window" />
+
+        <p>Nuestra flota</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ************************* SCREEN ONE END ******************************* -->
+
+  <!-- ************************ WORLD MAP SCREEN ****************************** -->
+  <div class="world-map">
+    <div class="world-map__bordered">
+      <img src="./Assets/Images/world-map.png" alt="world-map" class="world-map__map-img" />
+      <img src="./Assets/Images/Mask Group Zoom.png" alt="world-map" class="world-map__map-img-zoom" />
+      <img src="./Assets/Images/map-border.png" alt="map-border" class="world-map__map-border" />
+    </div>
+    <h4 class="world-map__heading">Vuelos en tiempo real</h4>
+    <img src="./Assets/Images/logo@2x_white.png" alt="logo" class="world-map__skycana-logo" />
+    <p class="world-map__time-now">13:05</p>
+    <p class="world-map__day">Martes, 1 de Marzo</p>
+    <div class="world-map__temp">
+      <img src="./Assets/Images/cloud-icon.png" alt="" srcset="" />
+      <div class="world-map__temp-value">30 &#x2103;</div>
+    </div>
+    <div class="world-map__windows">
+      <div class="world-map__single-window">
+        <img src="./Assets/Images/Vuelos_Actuales_Closed.png" alt="" id="world-map__option"
+          class="world-map__vuelos-pane" />
+      </div>
+      <div class="world-map__single-window">
+        <img src="./Assets/Images/Destinos_Closed.png" alt="" id="world-map__option" class="world-map__destinos-pane" />
+      </div>
+      <div class="world-map__single-window">
+        <img src="./Assets/Images/Flota_Closed.png" alt="" id="world-map__option" class="world-map__flota-pane" />
+      </div>
+    </div>
+    <div class="world-map__destinations" id="map__destinations">
+      <!-- <svg id="plane__line"></svg> -->
+      <div class="world-map__destination-point"></div>
+    </div>
+    <div class="world-map__destinations__nuestros-destinos" id="map__destinations_nuestros-destinos">
+      <!-- <svg id="plane__line"></svg> -->
+      <div class="world-map__destination-point__nuestros-destinos"></div>
+    </div>
+    <svg class="real-time__planes">
+    </svg>
+    <div class="plane-name__pop-up">
+      <div class="plane-id">IFBV</div>
+      <div class="plane-name">Visible label name</div>
+      <div class="locations">
+        <div class="location-source">
+          <h3>DESDE</h3>
+          <h2>Maxico</h2>
         </div>
-        <div class="zoomed-in__single-window">
-          <img
-            src="./Assets/Images/Destinos_Closed.png"
-            alt=""
-            class="window-shutter"
-            id="destinos-shutter"
-          />
-          <img src="./Assets/Images/Destinos_Open.png" class="open-window" />
-
-          <p>Destinos Skycana</p>
+        <div class="location-destination">
+          <h3>HACIA</h3>
+          <h2>Rep. Dom.</h2>
         </div>
-        <div class="zoomed-in__single-window">
-          <img
-            src="./Assets/Images/Flota_Closed.png"
-            alt=""
-            class="window-shutter"
-            id="flota-shutter"
-          />
-          <img src="./Assets/Images/Flota_Open.png" class="open-window" />
-
-          <p>Nuestra flota</p>
+      </div>
+      <div class="timing_label">
+        <div class="depature_label">Tiempo de vuelo</div>
+        <div class="arival_label">Tiempo restante</div>
+      </div>
+      <div class="plane_timing">
+        <div class="plane-depature">
+          <h2>4.00</h2>
+        </div>
+        <div class="plane-arival">
+          <h2>00.35</h2>
         </div>
       </div>
     </div>
+    <div class="city-data__pop-up">
+      
+    </div>
+    <!-- ******************* NUESTRA FLOTA ************************************** -->
+    <div class="nuestra-flota">
+      <h5 class="nuestra-flota__airplane_name">Airbus A321</h5>
+      <div class="nuestra-flota__destination">
+        <p class="nuestra-flota__destination__title">
+          Actualmente volando de
+        </p>
+        <p class="nuestra-flota__destination__value">
+          Rep. Dominicana a Miami
+        </p>
+      </div>
 
-    <!-- ************************* SCREEN ONE END ******************************* -->
-
-    <!-- ************************ WORLD MAP SCREEN ****************************** -->
-    <div class="world-map">
-      <div class="world-map__bordered">
-        <img
-          src="./Assets/Images/world-map.png"
-          alt="world-map"
-          class="world-map__map-img"
-        />
-        <img
-          src="./Assets/Images/Mask Group Zoom.png"
-          alt="world-map"
-          class="world-map__map-img-zoom"
-        />
-        <img
-          src="./Assets/Images/map-border.png"
-          alt="map-border"
-          class="world-map__map-border"
-        />
-      </div>
-      <h4 class="world-map__heading">Vuelos en tiempo real</h4>
-      <img
-        src="./Assets/Images/logo@2x_white.png"
-        alt="logo"
-        class="world-map__skycana-logo"
-      />
-      <p class="world-map__time-now">13:05</p>
-      <p class="world-map__day">Martes, 1 de Marzo</p>
-      <div class="world-map__temp">
-        <img src="./Assets/Images/cloud-icon.png" alt="" srcset="" />
-        <div class="world-map__temp-value">30 &#x2103;</div>
-      </div>
-      <div class="world-map__windows">
-        <div class="world-map__single-window">
-          <img
-            src="./Assets/Images/Vuelos_Actuales_Closed.png"
-            alt=""
-            id="world-map__option"
-            class="world-map__vuelos-pane"
-          />
+      <div class="nuestra-flota__all-planes">
+        <div class="nuestra-flota__plus-buttons">
+          <img src="./Assets/Images/plus-icon.png" class="nuestra-flota__plus-buttons__one" id="one">
+          <img src="./Assets/Images/plus-icon.png" class="nuestra-flota__plus-buttons__two" id="two">
+          <img src="./Assets/Images/plus-icon.png" class="nuestra-flota__plus-buttons__three" id="three">
+          <img src="./Assets/Images/plus-icon.png" class="nuestra-flota__plus-buttons__four" id="four">
         </div>
-        <div class="world-map__single-window">
-          <img
-            src="./Assets/Images/Destinos_Closed.png"
-            alt=""
-            id="world-map__option"
-            class="world-map__destinos-pane"
-          />
+        <div class="nuestra-flota__plus-icon-popups">
+          <!-- displays remaminng seats -->
+          <div class="nuestra-flota__plus-icon-popups__seats">
+            <img src="./Assets/Images/sitting-icon.png" alt="">
+            <p>220 asientos económicos</p>
+          </div>
         </div>
-        <div class="world-map__single-window">
-          <img
-            src="./Assets/Images/Flota_Closed.png"
-            alt=""
-            id="world-map__option"
-            class="world-map__flota-pane"
-          />
+        <div class="nuestra-flota__slide-arrows">
+          <img src="./Assets/Images/left arrow.png" alt="" class="nuestra-flota__left-arrow" id="left">
+          <img src="./Assets/Images/right arrow.png" alt="" class="nuestra-flota__right-arrow" id="right">
         </div>
-      </div>
-      <div class="world-map__destinations" id="map__destinations">
-        <!-- <svg id="plane__line"></svg> -->
-        <div class="world-map__destination-point"></div>
-      </div>
-      <svg class="real-time__planes">
-      </svg>
-      <div class="plane-name__pop-up">
-        <div class="plane-id">IFBV</div>
-        <div class="plane-name"></div>
-        <div class="locations">
-          <div class="location-source"></div>
-          <div class="location-destination"></div>
+        <div class="nuestra-flota__clouds">
+          <img src="./Assets/Images/clouds_01.png" class="nuestra-flota__clouds__top" alt="" />
+          <img src="./Assets/Images/Clouds_02.png" class="nuestra-flota__clouds__bottom" alt="" srcset="" />
         </div>
-        <div class="plane_time">
-          <div class="plane-depature"></div>
-          <div class="plane-arival"></div>
+        <div class="nuestra-flota__all-planes__plane-slider">
+          <img src="./Assets/Images/Planes/01.png" alt="" srcset=""
+            class="nuestra-flota__all-planes__plane-slider__single-plane" />
         </div>
-
-      </div>
-      <!-- ******************* NUESTRA FLOTA ************************************** -->
-      <div class="nuestra-flota">
-        <h5 class="nuestra-flota__airplane_name">Airbus A321</h5>
-        <div class="nuestra-flota__destination">
-          <p class="nuestra-flota__destination__title">
-            Actualmente volando de
+        <div class="nuestra-flota__final-popup">
+          <h5 class="nuestra-flota__final-popup__heading">Lorem Ipsum</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas mi neque, quis dictum ante pretium
+            eget.
           </p>
-          <p class="nuestra-flota__destination__value">
-            Rep. Dominicana a Miami
-          </p>
-        </div>
-
-        <div class="nuestra-flota__all-planes">
-          <div class="nuestra-flota__plus-buttons">
-            <img src="./Assets/Images/plus-icon.png" class="nuestra-flota__plus-buttons__one" id="one">
-            <img src="./Assets/Images/plus-icon.png" class="nuestra-flota__plus-buttons__two" id="two">
-            <img src="./Assets/Images/plus-icon.png" class="nuestra-flota__plus-buttons__three" id="three">
-            <img src="./Assets/Images/plus-icon.png" class="nuestra-flota__plus-buttons__four" id="four">
-          </div>
-          <div class="nuestra-flota__plus-icon-popups">
-            <!-- displays remaminng seats -->
-            <div class="nuestra-flota__plus-icon-popups__seats">
-              <img src="./Assets/Images/sitting-icon.png" alt="">
-              <p>220 asientos económicos</p>
-            </div>
-          </div>
-          <div class="nuestra-flota__slide-arrows">
-            <img src="./Assets/Images/left arrow.png" alt="" class="nuestra-flota__left-arrow" id="left">
-            <img src="./Assets/Images/right arrow.png" alt="" class="nuestra-flota__right-arrow" id="right">
-          </div>
-          <div class="nuestra-flota__clouds">
-            <img
-              src="./Assets/Images/clouds_01.png"
-              class="nuestra-flota__clouds__top"
-              alt=""
-            />
-            <img
-              src="./Assets/Images/Clouds_02.png"
-              class="nuestra-flota__clouds__bottom"
-              alt=""
-              srcset=""
-            />
-          </div>
-          <div class="nuestra-flota__all-planes__plane-slider">
-            <img
-              src="./Assets/Images/Planes/01.png"
-              alt=""
-              srcset=""
-              class="nuestra-flota__all-planes__plane-slider__single-plane"
-            />
-          </div>
-          <div class="nuestra-flota__final-popup">
-            <h5 class="nuestra-flota__final-popup__heading">Lorem Ipsum</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas mi neque, quis dictum ante pretium eget. 
-              </p>
-            <p>Praesent efficitur arcu in ex commodo, et varius ligula sollicitudin.</p>
-          </div>
+          <p>Praesent efficitur arcu in ex commodo, et varius ligula sollicitudin.</p>
         </div>
       </div>
-      <!-- ************************************************************************ -->
     </div>
     <!-- ************************************************************************ -->
+  </div>
+  <!-- ************************************************************************ -->
 
-    <!-- ********************* JAVASCRIPT FILES ********************************* -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js"></script>
-    <script src="./app.js" defer></script>
-    <!-- ************************************************************************ -->
-  </body>
+  <!-- ********************* JAVASCRIPT FILES ********************************* -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js"></script>
+  <script src="./app.js" defer></script>
+  <!-- ************************************************************************ -->
+</body>
+
 </html>

@@ -1,63 +1,107 @@
 {
   "request-date": "[request datettime]",
-  "language":"es",
+  "language": "es",
   "city-code": "sdq",
   "city-name": "Santo Domingo",
   "Temp": "32",
   "Locations": [
     {
-    "id": "sdq",
-    "name": "Santo Domingo",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "x":1170,
-    "y":460,
-    "picts":[
-      "http://host/pict11.jpg", "http://host/pict12.jpg"
+      "id": "sdq",
+      "name": "Santo Domingo",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "x": 1170,
+      "y": 460,
+      "picts": [
+        "http://host/pict11.jpg",
+        "http://host/pict12.jpg"
       ]
-    
     },
     {
-    "id": "mia",
-    "name": "Miami",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "x":960,
-    "y":291,
-    "picts":[
-      "http://host/pict21.jpg", "http://host/pict22.jpg"
+      "id": "mia",
+      "name": "Miami",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "x": 960,
+      "y": 291,
+      "picts": [
+        "http://host/pict21.jpg",
+        "http://host/pict22.jpg"
       ]
-    
+    },
+    {
+      "id": "cub",
+      "name": "Cuba",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "x": 1060,
+      "y": 420,
+      "picts": [
+        "http://host/pict21.jpg",
+        "http://host/pict22.jpg"
+      ]
+    },
+    {
+      "id": "mex",
+      "name": "Mexico",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "x": 480,
+      "y": 350,
+      "picts": [
+        "http://host/pict21.jpg",
+        "http://host/pict22.jpg"
+      ]
+    },
+    {
+      "id": "nic",
+      "name": "Nicaragua",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "x": 750,
+      "y": 521,
+      "picts": [
+        "http://host/pict21.jpg",
+        "http://host/pict22.jpg"
+      ]
+    },
+    {
+      "id": "col",
+      "name": "Colombia",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "x": 1100,
+      "y": 751,
+      "picts": [
+        "http://host/pict21.jpg",
+        "http://host/pict22.jpg"
+      ]
     }
-    ],
+  ],
   "planes": [
     {
-      "id":"9H-AMD",
-      "name":"Plane1",
-      "label":"Visible label name",
-      "img-url":"http://host/img1.jpg",
-      "video-url":"http://host/video1",
-      "from":"mia",
-      "to":"sdq",
-      "total-time":5,
-      "fligh-time":2,
-      "seating":"220 asientos",
-      "flights-range":"Rango de vuelo de 5 horas",
-      "capacity":"21,000 kg de capacidad",
-      "size":"37,57 metros de largo"
+      "id": "9H-AMD",
+      "name": "Plane1",
+      "label": "Visible label name",
+      "img-url": "http://host/img1.jpg",
+      "video-url": "http://host/video1",
+      "from": "mia",
+      "to": "sdq",
+      "total-time": 5,
+      "fligh-time": 2,
+      "seating": "220 asientos",
+      "flights-range": "Rango de vuelo de 5 horas",
+      "capacity": "21,000 kg de capacidad",
+      "size": "37,57 metros de largo"
     },
-   {
-      "id":"9H-AME",
-      "name":"Plane2",
-      "label":"Visible label name2",
-      "img-url":"http://host/img2.jpg",
-      "video-url":"http://host/video2",
-      "from":"mex",
-      "to":"bgt",
-      "total-time":8,
-      "fligh-time":5,
-      "seating":"320 asientos",
-      "flights-range":"Rango de vuelo de 10 horas",
-      "capacity":"42,000 kg de capacidad",
-      "size":"40,57 metros de largo"
-    } 
-    ]
+    {
+      "id": "9H-AME",
+      "name": "Plane2",
+      "label": "Visible label name2",
+      "img-url": "http://host/img2.jpg",
+      "video-url": "http://host/video2",
+      "from": "mex",
+      "to": "bgt",
+      "total-time": 8,
+      "fligh-time": 5,
+      "seating": "320 asientos",
+      "flights-range": "Rango de vuelo de 10 horas",
+      "capacity": "42,000 kg de capacidad",
+      "size": "40,57 metros de largo"
+    }
+  ]
 }

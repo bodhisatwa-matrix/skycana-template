@@ -343,12 +343,28 @@ body {
   position: absolute;
   top: 0;
 }
+.world-map__destinations__nuestros-destinos {
+  position: absolute;
+  top: 0;
+}
 
 .world-map__destination-point {
+  /* visibility: hidden; */
   height: 25px;
   width: 25px;
   border-radius: 50%;
   background-color: var(--unnamed-color-e59c26);
+}
+
+.world-map__destination-point__nuestros-destinos {
+  /* visibility: hidden; */
+  height: 100px;
+  width: 100px;
+  /* border-radius: 50%; */
+  /* background-color: var(--unnamed-color-e59c26); */
+  background-image:url('./Assets/Images/Group 100.png');
+  background-repeat: no-repeat;
+  padding-left: 65px;
 }
 
 .nuestra-flota__airplane_name {
@@ -515,7 +531,11 @@ body {
 .destination_text {
   color: var(--unnamed-color-e59c26);
   font-size: 32px;
-  padding-left: 32px;
+  margin-left: 35px;
+}
+.destination_text__nuestros-destinos {
+  /* color: var(--unnamed-color-e59c26); */
+  font-size: 32px;
 }
 
 .real-time__planes {
@@ -529,8 +549,9 @@ body {
   height: 501px;
   position: absolute;
   /* margin: -25px 0 0 -25px; */
-  top: 25%;
-  left: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 99;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
@@ -539,6 +560,121 @@ body {
   border-radius: 29px;
   opacity: 1;
 }
+
 .plane-name__pop-up .plane-id {
+  margin-top: 25px;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-32)/var(--unnamed-line-spacing-39) var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-e59c26);
+  text-align: center;
+  font: normal normal bold 32px/39px Montserrat;
+  letter-spacing: 0px;
+  color: #E59C26;
+  opacity: 1;
+}
+
+.plane-name__pop-up .plane-name {
+  margin-top: 10px;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-30)/var(--unnamed-line-spacing-37) var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: center;
+  font: normal normal bold 30px/37px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+}
+
+.plane-name__pop-up .locations {
+  display: flex;
+  justify-content: space-around;
+  margin: 25px;
+}
+
+.plane-name__pop-up .locations .location-source {
+  width: 242px;
+  height: 133px;
+  background: var(--unnamed-color-035f7e) 0% 0% no-repeat padding-box;
+  background: #035F7E 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  opacity: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.plane-name__pop-up .locations .location-destination {
+  width: 242px;
+  height: 133px;
+  background: var(--unnamed-color-035f7e) 0% 0% no-repeat padding-box;
+  background: #035F7E 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  opacity: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.plane-name__pop-up .timing_label {
+  margin: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.plane-name__pop-up .timing_label .depature_label {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 24px/29px var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: left;
+  font: normal normal bold 24px/29px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+}
+
+.plane-name__pop-up .timing_label .arival_label {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 24px/29px var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: left;
+  font: normal normal bold 24px/29px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+}
+
+.plane-name__pop-up .plane_timing {
+  display: flex;
+  justify-content: space-around;
+}
+
+.plane-name__pop-up .plane_timing .plane-depature {
+  width: 145px;
+  height: 59px;
+  background: var(--unnamed-color-035f7e) 0% 0% no-repeat padding-box;
+  background: #035F7E 0% 0% no-repeat padding-box;
+  border-radius: 14px;
+  opacity: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.plane-name__pop-up .plane_timing .plane-arival {
+  width: 145px;
+  height: 59px;
+  background: var(--unnamed-color-035f7e) 0% 0% no-repeat padding-box;
+  background: #035F7E 0% 0% no-repeat padding-box;
+  border-radius: 14px;
+  opacity: 1;
+  text-align: center;
+  padding: 10px;
+}
+.plane-name__pop-up .plane_timing h2 {
+  font-size: 32px;
+}
+.plane-name__pop-up .locations h2 {
+  font-size: 32px;
+  margin: 10px;
+}
+.plane-name__pop-up .locations h3 {
+  font-size: 24px;
+  margin: 10px;
 }
