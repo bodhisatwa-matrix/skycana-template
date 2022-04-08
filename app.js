@@ -224,8 +224,10 @@ function readTextFile(file, callback) {
     }
     rawFile.send(null);
 }
-var locations;
-var planes;
+var locations = [];
+var planes = [];
+var world_map__map_border = document.querySelectorAll(".world-map__map-border")[0];
+var world_map__destination_point = document.querySelectorAll(".world-map__destinations");
 readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
     var data = JSON.parse(text);
     Object.keys(data).forEach(key => {
@@ -242,12 +244,11 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
                 console.log("planes should be an array!");
             }
         } else {
-            console.log("no data found!")
+            // console.log("no data found!")
         }
     });
 });
-var world_map__map_border = document.querySelectorAll(".world-map__map-border")[0];
-var world_map__destination_point = document.getElementsByClassName("world-map__destination-point");
+
 
 
 world_map__map_border.addEventListener('click', function () {
@@ -278,6 +279,7 @@ world_map__map_border.addEventListener('click', function () {
             var city_name = location.name;
             div.className = 'world-map__destinations';
             div.innerHTML = '<div class="world-map__destination-point"><h4 class="destination_text">' + city_name + '</h4></div>';
+            div.addEventListener("click", cityClick, false);
             document.body.appendChild(div);
             var el = document.getElementById(div.id);
             el.style.left = x + 'px';
@@ -312,6 +314,12 @@ world_map__map_border.addEventListener('click', function () {
         }
     })
 });
+world_map__destination_point.forEach(item => {
+    item.addEventListener('click', function() {
+        gsap.to('.city-name__pop-up', { ease: 'none', autoAlpha: 1, display: 'block' })
+    })
+    
+})
 
 function drawLine(x1, x2, y1, y2) {
     console.log("Ok");
@@ -326,6 +334,10 @@ function drawLine(x1, x2, y1, y2) {
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();
+}
+
+function cityClick() {
+    console.log("id")
 }
 
 // *********************************************************************
