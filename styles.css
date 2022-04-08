@@ -227,6 +227,12 @@ body {
   height: 125vh;
 }
 
+.world-map__map-img-zoom {
+  visibility:hidden;
+  margin: 0 auto;
+  height: 125vh;
+}
+
 .world-map__map-border {
   position: absolute;
   top: 0;
@@ -495,4 +501,13 @@ body {
   color: #035f7e;
   margin-top: 0.6em;
   text-align: left;
+}
+.destination_text {
+  color: var(--unnamed-color-e59c26);
+  font-size: 32px;
+  padding-left: 32px;
+}
+.real-time__planes {
+  position: absolute;
+  top: 0;
 }

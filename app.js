@@ -65,15 +65,15 @@ world_map_options.forEach(item => {
     const phrase = item.classList[0].split("__")[1].split("-")[0];
     const phrase_capital = phrase[0].toUpperCase() + phrase.substring(1);
     item.addEventListener("mouseover", e => {
-        if (selected_option.split("-")[0] !== phrase){
-            gsap.from(`.${item.classList[0]}`,{opacity:0.5})
-            gsap.to(`.${item.classList[0]}`, {opacity : 1, attr: { src: `./Assets/Images/${phrase_capital}_Open.png` }, duration: 2 })
+        if (selected_option.split("-")[0] !== phrase) {
+            gsap.from(`.${item.classList[0]}`, { opacity: 0.5 })
+            gsap.to(`.${item.classList[0]}`, { opacity: 1, attr: { src: `./Assets/Images/${phrase_capital}_Open.png` }, duration: 2 })
         }
     });
     item.addEventListener("mouseout", e => {
-        if (selected_option.split("-")[0] !== phrase){
-            gsap.from(`.${item.classList[0]}`,{opacity:0.5})
-            gsap.to(`.${item.classList[0]}`, {opacity : 1 , attr: { src: `./Assets/Images/${phrase_capital}_Closed.png` }, duration: 2 })
+        if (selected_option.split("-")[0] !== phrase) {
+            gsap.from(`.${item.classList[0]}`, { opacity: 0.5 })
+            gsap.to(`.${item.classList[0]}`, { opacity: 1, attr: { src: `./Assets/Images/${phrase_capital}_Closed.png` }, duration: 2 })
         }
     })
 
@@ -158,7 +158,7 @@ function onArrowClick(event) {
     }
     if (active_plane > 4 && event.target.id === "right") {
         gsap.to(".nuestra-flota__all-planes__plane-slider", {
-            rotation : -4,
+            rotation: -4,
             duration: 0.01,
             ease: Circ.easeOut,
             top: "36%",
@@ -166,10 +166,10 @@ function onArrowClick(event) {
     }
     if (active_plane < 5 && event.target.id === "left") {
         gsap.to(".nuestra-flota__all-planes__plane-slider", {
-            rotation : 0,
+            rotation: 0,
             duration: 0.01,
             ease: Circ.easeOut,
-            top : "33%"
+            top: "33%"
         });
     }
 }
@@ -189,22 +189,143 @@ var info_btn_four = document.querySelector(".nuestra-flota__plus-buttons__four")
 
 var seats_popup = document.querySelector(".nuestra-flota__plus-icon-popups__seats");
 
-function  clickOnPlusHandler(event){
+function clickOnPlusHandler(event) {
     console.log(event.target.id);
-    if(event.target.id === "one"){
+    if (event.target.id === "one") {
 
     }
-    if(event.target.id === "two"){
+    if (event.target.id === "two") {
 
     }
-    if(event.target.id === "three"){
+    if (event.target.id === "three") {
 
     }
-    if(event.target.id === "four"){
+    if (event.target.id === "four") {
 
     }
 }
 extra_info_buttons.forEach(btn => {
-    btn.addEventListener("click",clickOnPlusHandler);
+    btn.addEventListener("click", clickOnPlusHandler);
 })
+// *********************************************************************
+
+// *********************** REAL TIME FLIGHT INFORMATION *******************
+/** 
+ * Function for reading json file from assets
+*/
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function () {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+var locations;
+var planes;
+readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
+    var data = JSON.parse(text);
+    Object.keys(data).forEach(key => {
+        if (key == 'Locations') {
+            if (Array.isArray(data['Locations'])) {
+                this.locations = data['Locations'];
+            } else {
+                console.log("Locations should be an array!");
+            }
+        } else if (key == 'planes') {
+            if (Array.isArray(data['planes'])) {
+                this.planes = data['planes'];
+            } else {
+                console.log("planes should be an array!");
+            }
+        } else {
+            console.log("no data found!")
+        }
+    });
+});
+var world_map__map_border = document.querySelectorAll(".world-map__map-border")[0];
+var world_map__destination_point = document.getElementsByClassName("world-map__destination-point");
+
+
+world_map__map_border.addEventListener('click', function () {
+    var timeline = gsap.timeline({ duration: 1 });
+
+    timeline.to('.world-map__map-img-zoom', { ease: 'none', autoAlpha: 1, display: 'block' })
+    timeline.to('.world-map__map-img', { ease: 'none', autoAlpha: 0, display: 'none' })
+    // timeline.from('.world-map__destinations', { ease: 'none', autoAlpha: 1 }, '<2');
+    // timeline.from('.map__destinations', { ease: 'none', autoAlpha: 1 }, '<2');
+    var i = 0;
+    locations.forEach(location => {
+        if (i == 0) {
+            var div = document.createElement('h4');
+            div.className = "destination_text";
+            div.innerHTML = location.name;
+            var x = location.x;
+            var y = location.y;
+            var city_name = location.name;
+            var el = document.getElementById('map__destinations');
+            el.appendChild(div);
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+        } else {
+            var div = document.createElement('div');
+            div.id = 'map__destinations' + i;
+            var x = location.x;
+            var y = location.y;
+            var city_name = location.name;
+            div.className = 'world-map__destinations';
+            div.innerHTML = '<div class="world-map__destination-point"><h4 class="destination_text">' + city_name + '</h4></div>';
+            document.body.appendChild(div);
+            var el = document.getElementById(div.id);
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+        }
+        i++;
+    });
+    planes.forEach(plane => {
+        // //create plane path
+        var from = plane.from;
+        var to = plane.to;
+        var fromData = locations.find(o => o.id == from);
+        var toData = locations.find(o => o.id == to);
+        if(fromData && toData) {
+
+            // var div = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            // div.id = 'plane_line_' + plane.id;
+            // // div.innerHTML = "<line></line>";
+            // document.getElementsByClassName('real-time__planes')[0].appendChild(div);
+            var plane__line = document.getElementsByClassName('real-time__planes')[0];
+            var newPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            newPath.setAttribute('id', plane.id);
+            newPath.setAttribute('d', "M960,291 Q 75,70 170,25 1170,460");
+            // newLine.setAttribute('x1', fromData.x);
+            // newLine.setAttribute('y1', fromData.y);
+            // newLine.setAttribute('x2', toData.x);
+            // newLine.setAttribute('y2', toData.y);
+            newPath.setAttribute("stroke", "#00B5BA");
+            newPath.setAttribute("stroke-width", 5);
+            newPath.setAttribute("stroke-dasharray", "10");
+            plane__line.appendChild(newPath);
+        }
+    })
+});
+
+function drawLine(x1, x2, y1, y2) {
+    console.log("Ok");
+    const canvas = document.querySelector('#plane__line');
+    if (!canvas.getContext) {
+        return;
+    }
+    const ctx = canvas.getContext('2d');
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+}
+
 // *********************************************************************

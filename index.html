@@ -79,6 +79,11 @@
           class="world-map__map-img"
         />
         <img
+          src="./Assets/Images/Mask Group Zoom.png"
+          alt="world-map"
+          class="world-map__map-img-zoom"
+        />
+        <img
           src="./Assets/Images/map-border.png"
           alt="map-border"
           class="world-map__map-border"
@@ -122,9 +127,12 @@
           />
         </div>
       </div>
-      <div class="world-map__destinations">
+      <div class="world-map__destinations" id="map__destinations">
+        <!-- <svg id="plane__line"></svg> -->
         <div class="world-map__destination-point"></div>
       </div>
+      <svg class="real-time__planes">
+      </svg>
       <!-- ******************* NUESTRA FLOTA ************************************** -->
       <div class="nuestra-flota">
         <h5 class="nuestra-flota__airplane_name">Airbus A321</h5>
@@ -184,7 +192,6 @@
           </div>
         </div>
       </div>
-
       <!-- ************************************************************************ -->
     </div>
     <!-- ************************************************************************ -->
