@@ -523,12 +523,22 @@ body {
   top: 0;
 }
 
-.city-name__pop-up {
-  /* visibility: hidden; */
+.plane-name__pop-up {
+  visibility: hidden;
+  width: 740px;
+  height: 501px;
+  position: absolute;
+  /* margin: -25px 0 0 -25px; */
+  top: 25%;
+  left: 30%;
+  z-index: 99;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 4px solid #24CAD2;
   border-radius: 29px;
   opacity: 1;
+}
+.plane-name__pop-up .plane-id {
+  color: var(--unnamed-color-e59c26);
 }
