@@ -343,6 +343,7 @@ body {
   position: absolute;
   top: 0;
 }
+
 .world-map__destinations__nuestros-destinos {
   position: absolute;
   top: 0;
@@ -362,7 +363,7 @@ body {
   width: 100px;
   /* border-radius: 50%; */
   /* background-color: var(--unnamed-color-e59c26); */
-  background-image:url('./Assets/Images/Group 100.png');
+  background-image: url('./Assets/Images/Group 100.png');
   background-repeat: no-repeat;
   padding-left: 65px;
 }
@@ -533,6 +534,7 @@ body {
   font-size: 32px;
   margin-left: 35px;
 }
+
 .destination_text__nuestros-destinos {
   /* color: var(--unnamed-color-e59c26); */
   font-size: 32px;
@@ -667,14 +669,44 @@ body {
   text-align: center;
   padding: 10px;
 }
+
 .plane-name__pop-up .plane_timing h2 {
   font-size: 32px;
 }
+
 .plane-name__pop-up .locations h2 {
   font-size: 32px;
   margin: 10px;
 }
+
 .plane-name__pop-up .locations h3 {
   font-size: 24px;
   margin: 10px;
+}
+
+.plane_img {
+  margin: -25px 0px 10px 35px;
+}
+
+.path_img {
+  margin-top: -50px;
+}
+
+.city-data__pop-up {
+  width: 991px;
+  height: 747px;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 4px solid var(--unnamed-color-24cad2);
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 4px solid #24CAD2;
+  opacity: 1;
+}
+.city-data__pop-up .city-data__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.city-data__pop-up .city-data__header .date__temp {
+  display: flex;
+  flex-direction: column;
 }
