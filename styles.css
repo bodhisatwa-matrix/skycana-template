@@ -230,7 +230,7 @@ body {
 }
 
 .world-map__map-img-zoom {
-  visibility: hidden;
+  /* visibility: hidden; */
   margin: 0 auto;
   height: 125vh;
 }
@@ -314,7 +314,7 @@ body {
 }
 
 .world-map__bordered {
-  transform: scale(1.2) translateY(-6%);
+  transform: scale(1.2) translateY(-1%);
 }
 
 .world-map__windows {
