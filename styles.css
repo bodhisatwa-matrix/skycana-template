@@ -995,6 +995,7 @@ body {
   align-items: center;
   z-index: 99;
 }
+
 .de_capacided_pop_up {
   visibility: hidden;
   position: absolute;
@@ -1017,6 +1018,7 @@ body {
   align-items: center;
   z-index: 99;
 }
+
 .de_capacided_pop_up .icon img {
   width: 85px;
   height: 85px;
@@ -1026,7 +1028,8 @@ body {
   padding: 18px;
   border-radius: 50%;
 }
-.de_capacided_pop_up p{
+
+.de_capacided_pop_up p {
   font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
@@ -1036,6 +1039,7 @@ body {
   color: #035F7E;
   opacity: 1;
 }
+
 .rango_de_vuelo_pop_up {
   visibility: hidden;
   position: absolute;
@@ -1058,6 +1062,7 @@ body {
   align-items: center;
   z-index: 99;
 }
+
 .rango_de_vuelo_pop_up .icon img {
   width: 85px;
   height: 85px;
@@ -1067,7 +1072,8 @@ body {
   padding: 18px;
   border-radius: 50%;
 }
-.rango_de_vuelo_pop_up p{
+
+.rango_de_vuelo_pop_up p {
   font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
@@ -1131,12 +1137,62 @@ body {
   /* border-radius: 50%; */
 }
 
-.location-point{
-  position : absolute;
-  height : 20px;
-  width : 20px;
-  border-radius : 50%;
-  background-color : #E59C26;
-  display : block;
-  z-index: 0;
+.location-point {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #E59C26;
+  display: block;
+  z-index: 3;
+}
+
+.location-point-parent {}
+
+.location-point__city-name {
+  position: absolute;
+  text-align: center;
+  font: normal normal bold 20px Montserrat;
+  color: #E59C26;
+  user-select: none;
+}
+
+/* styles related to flying plane */
+.flight-path-container {
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.flight-path {
+  height: 100%;
+  width: 100%;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 10000;
+  stroke: #24cad2;
+  stroke-width: 3;
+  fill: none;
+  animation: draw 35s linear infinite;
+}
+#plane {
+  width: 50px;
+  position: absolute;
+  top: 0;
+  animation: fly_plane 4s linear infinite;
+  display: none;
+  z-index: 4;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fly_plane {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
 }

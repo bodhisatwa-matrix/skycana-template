@@ -1,6 +1,10 @@
 let selected_option = "";
 let mapIsZommedIn = false;
 
+const body = document.querySelector("body");
+const flightPath = document.querySelector(".flight-path");
+const plane = document.querySelector("#plane");
+
 const window_shutters = document.querySelectorAll(".window-shutter");
 const choose_option = document.querySelector(".zoomed-in");
 const world_map = document.querySelector(".world-map");
@@ -111,7 +115,7 @@ world_map_options.forEach(item => {
                         showSecondWindow();
                     }
                     clickedButton = 2;
-                    
+
                     break;
                 case "flota-shutter":
                     hideLocations();
@@ -124,7 +128,7 @@ world_map_options.forEach(item => {
                     gsap.to(".nuestra-flota", { opacity: 1, display: "block", duration: 2 });
                     // gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
                     // gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 2 });
-                    
+
                     break;
                 default:
                     console.log("Something Went wrong");
@@ -211,16 +215,16 @@ function clickOnPlusHandler(event) {
     // console.log(event.target.id);
     if (event.target.id === "one") {
         // console.log(event.target.id);
-        gsap.to('.asienton_pop_up', { opacity: 1, autoAlpha: 1});
+        gsap.to('.asienton_pop_up', { opacity: 1, autoAlpha: 1 });
     }
     if (event.target.id === "two") {
-        gsap.to('.rango_de_vuelo_pop_up', { opacity: 1, autoAlpha: 1});
+        gsap.to('.rango_de_vuelo_pop_up', { opacity: 1, autoAlpha: 1 });
     }
     if (event.target.id === "three") {
-        gsap.to('.de_capacided_pop_up', { opacity: 1, autoAlpha: 1});
+        gsap.to('.de_capacided_pop_up', { opacity: 1, autoAlpha: 1 });
     }
     if (event.target.id === "four") {
-        
+
     }
 }
 extra_info_buttons.forEach(btn => {
@@ -256,8 +260,8 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
 
     // rendering locations in map related code here
     console.log(jsonData.Locations);
-    jsonData.Locations.forEach(_l=>{
-        const point = new LocationPoint(_l.x,_l.y,_l.id);
+    jsonData.Locations.forEach(_l => {
+        const point = new LocationPoint(_l.x, _l.y, _l.id, _l.name);
         point.render();
     })
     // ********************************************
@@ -298,15 +302,19 @@ function mapZoomIn() {
         mapIsZommedIn = true;
     }
 }
-function showLocations(){
-    if(selected_option === "vuelos-shutter"){
-        gsap.from(".world-map__destinations",{opacity : 0})
-        gsap.to(".world-map__destinations",{opacity : 1, display:"block",duration : 5 , delay : 1})
-        gsap.to(".location-point",{display:"block",duration : 0.1})
+function showLocations() {
+    if (selected_option === "vuelos-shutter") {
+        gsap.from(".world-map__destinations", { opacity: 0 })
+        gsap.to(".world-map__destinations", { opacity: 1, display: "block", duration: 5, delay: 1 })
+        gsap.to(".location-point", { display: "block", duration: 0.1 })
+        gsap.to(".location-point__city-name", { display: "block", duration: 0.1 })
     }
 }
-function hideLocations(){
-    gsap.to(".location-point",{display:"none",duration : 0.1})
+function hideLocations() {
+    gsap.to(".location-point", { display: "none", duration: 0.1 });
+    gsap.to(".location-point__city-name", { display: "none", duration: 0.1 });
+
+
 }
 // click on the world map zoomes on the map
 let click = true;
@@ -551,31 +559,102 @@ destination.forEach(des => {
 })
 
 // *********************************************************************
+var airport = new Airport();
+function takeOff(e) {
+    if (selected_option === "vuelos-shutter" && mapIsZommedIn) {
+        airport.getFromAndToPoints(e);
+        const plane = new FlyingPlane(airport.from, airport.to);
+        if (airport.from && airport.to) {
+            plane.fly();
+        } else {
+            plane.land();
+        }
+    }
+}
+body.addEventListener("click", takeOff);
 
 
-// ************rendering the orange location points on the map **********
-
-// **********************************************************************
-// world-map__destinations
-
-
-
-
-function LocationPoint(x, y, id) {
+function LocationPoint(x, y, id, cityName) {
     this.x = x;
     this.y = y;
     this.id = id;
-  
+    this.cityName = cityName;
+
     //   render on dom
     this.render = function () {
-      var div = document.createElement("div");
-      div.classList.add("location-point");
-      div.id = id;
-      div.style.left = (this.x-10) + "px";
-      div.style.top = (this.y-10) + "px";
-      document.querySelector(".world-map__destinations").appendChild(div);
+        var parentDiv = document.createElement("div");
+        parentDiv.classList.add("location-point-parent")
+
+        var div = document.createElement("div");
+        div.classList.add("location-point");
+
+        var p = document.createElement("p");
+        var text = document.createTextNode(this.cityName);
+        p.classList.add("location-point__city-name");
+        p.appendChild(text);
+
+        parentDiv.appendChild(p)
+
+        div.id = id;
+        div.style.left = (this.x - 10) + "px";
+        div.style.top = (this.y - 10) + "px";
+
+        p.id = id;
+        p.style.left = (this.x + 20) + "px";
+        p.style.top = (this.y - 10) + "px";
+
+        parentDiv.appendChild(div);
+        document.querySelector(".world-map__destinations").appendChild(parentDiv);
     };
-  }
+}
+
+function FlyingPlane(from, to) {
+    this.from = from;
+    this.to = to;
+    this.planeElement = document.querySelector("#plane");
+    this.flightPathElement = document.querySelector(".flight-path");
+    this.flying = false;
+
+    this.fly = function () {
+        if (this.from && this.to) {
+            flightPath.setAttribute(
+                "d",
+                `M${from.x},${from.y} A130,90 0 1,1 ${to.x},${to.y}`
+            );
+            plane.style.offsetPath = `path('M${from.x},${from.y} A130,90 0 1,1 ${to.x},${to.y}')`;
+            plane.style.transform = "translateY(-25px)";
+            plane.style.display = "block";
+            this.flying = true;
+        }
+    };
+    this.land = function () {
+        flightPath.setAttribute("d", "");
+        plane.style.offsetPath = ``;
+        plane.style.transform = "translateY(0px)";
+        plane.style.display = "none";
+        this.flying = false;
+    };
+}
 
 
-
+function Airport() {
+    this.from = null;
+    this.to = null;
+    this.getFromAndToPoints = function (e) {
+        const { pageX, pageY } = e;
+        if ((!this.from && !this.to) || (this.from && this.to)) {
+            this.from = { x: pageX, y: pageY };
+            this.to = null;
+        } else if (this.from && !this.to) {
+            this.to = { x: pageX, y: pageY };
+        } else if (!this.from && this.to) {
+            this.from = { x: pageX, y: pageY };
+            this.to = null;
+        } else {
+            this.from = null;
+            this.to = null;
+        }
+        console.log("from", this.from);
+        console.log("to", this.to);
+    };
+}
