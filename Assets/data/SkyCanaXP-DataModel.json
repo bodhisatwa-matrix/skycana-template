@@ -103,5 +103,16 @@
       "capacity": "42,000 kg de capacidad",
       "size": "40,57 metros de largo"
     }
+  ],
+  "image_urls": [
+    {
+      "image": "https://wallpapers.com/images/high/hd-river-in-the-mountains-kgb9wrcm1wmrfa5m.jpg"
+    },
+    {
+      "image": "https://wallpapers.com/images/high/hd-vacation-house-in-the-beach-j4jasqgcc5ismew8.jpg"
+    },
+    {
+      "image": "https://wallpapers.com/images/high/hd-beach-dock-44r3w5nyqr38tq16.jpg"
+    }
   ]
 }
