@@ -700,13 +700,112 @@ body {
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 4px solid #24CAD2;
   opacity: 1;
+  position: absolute;
+  /* margin: -25px 0 0 -25px; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  border-radius: 32px;
 }
+
 .city-data__pop-up .city-data__header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding: 46px;
 }
+
 .city-data__pop-up .city-data__header .date__temp {
   display: flex;
   flex-direction: column;
+  font: var(--unnamed-font-style-normal) normal 300 var(--unnamed-font-size-50)/var(--unnamed-line-spacing-61) var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: left;
+  font: normal normal 300 50px/61px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+}
+
+.city-data__pop-up .city-data__header .city-data__temp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font: var(--unnamed-font-style-normal) normal 600 28px/34px var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: left;
+  font: normal normal 600 28px/34px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+  width: 150px;
+}
+
+.city-data__pop-up .city-data__header .city_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.city-data__pop-up .city-data__header .city_content .city__name {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 51px/62px var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: center;
+  font: normal normal bold 51px/62px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+}
+
+.city-data__pop-up .city-data__header .city_content .city__des {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: center;
+  font: normal normal bold 22px/27px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+  margin-top: 24px;
+}
+
+.city-data__img-slider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.city-data__img-slider .slider__left-arrow {
+  background-image: url('./Assets/Images/left\ arrow.png');
+  width: 101px;
+  height: 96px;
+  /* border: 3px solid var(--unnamed-color-24cad2);
+  border: 3px solid #24CAD2; */
+  opacity: 1;
+}
+
+.city-data__img-slider .slider__right-arrow {
+  background-image: url('./Assets/Images/right\ arrow.png');
+  width: 101px;
+  height: 96px;
+  /* border: 3px solid var(--unnamed-color-24cad2);
+  border: 3px solid #24CAD2; */
+  opacity: 1;
+}
+
+.city-data__img-slider .city-data__img {
+  /* width: 699px;
+  height: 408px; */
+  opacity: 1;
+  border-radius: 32px;
+  padding: 0 32px;
+}
+
+.city-data__img-slider .city-data__img .slider__img {
+  border-radius: 20px;
+  max-width: 650px;
 }
