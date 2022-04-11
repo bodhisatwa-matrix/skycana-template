@@ -201,15 +201,16 @@ var info_btn_four = document.querySelector(".nuestra-flota__plus-buttons__four")
 var seats_popup = document.querySelector(".nuestra-flota__plus-icon-popups__seats");
 
 function clickOnPlusHandler(event) {
-    console.log(event.target.id);
+    // console.log(event.target.id);
     if (event.target.id === "one") {
-        
+        // console.log(event.target.id);
+        gsap.to('.asienton_pop_up', { opacity: 1, autoAlpha: 1});
     }
     if (event.target.id === "two") {
-
+        gsap.to('.rango_de_vuelo_pop_up', { opacity: 1, autoAlpha: 1});
     }
     if (event.target.id === "three") {
-
+        gsap.to('.de_capacided_pop_up', { opacity: 1, autoAlpha: 1});
     }
     if (event.target.id === "four") {
 
