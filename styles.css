@@ -221,6 +221,7 @@ body {
   max-height: 99vh;
   overflow: hidden;
   display: none;
+  cursor: pointer;
 }
 
 .world-map__map-img {
