@@ -967,3 +967,12 @@ body {
   max-width: 570px;
   padding-left: 45px;
 }
+.asienton_pop_up {
+  position: absolute;
+  top: 0;
+  display: none;
+}
+.asienton_pop_up .icon {
+  width: 88px;
+  height: 86px;
+}

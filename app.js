@@ -203,7 +203,7 @@ var seats_popup = document.querySelector(".nuestra-flota__plus-icon-popups__seat
 function clickOnPlusHandler(event) {
     console.log(event.target.id);
     if (event.target.id === "one") {
-
+        
     }
     if (event.target.id === "two") {
 
@@ -385,12 +385,10 @@ world_map__destination_point.forEach(item => {
 
 });
 function showFirstWindow() {
-    console.log("called 1");
     gsap.to(".world-map__destination-point, .destination_text", { opacity: 1, autoAlpha: 1, duration: 1, display: "block" });
     gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 1, autoAlpha: 0 });
 }
 function showSecondWindow() {
-    console.log("called 2");
     gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 1, autoAlpha: 0 });
     gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 1, duration: 1, display: "block", autoAlpha: 1 });
 }
