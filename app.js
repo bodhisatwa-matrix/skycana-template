@@ -255,6 +255,7 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
     });
 });
 
+
 world_map__map_border.addEventListener('click', function () {
     // var nuestros_destinos = document.getElementById("nuestros-destinos");
     // console.log(world_map_heading);
