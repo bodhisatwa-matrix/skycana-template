@@ -328,6 +328,7 @@ body {
   justify-content: center;
   height: fit-content;
   width: fit-content;
+  z-index: 2;
 }
 
 .world-map__single-window {
@@ -341,7 +342,7 @@ body {
 }
 
 .world-map__destinations {
-  /* display: none; */
+  display: none;
   position: absolute;
   top: 0;
 }
@@ -796,6 +797,7 @@ body {
   cursor: pointer;
   opacity: 1;
   transition: all 0.3s;
+  z-index: 4;
 }
 
 .city-data__img-slider .slider__right-arrow {
@@ -807,6 +809,7 @@ body {
   border: 3px solid #24CAD2; */
   opacity: 1;
   transition: all 0.3s;
+  z-index: 4;
 }
 
 .city-data__img-slider .slider__left-arrow:hover,
@@ -1126,4 +1129,14 @@ body {
   opacity: 1;
   padding: 18px;
   /* border-radius: 50%; */
+}
+
+.location-point{
+  position : absolute;
+  height : 20px;
+  width : 20px;
+  border-radius : 50%;
+  background-color : #E59C26;
+  display : block;
+  z-index: 0;
 }

@@ -9,8 +9,8 @@
       "id": "sdq",
       "name": "Santo Domingo",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 1170,
-      "y": 460,
+      "x": 700,
+      "y": 330,
       "picts": [
         "http://host/pict11.jpg",
         "http://host/pict12.jpg"
@@ -20,8 +20,8 @@
       "id": "mia",
       "name": "Miami",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 960,
-      "y": 291,
+      "x": 771,
+      "y": 150,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -31,8 +31,8 @@
       "id": "cub",
       "name": "Cuba",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 1060,
-      "y": 420,
+      "x": 850,
+      "y": 240,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -42,8 +42,8 @@
       "id": "mex",
       "name": "Mexico",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 480,
-      "y": 350,
+      "x": 594,
+      "y": 296,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -53,8 +53,8 @@
       "id": "nic",
       "name": "Nicaragua",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 750,
-      "y": 521,
+      "x": 650,
+      "y": 251,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -64,8 +64,8 @@
       "id": "col",
       "name": "Colombia",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 1100,
-      "y": 751,
+      "x": 870,
+      "y": 441,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"

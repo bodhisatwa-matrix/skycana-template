@@ -96,8 +96,10 @@ world_map_options.forEach(item => {
                         showFirstWindow();
                     }
                     clickedButton = 1;
+                    showLocations();
                     break;
                 case "destinos-shutter":
+                    hideLocations()
                     selected_option = temp_option;
                     world_map_heading.innerHTML = "Nuestros destinos";
                     gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Closed.png" } })
@@ -109,8 +111,10 @@ world_map_options.forEach(item => {
                         showSecondWindow();
                     }
                     clickedButton = 2;
+                    
                     break;
                 case "flota-shutter":
+                    hideLocations();
                     selected_option = temp_option;
                     world_map_heading.innerHTML = "Nuestra flota";
                     gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Closed.png" } })
@@ -118,8 +122,9 @@ world_map_options.forEach(item => {
                     gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Open.png" } })
                     gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
                     gsap.to(".nuestra-flota", { opacity: 1, display: "block", duration: 2 });
-                    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
-                    gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 2 });
+                    // gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
+                    // gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 2 });
+                    
                     break;
                 default:
                     console.log("Something Went wrong");
@@ -248,6 +253,15 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
     var data = JSON.parse(text);
     jsonData = JSON.parse(text);
     // populateCityPopUp(data);
+
+    // rendering locations in map related code here
+    console.log(jsonData.Locations);
+    jsonData.Locations.forEach(_l=>{
+        const point = new LocationPoint(_l.x,_l.y,_l.id);
+        point.render();
+    })
+    // ********************************************
+
     Object.keys(data).forEach(key => {
         if (key == 'Locations') {
             if (Array.isArray(data['Locations'])) {
@@ -284,124 +298,134 @@ function mapZoomIn() {
         mapIsZommedIn = true;
     }
 }
-
+function showLocations(){
+    if(selected_option === "vuelos-shutter"){
+        gsap.from(".world-map__destinations",{opacity : 0})
+        gsap.to(".world-map__destinations",{opacity : 1, display:"block",duration : 5 , delay : 1})
+        gsap.to(".location-point",{display:"block",duration : 0.1})
+    }
+}
+function hideLocations(){
+    gsap.to(".location-point",{display:"none",duration : 0.1})
+}
 // click on the world map zoomes on the map
 let click = true;
 world_map__map_border.addEventListener('click', function () {
     mapZoomIn();
-    if (click) {
-        // gsap.to('.world-map__map-img-zoom', { ease: 'none', autoAlpha: 1, display: 'block', duration: 0.1 })
-        // gsap.to('.world-map__map-img', { ease: 'none', autoAlpha: 0, display: 'none', duration: 0.1 })
-        if (clickedButton == 2) {
-            showSecondWindow();
-        } else {
-            showFirstWindow();
-        }
-        var i = 0;
-        var mainDiv1 = document.createElement('div');
-        var mainDiv2 = document.createElement('div');
-        locations.forEach(location => {
-            if (i == 0) {
-                /**
-                * First Window
-                */
-                var div = document.createElement('h4');
-                div.className = "destination_text";
-                div.innerHTML = location.name;
-                var x = location.x;
-                var y = location.y;
-                var city_name = location.name;
-                var el = document.getElementById('map__destinations');
-                el.appendChild(div);
-                el.style.left = x + 'px';
-                el.style.top = y + 'px';
-                /** Second Window */
-                var divSecond = document.createElement('h4');
-                divSecond.className = "destination_text__nuestros-destinos";
-                divSecond.innerHTML = location.name;
-                var x = location.x;
-                var y = location.y;
-                var city_name = location.name;
-                var el = document.getElementById('map__destinations_nuestros-destinos');
-                el.appendChild(divSecond);
-                el.style.left = x + 'px';
-                el.style.top = y + 'px';
-            } else {
-                /**
-                 * First Window
-                 */
+    showLocations();
+    // if (click) {
+    //     // gsap.to('.world-map__map-img-zoom', { ease: 'none', autoAlpha: 1, display: 'block', duration: 0.1 })
+    //     // gsap.to('.world-map__map-img', { ease: 'none', autoAlpha: 0, display: 'none', duration: 0.1 })
+    //     if (clickedButton == 2) {
+    //         showSecondWindow();
+    //     } else {
+    //         showFirstWindow();
+    //     }
+    //     var i = 0;
+    //     var mainDiv1 = document.createElement('div');
+    //     var mainDiv2 = document.createElement('div');
+    //     locations.forEach(location => {
+    //         if (i == 0) {
+    //             /**
+    //             * First Window
+    //             */
+    //             var div = document.createElement('h4');
+    //             div.className = "destination_text";
+    //             div.innerHTML = location.name;
+    //             var x = location.x;
+    //             var y = location.y;
+    //             var city_name = location.name;
+    //             var el = document.getElementById('map__destinations');
+    //             el.appendChild(div);
+    //             el.style.left = x + 'px';
+    //             el.style.top = y + 'px';
+    //             /** Second Window */
+    //             var divSecond = document.createElement('h4');
+    //             divSecond.className = "destination_text__nuestros-destinos";
+    //             divSecond.innerHTML = location.name;
+    //             var x = location.x;
+    //             var y = location.y;
+    //             var city_name = location.name;
+    //             var el = document.getElementById('map__destinations_nuestros-destinos');
+    //             el.appendChild(divSecond);
+    //             el.style.left = x + 'px';
+    //             el.style.top = y + 'px';
+    //         } else {
+    //             /**
+    //              * First Window
+    //              */
 
-                var div = document.createElement('div');
-                div.id = 'map__destinations' + i;
-                var x = location.x;
-                var y = location.y;
-                var city_name = location.name;
-                div.className = 'world-map__destinations';
-                div.innerHTML = '<div class="world-map__destination-point"><h4 class="destination_text">' + city_name + '</h4></div>';
-                div.addEventListener("click", cityClick, false);
-                mainDiv1.append(div)
-                document.body.appendChild(mainDiv1);
-                var el = document.getElementById(div.id);
-                el.style.left = x + 'px';
-                el.style.top = y + 'px';
-                /* Second window */
+    //             var div = document.createElement('div');
+    //             div.id = 'map__destinations' + i;
+    //             var x = location.x;
+    //             var y = location.y;
+    //             var city_name = location.name;
+    //             div.className = 'world-map__destinations';
+    //             div.innerHTML = '<div class="world-map__destination-point"><h4 class="destination_text">' + city_name + '</h4></div>';
+    //             div.addEventListener("click", cityClick, false);
+    //             mainDiv1.append(div)
+    //             document.body.appendChild(mainDiv1);
+    //             var el = document.getElementById(div.id);
+    //             el.style.left = x + 'px';
+    //             el.style.top = y + 'px';
+    //             /* Second window */
 
-                // mainDiv2.setAttribute('class', 'second_window_cities');
-                var divSecond = document.createElement('div');
-                divSecond.id = 'map__destinations_nuestros-destinos' + i;
-                var x = location.x;
-                var y = location.y;
-                var city_name = location.name;
-                divSecond.className = 'world-map__destinations__nuestros-destinos';
-                divSecond.innerHTML = '<div class="world-map__destination-point__nuestros-destinos"><h4 class="destination_text__nuestros-destinos">' + city_name + '</h4></div>';
-                divSecond.addEventListener("click", function (event) {
-                    var id = location.id;
-                    populateCityPopUp(id);
-                });
-                mainDiv2.append(divSecond);
-                document.body.appendChild(mainDiv2);
-                var el = document.getElementById(divSecond.id);
-                el.style.left = x + 'px';
-                el.style.top = y + 'px';
-            }
-            i++;
-        });
-        planes.forEach(plane => {
-            // //create plane path
-            var from = plane.from;
-            var to = plane.to;
-            var fromData = locations.find(o => o.id == from);
-            var toData = locations.find(o => o.id == to);
-            if (fromData && toData) {
+    //             // mainDiv2.setAttribute('class', 'second_window_cities');
+    //             var divSecond = document.createElement('div');
+    //             divSecond.id = 'map__destinations_nuestros-destinos' + i;
+    //             var x = location.x;
+    //             var y = location.y;
+    //             var city_name = location.name;
+    //             divSecond.className = 'world-map__destinations__nuestros-destinos';
+    //             divSecond.innerHTML = '<div class="world-map__destination-point__nuestros-destinos"><h4 class="destination_text__nuestros-destinos">' + city_name + '</h4></div>';
+    //             divSecond.addEventListener("click", function (event) {
+    //                 var id = location.id;
+    //                 populateCityPopUp(id);
+    //             });
+    //             mainDiv2.append(divSecond);
+    //             document.body.appendChild(mainDiv2);
+    //             var el = document.getElementById(divSecond.id);
+    //             el.style.left = x + 'px';
+    //             el.style.top = y + 'px';
+    //         }
+    //         i++;
+    //     });
+    //     planes.forEach(plane => {
+    //         // //create plane path
+    //         var from = plane.from;
+    //         var to = plane.to;
+    //         var fromData = locations.find(o => o.id == from);
+    //         var toData = locations.find(o => o.id == to);
+    //         if (fromData && toData) {
 
-                // var div = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                // div.id = 'plane_line_' + plane.id;
-                // // div.innerHTML = "<line></line>";
-                // document.getElementsByClassName('real-time__planes')[0].appendChild(div);
-                var plane__line = document.getElementsByClassName('real-time__planes')[0];
-                var newPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                newPath.setAttribute('id', plane.id);
-                // newPath.setAttribute('d', "M960,291 Q 75,70 170,25 1170,460");
-                // newLine.setAttribute('x1', fromData.x);
-                // newLine.setAttribute('y1', fromData.y);
-                // newLine.setAttribute('x2', toData.x);
-                // newLine.setAttribute('y2', toData.y);
-                newPath.setAttribute("stroke", "#00B5BA");
-                newPath.setAttribute("stroke-width", 5);
-                newPath.setAttribute("stroke-dasharray", "10");
-                plane__line.appendChild(newPath);
-            }
-        });
-        click = false;
-    }
-
-});
-world_map__destination_point.forEach(item => {
-    item.addEventListener('click', function () {
-        gsap.to('.plane-name__pop-up', { ease: 'none', autoAlpha: 1, display: 'block' });
-    })
+    //             // var div = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    //             // div.id = 'plane_line_' + plane.id;
+    //             // // div.innerHTML = "<line></line>";
+    //             // document.getElementsByClassName('real-time__planes')[0].appendChild(div);
+    //             var plane__line = document.getElementsByClassName('real-time__planes')[0];
+    //             var newPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    //             newPath.setAttribute('id', plane.id);
+    //             // newPath.setAttribute('d', "M960,291 Q 75,70 170,25 1170,460");
+    //             // newLine.setAttribute('x1', fromData.x);
+    //             // newLine.setAttribute('y1', fromData.y);
+    //             // newLine.setAttribute('x2', toData.x);
+    //             // newLine.setAttribute('y2', toData.y);
+    //             newPath.setAttribute("stroke", "#00B5BA");
+    //             newPath.setAttribute("stroke-width", 5);
+    //             newPath.setAttribute("stroke-dasharray", "10");
+    //             plane__line.appendChild(newPath);
+    //         }
+    //     });
+    //     click = false;
+    // }
 
 });
+// world_map__destination_point.forEach(item => {
+//     // item.addEventListener('click', function () {
+//     //     gsap.to('.plane-name__pop-up', { ease: 'none', autoAlpha: 1, display: 'block' });
+//     // })
+
+// });
 function showFirstWindow() {
     gsap.to(".world-map__destination-point, .destination_text", { opacity: 1, autoAlpha: 1, duration: 1, display: "block" });
     gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 1, autoAlpha: 0 });
@@ -530,24 +554,28 @@ destination.forEach(des => {
 
 
 // ************rendering the orange location points on the map **********
-var locationPoints = new LocationPoints();
-locationPoints.loadDataFromFile();
+
 // **********************************************************************
+// world-map__destinations
 
-function LocationPoints() {
-    this.locationData = null;
-    this.loadDataFromFile = function(){
-        readTextFile("Assets/data/SkyCanaXP-DataModel.json",function(textData){
-            this.locationData = JSON.parse(textData);
-            console.log(this.locationData);
-        })
-    }
-    
-}
 
-function LocationPointCircle(x, y) {
+
+
+function LocationPoint(x, y, id) {
     this.x = x;
     this.y = y;
-    this.diameter = "10px";
-    this.className = "";
-}
+    this.id = id;
+  
+    //   render on dom
+    this.render = function () {
+      var div = document.createElement("div");
+      div.classList.add("location-point");
+      div.id = id;
+      div.style.left = (this.x-10) + "px";
+      div.style.top = (this.y-10) + "px";
+      document.querySelector(".world-map__destinations").appendChild(div);
+    };
+  }
+
+
+
