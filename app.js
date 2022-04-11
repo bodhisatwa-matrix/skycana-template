@@ -215,7 +215,7 @@ function clickOnPlusHandler(event) {
         gsap.to('.de_capacided_pop_up', { opacity: 1, autoAlpha: 1});
     }
     if (event.target.id === "four") {
-
+        
     }
 }
 extra_info_buttons.forEach(btn => {
