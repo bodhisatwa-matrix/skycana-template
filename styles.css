@@ -335,10 +335,12 @@ body {
   margin: 0 30px;
   cursor: pointer;
   user-select: none;
+  
 }
 
 .world-map__single-window img {
   width: 150px;
+  z-index: 15 !important;
 }
 
 .world-map__destinations {
@@ -1159,9 +1161,12 @@ body {
 
 /* styles related to flying plane */
 .flight-path-container {
+  position: absolute;
+  top: 0;
   height: 100%;
   width: 100%;
-  z-index: 10;
+  z-index: 2;
+  display: none;
 }
 
 .flight-path {

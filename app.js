@@ -571,7 +571,6 @@ function takeOff(e) {
         }
     }
 }
-body.addEventListener("click", takeOff);
 
 
 function LocationPoint(x, y, id, cityName) {
@@ -587,6 +586,7 @@ function LocationPoint(x, y, id, cityName) {
 
         var div = document.createElement("div");
         div.classList.add("location-point");
+        div.setAttribute('onclick' , "takeOff(event)")
 
         var p = document.createElement("p");
         var text = document.createTextNode(this.cityName);
@@ -621,6 +621,7 @@ function FlyingPlane(from, to) {
                 "d",
                 `M${from.x},${from.y} A130,90 0 1,1 ${to.x},${to.y}`
             );
+            document.querySelector(".flight-path-container").style.display = "block";
             plane.style.offsetPath = `path('M${from.x},${from.y} A130,90 0 1,1 ${to.x},${to.y}')`;
             plane.style.transform = "translateY(-25px)";
             plane.style.display = "block";
@@ -629,6 +630,7 @@ function FlyingPlane(from, to) {
     };
     this.land = function () {
         flightPath.setAttribute("d", "");
+        document.querySelector(".flight-path-container").style.display = "none";
         plane.style.offsetPath = ``;
         plane.style.transform = "translateY(0px)";
         plane.style.display = "none";
