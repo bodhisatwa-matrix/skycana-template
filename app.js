@@ -89,8 +89,8 @@ world_map_options.forEach(item => {
                     gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
                     gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
                     gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
-                    gsap.to(".world-map__destination-point, .destination_text", { opacity: 1, duration: 2, display: "block" });
-                    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
+                    gsap.to(".world-map__destination-point, .destination_text", { opacity: 1, duration: 1, display: "block" });
+                    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 1 });
                     break;
                 case "destinos-shutter":
                     selected_option = temp_option;
@@ -100,8 +100,8 @@ world_map_options.forEach(item => {
                     gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
                     gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
                     gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
-                    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 1, duration: 2, display: "block" });
-                    gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 2 });
+                    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos, .second_window_cities", { opacity: 1, duration: 1, display: "block" });
+                    gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 1 });
                     break;
                 case "flota-shutter":
                     selected_option = temp_option;
@@ -315,6 +315,7 @@ world_map__map_border.addEventListener('click', function () {
             /**
              * First Window
              */
+            var mainDiv1 = document.createElement('div');
             var div = document.createElement('div');
             div.id = 'map__destinations' + i;
             var x = location.x;
@@ -323,11 +324,14 @@ world_map__map_border.addEventListener('click', function () {
             div.className = 'world-map__destinations';
             div.innerHTML = '<div class="world-map__destination-point"><h4 class="destination_text">' + city_name + '</h4></div>';
             div.addEventListener("click", cityClick, false);
-            document.body.appendChild(div);
+            mainDiv1.append(div)
+            document.body.appendChild(mainDiv1);
             var el = document.getElementById(div.id);
             el.style.left = x + 'px';
             el.style.top = y + 'px';
             /* Second window */
+            var mainDiv2 = document.createElement('div');
+            mainDiv2.setAttribute('class', 'second_window_cities');
             var divSecond = document.createElement('div');
             divSecond.id = 'map__destinations_nuestros-destinos' + i;
             var x = location.x;
@@ -339,7 +343,8 @@ world_map__map_border.addEventListener('click', function () {
                 var id = location.id;
                 populateCityPopUp(id);
             });
-            document.body.appendChild(divSecond);
+            mainDiv2.append(divSecond);
+            document.body.appendChild(mainDiv2);
             var el = document.getElementById(divSecond.id);
             el.style.left = x + 'px';
             el.style.top = y + 'px';

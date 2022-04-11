@@ -830,3 +830,6 @@ body {
 .city-data__img {
   display: none
 }
+.second_window_cities {
+  display: none;
+}
