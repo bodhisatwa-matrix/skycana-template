@@ -340,11 +340,13 @@ body {
 }
 
 .world-map__destinations {
+  /* display: none; */
   position: absolute;
   top: 0;
 }
 
 .world-map__destinations__nuestros-destinos {
+  /* display: none; */
   position: absolute;
   top: 0;
 }
@@ -355,9 +357,11 @@ body {
   width: 25px;
   border-radius: 50%;
   background-color: var(--unnamed-color-e59c26);
+  /* display: none; */
 }
 
 .world-map__destination-point__nuestros-destinos {
+  /* display: none; */
   /* visibility: hidden; */
   height: 100px;
   width: 100px;
@@ -530,12 +534,14 @@ body {
 }
 
 .destination_text {
+  /* visibility: hidden; */
   color: var(--unnamed-color-e59c26);
   font-size: 32px;
   margin-left: 35px;
 }
 
 .destination_text__nuestros-destinos {
+  /* visibility: hidden; */
   /* color: var(--unnamed-color-e59c26); */
   font-size: 32px;
 }
@@ -710,12 +716,12 @@ body {
   border-radius: 32px;
 }
 
-.city-data__pop-up .city-data__header {
+/* .city-data__pop-up .city-data__header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   padding: 46px;
-}
+} */
 
 .city-data__pop-up .city-data__header .date__temp {
   display: flex;
@@ -786,16 +792,30 @@ body {
   height: 96px;
   /* border: 3px solid var(--unnamed-color-24cad2);
   border: 3px solid #24CAD2; */
+  cursor: pointer;
   opacity: 1;
+  transition: all 0.3s;
 }
 
 .city-data__img-slider .slider__right-arrow {
+  cursor: pointer;
   background-image: url('./Assets/Images/right\ arrow.png');
   width: 101px;
   height: 96px;
   /* border: 3px solid var(--unnamed-color-24cad2);
   border: 3px solid #24CAD2; */
   opacity: 1;
+  transition: all 0.3s;
+}
+
+.city-data__img-slider .slider__left-arrow:hover,
+.city-data__img-slider .slider__right-arrow:hover {
+  transform: translateY(-3px);
+}
+
+.city-data__img-slider .slider__left-arrow:active,
+.city-data__img-slider .slider__right-arrow:active {
+  transform: translateY(3px);
 }
 
 .city-data__img-slider .city-data__img {
@@ -808,7 +828,10 @@ body {
 
 .city-data__img-slider .city-data__img .slider__img {
   border-radius: 20px;
-  max-width: 650px;
+  width: 650px;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* City pop up slides */
@@ -830,6 +853,117 @@ body {
 .city-data__img {
   display: none
 }
-.second_window_cities {
+
+/* .second_window_cities {
   display: none;
+} */
+.slider-dot {
+  padding: 10px;
+}
+
+.dot {
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  margin: 0 2px;
+  /* background-color: #bbb; */
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  border: 2px solid var(--unnamed-color-24cad2);
+  border: 2px solid #24CAD2;
+  opacity: 1;
+  margin: 0 10px;
+}
+
+.slider__img-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.active {
+  background: var(--unnamed-color-24cad2) 0% 0% no-repeat padding-box;
+  border: 2px solid var(--unnamed-color-24cad2);
+  background: #24CAD2 0% 0% no-repeat padding-box;
+  border: 2px solid #24CAD2;
+  opacity: 1;
+}
+
+.city-data__pop-up .city-data__header .top-header {
+  display: flex;
+  justify-content: start;
+  padding: 20px 46px;
+}
+
+.city-data__pop-up .city-data__header .top-header .time {
+  font: var(--unnamed-font-style-normal) normal 300 var(--unnamed-font-size-50)/var(--unnamed-line-spacing-61) var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: left;
+  font: normal normal 300 50px/61px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+}
+
+.city-data__pop-up .city-data__header .top-header .city_name {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 51px/62px var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: center;
+  font: normal normal bold 51px/62px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+  flex: 0.9;
+}
+
+.city-data__pop-up .city-data__header .low-header {
+  display: flex;
+  justify-content: start;
+  padding: 0px 0px 45px 20px;
+}
+
+.city-data__pop-up .city-data__header .low-header .temp {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  /* padding: 10px; */
+  width: 200px;
+  margin-left: 26px;
+}
+
+/* .city-data__pop-up .city-data__header .low-header .temp .temp__icon {
+  background-image: url("./Assets/Images/cloud-icon.png");
+  height: ;
+  width: ;
+} */
+
+.city-data__pop-up .city-data__header .low-header .temp .temp__icon {
+  height: 37px;
+  width: 47px;
+}
+.city-data__pop-up .city-data__header .low-header .temp .temp_data {
+  font: var(--unnamed-font-style-normal) normal 600 28px/34px var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: left;
+  font: normal normal 600 28px/34px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;  
+  margin: 7px 0px 0px 15px;
+}
+
+.city-data__pop-up .city-data__header .low-header .city__description {
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-035f7e);
+  text-align: center;
+  font: normal normal bold 22px/27px Montserrat;
+  letter-spacing: 0px;
+  color: #035F7E;
+  opacity: 1;
+  max-width: 570px;
+  padding-left: 45px;
 }

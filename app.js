@@ -61,6 +61,7 @@ window_shutters.forEach(item => {
 })
 
 
+var clickedButton = 0;
 world_map_options.forEach(item => {
     const phrase = item.classList[0].split("__")[1].split("-")[0];
     const phrase_capital = phrase[0].toUpperCase() + phrase.substring(1);
@@ -76,9 +77,9 @@ world_map_options.forEach(item => {
             gsap.to(`.${item.classList[0]}`, { opacity: 1, attr: { src: `./Assets/Images/${phrase_capital}_Closed.png` }, duration: 2 })
         }
     })
-
     item.addEventListener("click", e => {
         if (selected_option.split("-")[0] !== phrase) {
+            const isVisible = document.getElementsByClassName('world-map__map-img-zoom')[0].style.display;
             const temp_option = e.target.classList[0].split("__")[1].split("-")[0] + "-shutter";
             switch (temp_option) {
                 case "vuelos-shutter":
@@ -89,8 +90,10 @@ world_map_options.forEach(item => {
                     gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
                     gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
                     gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
-                    gsap.to(".world-map__destination-point, .destination_text", { opacity: 1, duration: 1, display: "block" });
-                    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 1 });
+                    if (isVisible == 'block') {
+                        showFirstWindow();
+                    }
+                    clickedButton = 1;
                     break;
                 case "destinos-shutter":
                     selected_option = temp_option;
@@ -100,8 +103,10 @@ world_map_options.forEach(item => {
                     gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
                     gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
                     gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
-                    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos, .second_window_cities", { opacity: 1, duration: 1, display: "block" });
-                    gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 1 });
+                    if (isVisible == 'block') {
+                        showSecondWindow();
+                    }
+                    clickedButton = 2;
                     break;
                 case "flota-shutter":
                     selected_option = temp_option;
@@ -266,118 +271,110 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
 });
 let click = true;
 world_map__map_border.addEventListener('click', function () {
-    if(click) {
-            // var nuestros_destinos = document.getElementById("nuestros-destinos");
-    // console.log(world_map_heading);
-
-    // var destinos_shutter = document.getElementById("destinos-shutter");
-
-    gsap.to('.world-map__map-img-zoom', { ease: 'none', autoAlpha: 1, display: 'block', duration: 0.1 })
-    gsap.to('.world-map__map-img', { ease: 'none', autoAlpha: 0, display: 'none', duration: 0.1 })
-    // gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
-    var a = document.getElementsByClassName('world-map__destination-point__nuestros-destinos');
-    var b = document.getElementsByClassName('destination_text__nuestros-destinos');
-    // console.log(a, b)
-    for (var i = 0; i < a.length; i++) {
-        a[i].style.display = 'none';
-    }
-    for (var i = 0; i < b.length; i++) {
-        b[i].style.display = 'none';
-    }
-    var i = 0;
-    locations.forEach(location => {
-        if (i == 0) {
-            /**
-            * First Window
-            */
-            var div = document.createElement('h4');
-            div.className = "destination_text";
-            div.innerHTML = location.name;
-            var x = location.x;
-            var y = location.y;
-            var city_name = location.name;
-            var el = document.getElementById('map__destinations');
-            el.appendChild(div);
-            el.style.left = x + 'px';
-            el.style.top = y + 'px';
-            /** Second Window */
-            var divSecond = document.createElement('h4');
-            divSecond.className = "destination_text__nuestros-destinos";
-            divSecond.innerHTML = location.name;
-            var x = location.x;
-            var y = location.y;
-            var city_name = location.name;
-            var el = document.getElementById('map__destinations_nuestros-destinos');
-            el.appendChild(divSecond);
-            el.style.left = x + 'px';
-            el.style.top = y + 'px';
+    if (click) {
+        gsap.to('.world-map__map-img-zoom', { ease: 'none', autoAlpha: 1, display: 'block', duration: 0.1 })
+        gsap.to('.world-map__map-img', { ease: 'none', autoAlpha: 0, display: 'none', duration: 0.1 })
+        if (clickedButton == 2) {
+            showSecondWindow();
         } else {
-            /**
-             * First Window
-             */
-            var mainDiv1 = document.createElement('div');
-            var div = document.createElement('div');
-            div.id = 'map__destinations' + i;
-            var x = location.x;
-            var y = location.y;
-            var city_name = location.name;
-            div.className = 'world-map__destinations';
-            div.innerHTML = '<div class="world-map__destination-point"><h4 class="destination_text">' + city_name + '</h4></div>';
-            div.addEventListener("click", cityClick, false);
-            mainDiv1.append(div)
-            document.body.appendChild(mainDiv1);
-            var el = document.getElementById(div.id);
-            el.style.left = x + 'px';
-            el.style.top = y + 'px';
-            /* Second window */
-            var mainDiv2 = document.createElement('div');
-            mainDiv2.setAttribute('class', 'second_window_cities');
-            var divSecond = document.createElement('div');
-            divSecond.id = 'map__destinations_nuestros-destinos' + i;
-            var x = location.x;
-            var y = location.y;
-            var city_name = location.name;
-            divSecond.className = 'world-map__destinations__nuestros-destinos';
-            divSecond.innerHTML = '<div class="world-map__destination-point__nuestros-destinos"><h4 class="destination_text__nuestros-destinos">' + city_name + '</h4></div>';
-            divSecond.addEventListener("click", function(event){
-                var id = location.id;
-                populateCityPopUp(id);
-            });
-            mainDiv2.append(divSecond);
-            document.body.appendChild(mainDiv2);
-            var el = document.getElementById(divSecond.id);
-            el.style.left = x + 'px';
-            el.style.top = y + 'px';
+            showFirstWindow();
         }
-        i++;
-    });
-    planes.forEach(plane => {
-        // //create plane path
-        var from = plane.from;
-        var to = plane.to;
-        var fromData = locations.find(o => o.id == from);
-        var toData = locations.find(o => o.id == to);
-        if (fromData && toData) {
+        var i = 0;
+        var mainDiv1 = document.createElement('div');
+        var mainDiv2 = document.createElement('div');
+        locations.forEach(location => {
+            if (i == 0) {
+                /**
+                * First Window
+                */
+                var div = document.createElement('h4');
+                div.className = "destination_text";
+                div.innerHTML = location.name;
+                var x = location.x;
+                var y = location.y;
+                var city_name = location.name;
+                var el = document.getElementById('map__destinations');
+                el.appendChild(div);
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+                /** Second Window */
+                var divSecond = document.createElement('h4');
+                divSecond.className = "destination_text__nuestros-destinos";
+                divSecond.innerHTML = location.name;
+                var x = location.x;
+                var y = location.y;
+                var city_name = location.name;
+                var el = document.getElementById('map__destinations_nuestros-destinos');
+                el.appendChild(divSecond);
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+            } else {
+                /**
+                 * First Window
+                 */
+                
+                var div = document.createElement('div');
+                div.id = 'map__destinations' + i;
+                var x = location.x;
+                var y = location.y;
+                var city_name = location.name;
+                div.className = 'world-map__destinations';
+                div.innerHTML = '<div class="world-map__destination-point"><h4 class="destination_text">' + city_name + '</h4></div>';
+                div.addEventListener("click", cityClick, false);
+                mainDiv1.append(div)
+                document.body.appendChild(mainDiv1);
+                var el = document.getElementById(div.id);
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+                /* Second window */
+                
+                // mainDiv2.setAttribute('class', 'second_window_cities');
+                var divSecond = document.createElement('div');
+                divSecond.id = 'map__destinations_nuestros-destinos' + i;
+                var x = location.x;
+                var y = location.y;
+                var city_name = location.name;
+                divSecond.className = 'world-map__destinations__nuestros-destinos';
+                divSecond.innerHTML = '<div class="world-map__destination-point__nuestros-destinos"><h4 class="destination_text__nuestros-destinos">' + city_name + '</h4></div>';
+                divSecond.addEventListener("click", function (event) {
+                    var id = location.id;
+                    populateCityPopUp(id);
+                });
+                mainDiv2.append(divSecond);
+                document.body.appendChild(mainDiv2);
+                var el = document.getElementById(divSecond.id);
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+            }
+            i++;
+        });
+        planes.forEach(plane => {
+            // //create plane path
+            var from = plane.from;
+            var to = plane.to;
+            var fromData = locations.find(o => o.id == from);
+            var toData = locations.find(o => o.id == to);
+            if (fromData && toData) {
 
-            // var div = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            // div.id = 'plane_line_' + plane.id;
-            // // div.innerHTML = "<line></line>";
-            // document.getElementsByClassName('real-time__planes')[0].appendChild(div);
-            var plane__line = document.getElementsByClassName('real-time__planes')[0];
-            var newPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            newPath.setAttribute('id', plane.id);
-            // newPath.setAttribute('d', "M960,291 Q 75,70 170,25 1170,460");
-            // newLine.setAttribute('x1', fromData.x);
-            // newLine.setAttribute('y1', fromData.y);
-            // newLine.setAttribute('x2', toData.x);
-            // newLine.setAttribute('y2', toData.y);
-            newPath.setAttribute("stroke", "#00B5BA");
-            newPath.setAttribute("stroke-width", 5);
-            newPath.setAttribute("stroke-dasharray", "10");
-            plane__line.appendChild(newPath);
-        }
-    });
-    click = false;
+                // var div = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                // div.id = 'plane_line_' + plane.id;
+                // // div.innerHTML = "<line></line>";
+                // document.getElementsByClassName('real-time__planes')[0].appendChild(div);
+                var plane__line = document.getElementsByClassName('real-time__planes')[0];
+                var newPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                newPath.setAttribute('id', plane.id);
+                // newPath.setAttribute('d', "M960,291 Q 75,70 170,25 1170,460");
+                // newLine.setAttribute('x1', fromData.x);
+                // newLine.setAttribute('y1', fromData.y);
+                // newLine.setAttribute('x2', toData.x);
+                // newLine.setAttribute('y2', toData.y);
+                newPath.setAttribute("stroke", "#00B5BA");
+                newPath.setAttribute("stroke-width", 5);
+                newPath.setAttribute("stroke-dasharray", "10");
+                plane__line.appendChild(newPath);
+            }
+        });
+        click = false;
     }
 
 });
@@ -386,7 +383,17 @@ world_map__destination_point.forEach(item => {
         gsap.to('.plane-name__pop-up', { ease: 'none', autoAlpha: 1, display: 'block' });
     })
 
-})
+});
+function showFirstWindow() {
+    console.log("called 1");
+    gsap.to(".world-map__destination-point, .destination_text", { opacity: 1, autoAlpha: 1, duration: 1, display: "block" });
+    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 1, autoAlpha: 0 });
+}
+function showSecondWindow() {
+    console.log("called 2");
+    gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 1, autoAlpha: 0 });
+    gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 1, duration: 1, display: "block", autoAlpha: 1 });
+}
 
 function cityClick() {
     gsap.to('.plane-name__pop-up', { ease: 'none', autoAlpha: 1, display: 'block' });
@@ -424,7 +431,7 @@ function populateCityPopUp(id) {
     Object.keys(jsonData).forEach(key => {
         if (key == 'image_urls') {
             if (data[key].length) {
-                if(data['image_urls']) {
+                if (data['image_urls']) {
                     for (const img of data['image_urls']) {
                         let image = {
                             "url": img.image
@@ -438,56 +445,67 @@ function populateCityPopUp(id) {
     });
     console.log(images)
     var slider_dot = document.getElementsByClassName('slider-dot')[0];
-    var span = document.createElement('span');
-    var city_data_img = document.getElementsByClassName("city-data__img");
-
+    var img__slider = document.getElementsByClassName("img__slider")[0];
+    // var div = document.createElement('div');
+    // div.setAttribute('class', 'hello');
+    slider_dot.setAttribute('style', 'text-align:center');
+    let j = 1;
     for (const i of images) {
-        console.log(i, "insive");
+        var span = document.createElement('span');
+        var city_data_img = document.createElement('div');
+        city_data_img.setAttribute('class', 'city-data__img fade');
         var img = document.createElement("img");
         img.src = i.url;
         img.setAttribute('class', 'slider__img');
-        city_data_img[0].appendChild(img);
-        // span.setAttribute('class', 'dot');
-        // span.addEventListener('onclick', function() {
-
-        // });
-        // slider_dot.appendChild(span);
+        city_data_img.append(img);
+        span.setAttribute('class', 'dot');
+        span.addEventListener('onclick', function() {
+            sliderClick(j);
+        });
+        slider_dot.append(span);
+        img__slider.append(city_data_img);
+        j++;
     }
+    // slider_dot.append(div);
     gsap.to('.city-data__pop-up', { ease: 'none', autoAlpha: 1, display: 'block' });
+    showSlides(1);
+}
+
+function sliderClick(i) {
+    currentSlide(i);
 }
 
 let slideIndex = 1;
-showSlides(slideIndex);
 
 function plusSlides(n) {
-  showSlides(slideIndex += n);
+    showSlides(slideIndex += n);
 }
 
 function currentSlide(n) {
-  showSlides(slideIndex = n);
+    showSlides(slideIndex = n);
 }
 
 function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("city-data__img");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+    let i;
+    let slides = document.getElementsByClassName("city-data__img");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
 }
 // *********************************************************************
 // ******************* Plus Icon click *********************************
 
 var destination = document.querySelectorAll('.world-map__destination-point__nuestros-destinos');
 destination.forEach(des => {
-    des.addEventListener('click', function() {
+    des.addEventListener('click', function () {
         alert("Ok")
     });
 })
