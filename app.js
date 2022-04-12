@@ -101,6 +101,7 @@ world_map_options.forEach(item => {
                     }
                     clickedButton = 1;
                     if (mapIsZommedIn) showLocations();
+                    hideDestinationPoins();
                     break;
                 case "destinos-shutter":
                     hideLocations()
@@ -115,7 +116,7 @@ world_map_options.forEach(item => {
                         showSecondWindow();
                     }
                     clickedButton = 2;
-
+                    if (mapIsZommedIn) showDestinationPoints();
                     break;
                 case "flota-shutter":
                     hideLocations();
@@ -128,7 +129,7 @@ world_map_options.forEach(item => {
                     gsap.to(".nuestra-flota", { opacity: 1, display: "block", duration: 2 });
                     // gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
                     // gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 2 });
-
+                    hideDestinationPoins();
                     break;
                 default:
                     console.log("Something Went wrong");
@@ -251,6 +252,8 @@ function readTextFile(file, callback) {
     }
     rawFile.send(null);
 }
+// *************************************************
+
 var jsonData = {};
 var locations = [];
 var planes = [];
@@ -265,8 +268,10 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
     // rendering locations in map related code here
     console.log(jsonData.Locations);
     jsonData.Locations.forEach(_l => {
-        const point = new LocationPoint(_l.x, _l.y, _l.id, _l.name);
-        point.render();
+        const location_point = new LocationPoint(_l.x, _l.y, _l.id, _l.name);
+        location_point.render();
+        const destination_point = new DestinationPoint(_l.x, _l.y, _l.id, _l.name);
+        destination_point.render();
     })
     // ********************************************
 
@@ -563,6 +568,10 @@ destination.forEach(des => {
 })
 
 // *********************************************************************
+
+
+
+
 var airport = new Airport();
 function takeOff(e) {
     if (selected_option === "vuelos-shutter" && mapIsZommedIn) {
@@ -577,6 +586,36 @@ function takeOff(e) {
 }
 
 
+//  ui related functions***********************************************
+function showDestinationPoints() {
+    var timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
+    timeline.to(".destination-point", {
+        opacity: 1,
+        display: "block",
+        duration: 0.5,
+    });
+    timeline.to(".destination-point__city-name", {
+        opacity: 1,
+        display: "block",
+        duration: 0.5,
+    });
+}
+function hideDestinationPoins() {
+    var timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
+    timeline.to(".destination-point", {
+        opacity: 0,
+        display: "none",
+        duration: 0.5,
+    });
+    timeline.to(".destination-point__city-name", {
+        opacity: 0,
+        display: "none",
+        duration: 0.5,
+    });
+}
+//******************************************************************* */
+
+// *********************** utility classes *****************************
 function LocationPoint(x, y, id, cityName) {
     this.x = x;
     this.y = y;
@@ -664,6 +703,46 @@ function Airport() {
         console.log("to", this.to);
     };
 }
+
+function DestinationPoint(x, y, id, cityName) {
+    this.x = x;
+    this.y = y;
+    this.id = id;
+    this.cityName = cityName;
+
+    this.render = function () {
+        var parentDiv = document.createElement("div");
+
+
+        var p = document.createElement("p");
+        var text = document.createTextNode(this.cityName);
+        p.classList.add("destination-point__city-name");
+        p.appendChild(text);
+
+        var img = document.createElement("img");
+        img.setAttribute('src', "./Assets/Images/destination-point.png");
+        img.classList.add("destination-point");
+
+        img.id = `des-${id}`;
+        img.style.left = (this.x - 10) + "px";
+        img.style.top = (this.y - 10) + "px";
+
+        p.id = `des-${id}`;
+        p.style.left = (this.x - 5) + "px";
+        p.style.top = (this.y + 25) + "px";
+
+        parentDiv.appendChild(img);
+        parentDiv.appendChild(p);
+
+        document.querySelector(".world-map__destinations__nuestros-destinos").appendChild(parentDiv);
+    }
+}
+
+// *********** end of utility classes ***********************************
+
+
+
+
 /****************Close plane page pop up****************/
 
 var video_pop_up = document.getElementsByClassName('video_pop_up')[0];
