@@ -221,10 +221,10 @@ function clickOnPlusHandler(event) {
         gsap.to('.rango_de_vuelo_pop_up', { opacity: 1, autoAlpha: 1 });
     }
     if (event.target.id === "three") {
-        gsap.to('.de_capacided_pop_up', { opacity: 1, autoAlpha: 1 });
+        gsap.to('.metros_de_largo_pop_up', { opacity: 1, autoAlpha: 1 });
     }
     if (event.target.id === "four") {
-
+        gsap.to('.de_capacided_pop_up', { opacity: 1, autoAlpha: 1 })
     }
 }
 extra_info_buttons.forEach(btn => {
@@ -660,3 +660,24 @@ function Airport() {
         console.log("to", this.to);
     };
 }
+/****************Close plane page pop up****************/
+
+var video_pop_up = document.querySelector('video_pop_up');
+var metros_de_largo_pop_up = document.getElementsByClassName('metros_de_largo_pop_up')[0];
+var de_capacided_pop_up = document.getElementsByClassName('de_capacided_pop_up')[0];
+var rango_de_vuelo_pop_up = document.getElementsByClassName('rango_de_vuelo_pop_up')[0];
+var asienton_pop_up = document.getElementsByClassName('asienton_pop_up')[0];
+// video_pop_up.addEventListener('click', function() {});
+metros_de_largo_pop_up.addEventListener('click', function() {
+    gsap.to('.metros_de_largo_pop_up', { opacity: 0, autoAlpha: 0 });
+});
+de_capacided_pop_up.addEventListener('click', function() {
+    gsap.to('.de_capacided_pop_up', { opacity: 0, autoAlpha: 0 });
+});
+rango_de_vuelo_pop_up.addEventListener('click', function() {
+    gsap.to('.rango_de_vuelo_pop_up', { opacity: 0, autoAlpha: 0 });
+});
+asienton_pop_up.addEventListener('click', function() {
+    gsap.to('.asienton_pop_up', { opacity: 0, autoAlpha: 0 });
+});
+/*******************************************************/
