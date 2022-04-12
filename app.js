@@ -117,6 +117,7 @@ world_map_options.forEach(item => {
                     }
                     clickedButton = 2;
                     if (mapIsZommedIn) showDestinationPoints();
+                    hidePlane();
                     break;
                 case "flota-shutter":
                     hideLocations();
@@ -130,6 +131,7 @@ world_map_options.forEach(item => {
                     // gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
                     // gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 2 });
                     hideDestinationPoins();
+                    hidePlane()
                     break;
                 default:
                     console.log("Something Went wrong");
@@ -498,6 +500,17 @@ function hideDestinationPoins() {
         display: "none",
         duration: 0.5,
     });
+}
+function hidePlane(){
+    var timeline = gsap.timeline({repeat:0,repeatDelay:0});
+    timeline.to(".flight-path-container",{
+        display : "none",
+        duration : 0.1,
+    });
+    timeline.to("#plane",{
+        display : "none",
+        duration : 0.1,
+    })
 }
 //******************************************************************* */
 
