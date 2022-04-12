@@ -387,7 +387,7 @@ function populateCityPopUp(id) {
             }
         }
     });
-    console.log(images)
+    // console.log(images)
     var slider_dot = document.getElementsByClassName('slider-dot')[0];
     var img__slider = document.getElementsByClassName("img__slider")[0];
     // var div = document.createElement('div');
@@ -677,7 +677,11 @@ nuestra_flota__final_popup.addEventListener('click', function () {
     gsap.to('.nuestra-flota__final-popup', { opacity: 0, display: 'none' });
 });
 city_data__pop_up.addEventListener('click', function() {
-    gsap.to('.city-data__pop-up', { opacity: 0, display: 'none' });
+    var slider_dot = document.querySelector('.slider-dot');
+    var img__slider = document.getElementsByClassName("img__slider")[0];
+    // slider_dot.removeAttribute();
+    // img__slider.remove();
+    // gsap.to('.city-data__pop-up', { opacity: 0, display: 'none' });
 });
 function cloudShiftRight() {
     gsap.to('.nuestra-flota__clouds__top', { left: '32%', duration: 1 });

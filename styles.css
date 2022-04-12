@@ -716,7 +716,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 99;
+  z-index: 9;
   border-radius: 32px;
 }
 
@@ -799,7 +799,7 @@ body {
   cursor: pointer;
   opacity: 1;
   transition: all 0.3s;
-  z-index: 4;
+  z-index: 40;
 }
 
 .city-data__img-slider .slider__right-arrow {
@@ -811,7 +811,7 @@ body {
   border: 3px solid #24CAD2; */
   opacity: 1;
   transition: all 0.3s;
-  z-index: 4;
+  z-index: 40;
 }
 
 .city-data__img-slider .slider__left-arrow:hover,
