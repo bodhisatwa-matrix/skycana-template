@@ -662,12 +662,14 @@ function Airport() {
 }
 /****************Close plane page pop up****************/
 
-var video_pop_up = document.querySelector('video_pop_up');
+var video_pop_up = document.getElementsByClassName('video_pop_up')[0];
 var metros_de_largo_pop_up = document.getElementsByClassName('metros_de_largo_pop_up')[0];
 var de_capacided_pop_up = document.getElementsByClassName('de_capacided_pop_up')[0];
 var rango_de_vuelo_pop_up = document.getElementsByClassName('rango_de_vuelo_pop_up')[0];
 var asienton_pop_up = document.getElementsByClassName('asienton_pop_up')[0];
-// video_pop_up.addEventListener('click', function() {});
+video_pop_up.addEventListener('click', function() {
+    gsap.to('.video_pop_up', { opacity: 0, autoAlpha: 0 });
+});
 metros_de_largo_pop_up.addEventListener('click', function() {
     gsap.to('.metros_de_largo_pop_up', { opacity: 0, autoAlpha: 0 });
 });
