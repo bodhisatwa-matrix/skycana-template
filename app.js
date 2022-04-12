@@ -263,10 +263,7 @@ var world_map__destination_point = document.querySelectorAll(".world-map__destin
 readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
     var data = JSON.parse(text);
     jsonData = JSON.parse(text);
-    // populateCityPopUp(data);
-
     // rendering locations in map related code here
-    console.log(jsonData.Locations);
     jsonData.Locations.forEach(_l => {
         const location_point = new LocationPoint(_l.x, _l.y, _l.id, _l.name);
         location_point.render();
@@ -713,7 +710,6 @@ function DestinationPoint(x, y, id, cityName) {
     this.render = function () {
         var parentDiv = document.createElement("div");
 
-
         var p = document.createElement("p");
         var text = document.createTextNode(this.cityName);
         p.classList.add("destination-point__city-name");
@@ -722,6 +718,7 @@ function DestinationPoint(x, y, id, cityName) {
         var img = document.createElement("img");
         img.setAttribute('src', "./Assets/Images/destination-point.png");
         img.classList.add("destination-point");
+        img.setAttribute('onclick', `populateCityPopUp(${this.id})`);
 
         img.id = `des-${id}`;
         img.style.left = (this.x - 10) + "px";
@@ -751,6 +748,7 @@ var de_capacided_pop_up = document.getElementsByClassName('de_capacided_pop_up')
 var rango_de_vuelo_pop_up = document.getElementsByClassName('rango_de_vuelo_pop_up')[0];
 var asienton_pop_up = document.getElementsByClassName('asienton_pop_up')[0];
 var nuestra_flota__final_popup = document.querySelector('.nuestra-flota__final-popup');
+var city_data__pop_up = document.querySelector('.city-data__pop-up');
 // var world_map__map_border = document.getElementsByClassName('world-map__map-border')[0];
 video_pop_up.addEventListener('click', function () {
     gsap.to('.video_pop_up', { opacity: 0, autoAlpha: 0, duration: 1 });
@@ -772,13 +770,24 @@ asienton_pop_up.addEventListener('click', function () {
     gsap.to('.asienton_pop_up', { opacity: 0, autoAlpha: 0 });
     cloudShiftToOriginal();
 });
+var fisrtClick = 1;
 world_map__map_border.addEventListener('click', function () {
     if (selected_option === "flota-shutter") {
+        fisrtClick=1;
         gsap.to('.video_pop_up', { opacity: 1, autoAlpha: 1 });
+    } else if(selected_option === "vuelos-shutter") {
+        if(fisrtClick != 1) {
+            cityClick();
+        }
+        fisrtClick++;
+        
     }
 });
 nuestra_flota__final_popup.addEventListener('click', function () {
     gsap.to('.nuestra-flota__final-popup', { opacity: 0, display: 'none' });
+});
+city_data__pop_up.addEventListener('click', function() {
+    gsap.to('.city-data__pop-up', { opacity: 0, display: 'none' });
 });
 function cloudShiftRight() {
     gsap.to('.nuestra-flota__clouds__top', { left: '32%', duration: 1 });
@@ -788,4 +797,5 @@ function cloudShiftToOriginal() {
     gsap.to('.nuestra-flota__clouds__top', { left: '26%', duration: 1 });
     gsap.to('.nuestra-flota__clouds__bottom', { right: '35%', duration: 1 });
 }
+
 /*******************************************************/
