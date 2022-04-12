@@ -100,7 +100,7 @@ world_map_options.forEach(item => {
                         showFirstWindow();
                     }
                     clickedButton = 1;
-                    if(mapIsZommedIn) showLocations();
+                    if (mapIsZommedIn) showLocations();
                     break;
                 case "destinos-shutter":
                     hideLocations()
@@ -216,17 +216,19 @@ function clickOnPlusHandler(event) {
     if (event.target.id === "one") {
         // console.log(event.target.id);
         gsap.to('.asienton_pop_up', { opacity: 1, autoAlpha: 1 });
+        cloudShiftRight();
     }
     if (event.target.id === "two") {
         gsap.to('.rango_de_vuelo_pop_up', { opacity: 1, autoAlpha: 1 });
+        cloudShiftRight();
     }
     if (event.target.id === "three") {
         gsap.to('.metros_de_largo_pop_up', { opacity: 1, autoAlpha: 1 });
+        cloudShiftRight();
     }
     if (event.target.id === "four") {
         gsap.to('.de_capacided_pop_up', { opacity: 1, autoAlpha: 1 });
-        gsap.to('.nuestra-flota__clouds__top', { left: '32%', duration:1 });
-        gsap.to('.nuestra-flota__clouds__bottom', { right: '30%', duration:1 });
+        cloudShiftRight();
     }
 }
 extra_info_buttons.forEach(btn => {
@@ -588,7 +590,7 @@ function LocationPoint(x, y, id, cityName) {
 
         var div = document.createElement("div");
         div.classList.add("location-point");
-        div.setAttribute('onclick' , "takeOff(event)")
+        div.setAttribute('onclick', "takeOff(event)")
 
         var p = document.createElement("p");
         var text = document.createTextNode(this.cityName);
@@ -669,25 +671,42 @@ var metros_de_largo_pop_up = document.getElementsByClassName('metros_de_largo_po
 var de_capacided_pop_up = document.getElementsByClassName('de_capacided_pop_up')[0];
 var rango_de_vuelo_pop_up = document.getElementsByClassName('rango_de_vuelo_pop_up')[0];
 var asienton_pop_up = document.getElementsByClassName('asienton_pop_up')[0];
-var world_map__map_border = document.getElementsByClassName('world-map__map-border')[0];
-video_pop_up.addEventListener('click', function() {
-    gsap.to('.video_pop_up', { opacity: 0, autoAlpha: 0 });
+var nuestra_flota__final_popup = document.querySelector('.nuestra-flota__final-popup');
+// var world_map__map_border = document.getElementsByClassName('world-map__map-border')[0];
+video_pop_up.addEventListener('click', function () {
+    gsap.to('.video_pop_up', { opacity: 0, autoAlpha: 0, duration: 1 });
+    gsap.to('.nuestra-flota__final-popup', { opacity: 1, display: 'block' });
 });
-metros_de_largo_pop_up.addEventListener('click', function() {
+metros_de_largo_pop_up.addEventListener('click', function () {
     gsap.to('.metros_de_largo_pop_up', { opacity: 0, autoAlpha: 0 });
+    cloudShiftToOriginal();
 });
-de_capacided_pop_up.addEventListener('click', function() {
+de_capacided_pop_up.addEventListener('click', function () {
     gsap.to('.de_capacided_pop_up', { opacity: 0, autoAlpha: 0 });
-    gsap.to('.nuestra-flota__clouds__top', { left: '26%', duration:1 });
-    gsap.to('.nuestra-flota__clouds__bottom', { right: '35%', duration:1 });
+    cloudShiftToOriginal();
 });
-rango_de_vuelo_pop_up.addEventListener('click', function() {
+rango_de_vuelo_pop_up.addEventListener('click', function () {
     gsap.to('.rango_de_vuelo_pop_up', { opacity: 0, autoAlpha: 0 });
+    cloudShiftToOriginal();
 });
-asienton_pop_up.addEventListener('click', function() {
+asienton_pop_up.addEventListener('click', function () {
     gsap.to('.asienton_pop_up', { opacity: 0, autoAlpha: 0 });
+    cloudShiftToOriginal();
 });
-// world_map__map_border.addEventListener('dblclick', function() {
-//     alert("OL")
-// });
+world_map__map_border.addEventListener('click', function () {
+    if (selected_option === "flota-shutter") {
+        gsap.to('.video_pop_up', { opacity: 1, autoAlpha: 1 });
+    }
+});
+nuestra_flota__final_popup.addEventListener('click', function () {
+    gsap.to('.nuestra-flota__final-popup', { opacity: 0, display: 'none' });
+});
+function cloudShiftRight() {
+    gsap.to('.nuestra-flota__clouds__top', { left: '32%', duration: 1 });
+    gsap.to('.nuestra-flota__clouds__bottom', { right: '30%', duration: 1 });
+}
+function cloudShiftToOriginal() {
+    gsap.to('.nuestra-flota__clouds__top', { left: '26%', duration: 1 });
+    gsap.to('.nuestra-flota__clouds__bottom', { right: '35%', duration: 1 });
+}
 /*******************************************************/
