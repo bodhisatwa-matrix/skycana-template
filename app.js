@@ -100,7 +100,7 @@ world_map_options.forEach(item => {
                         showFirstWindow();
                     }
                     clickedButton = 1;
-                    showLocations();
+                    if(mapIsZommedIn) showLocations();
                     break;
                 case "destinos-shutter":
                     hideLocations()
@@ -295,7 +295,7 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
 
 // function for map zoom in feature
 function mapZoomIn() {
-    if (!mapIsZommedIn) {
+    if (!mapIsZommedIn && selected_option !== 'flota-shutter') {
         gsap.from(".world-map__map-img", { opacity: 0 });
         gsap.to(".world-map__map-img", {
             attr: { src: "./Assets/Images/Mask Group Zoom.png" },
@@ -621,10 +621,10 @@ function FlyingPlane(from, to) {
         if (this.from && this.to) {
             flightPath.setAttribute(
                 "d",
-                `M${from.x},${from.y} A130,90 0 1,1 ${to.x},${to.y}`
+                `M${from.x},${from.y} A100,90 0 1,1 ${to.x},${to.y}`
             );
             document.querySelector(".flight-path-container").style.display = "block";
-            plane.style.offsetPath = `path('M${from.x},${from.y} A130,90 0 1,1 ${to.x},${to.y}')`;
+            plane.style.offsetPath = `path('M${from.x},${from.y} A100,90 0 1,1 ${to.x},${to.y}')`;
             plane.style.transform = "translateY(-25px)";
             plane.style.display = "block";
             this.flying = true;
