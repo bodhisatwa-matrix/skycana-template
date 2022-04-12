@@ -397,6 +397,7 @@ function populateCityPopUp(id) {
     slider_dot.setAttribute('style', 'text-align:center');
     let j = 1;
     for (const i of images) {
+        // var innerDiv = document.createElement("div");
         var span = document.createElement('span');
         var city_data_img = document.createElement('div');
         city_data_img.setAttribute('class', 'city-data__img fade');
@@ -408,6 +409,7 @@ function populateCityPopUp(id) {
         span.addEventListener('onclick', function () {
             sliderClick(j);
         });
+        // innerDiv.innerHTML = `${span}`;
         slider_dot.append(span);
         img__slider.append(city_data_img);
         j++;
@@ -651,7 +653,7 @@ var de_capacided_pop_up = document.getElementsByClassName('de_capacided_pop_up')
 var rango_de_vuelo_pop_up = document.getElementsByClassName('rango_de_vuelo_pop_up')[0];
 var asienton_pop_up = document.getElementsByClassName('asienton_pop_up')[0];
 var nuestra_flota__final_popup = document.querySelector('.nuestra-flota__final-popup');
-var city_data__pop_up = document.querySelector('.city-data__pop-up');
+var city_data__header = document.querySelector('.city-data__header');
 // var world_map__map_border = document.getElementsByClassName('world-map__map-border')[0];
 video_pop_up.addEventListener('click', function () {
     gsap.to('.video_pop_up', { opacity: 0, autoAlpha: 0, duration: 1 });
@@ -689,12 +691,12 @@ world_map__map_border.addEventListener('click', function () {
 nuestra_flota__final_popup.addEventListener('click', function () {
     gsap.to('.nuestra-flota__final-popup', { opacity: 0, display: 'none' });
 });
-city_data__pop_up.addEventListener('click', function() {
+city_data__header.addEventListener('click', function() {
     var slider_dot = document.querySelector('.slider-dot');
     var img__slider = document.getElementsByClassName("img__slider")[0];
-    // slider_dot.removeAttribute();
+    slider_dot.innerHTML = "";
     // img__slider.remove();
-    // gsap.to('.city-data__pop-up', { opacity: 0, display: 'none' });
+    gsap.to('.city-data__pop-up', { opacity: 0, display: 'none' });
 });
 function cloudShiftRight() {
     gsap.to('.nuestra-flota__clouds__top', { left: '32%', duration: 1 });
