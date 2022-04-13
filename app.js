@@ -566,12 +566,22 @@ function FlyingPlane(from, to) {
 
     this.fly = function () {
         if (this.from && this.to) {
+            var distance = calculateDistance(this.to, this.from);
+            let rx = 100;
+            let ry = 90;
+            // if two points distance less then 200
+            if(distance < 200) {
+                rx = 30;
+                ry = 20;
+            }
             flightPath.setAttribute(
                 "d",
-                `M${from.x},${from.y} A100,90 0 1,1 ${to.x},${to.y}`
+                // `M${from.x},${from.y} A100,90 0 1,1 ${to.x},${to.y}`
+                `M${from.x},${from.y} A${rx},${ry} 0 1,1 ${to.x},${to.y}`
             );
             document.querySelector(".flight-path-container").style.display = "block";
-            plane.style.offsetPath = `path('M${from.x},${from.y} A100,90 0 1,1 ${to.x},${to.y}')`;
+            // plane.style.offsetPath = `path('M${from.x},${from.y} A100,90 0 1,1 ${to.x},${to.y}')`;
+            plane.style.offsetPath = `path('M${from.x},${from.y} A${rx},${ry} 0 1,1 ${to.x},${to.y}')`;
             plane.style.transform = "translateY(-25px)";
             plane.style.display = "block";
             this.flying = true;
@@ -587,6 +597,12 @@ function FlyingPlane(from, to) {
     };
 }
 
+function calculateDistance(to, from) {
+    var sqrY = Math.pow(to.y - from.y, 2);
+    var sqrX = Math.pow(to.x - from.x, 2);
+    var total = sqrY + sqrX;
+    return Math.sqrt(total);
+}
 
 function Airport() {
     this.from = null;
