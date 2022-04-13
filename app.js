@@ -396,6 +396,7 @@ function populateCityPopUp(id) {
     // div.setAttribute('class', 'hello');
     slider_dot.setAttribute('style', 'text-align:center');
     let j = 1;
+    console.log(images.length);
     for (const i of images) {
         // var innerDiv = document.createElement("div");
         var span = document.createElement('span');
@@ -406,6 +407,9 @@ function populateCityPopUp(id) {
         img.setAttribute('class', 'slider__img');
         city_data_img.append(img);
         span.setAttribute('class', 'dot');
+        if(j ==1) {
+            span.setAttribute('class', 'dot active');
+        }
         span.addEventListener('onclick', function () {
             sliderClick(j);
         });
@@ -695,6 +699,7 @@ city_data__header.addEventListener('click', function() {
     var slider_dot = document.querySelector('.slider-dot');
     var img__slider = document.getElementsByClassName("img__slider")[0];
     slider_dot.innerHTML = "";
+    img__slider.innerHTML = "";
     // img__slider.remove();
     gsap.to('.city-data__pop-up', { opacity: 0, display: 'none' });
 });

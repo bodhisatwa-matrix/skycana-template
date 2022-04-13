@@ -1029,6 +1029,7 @@ body {
   opacity: 1;
   padding: 18px;
   border-radius: 50%;
+  object-fit: contain;
 }
 
 .de_capacided_pop_up p {
