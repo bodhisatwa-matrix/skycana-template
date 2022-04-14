@@ -98,7 +98,8 @@ window_shutters.forEach(item => {
             case "Path_511_first_window":
             case "Line_11_first_window":
             case "vuelos-shutter":
-                selected_option = e.target.id;
+                // selected_option = e.target.id;
+                selected_option = "vuelos-shutter";
                 choose_option.style.display = "none";
                 world_map_heading.innerHTML = "Vuelos en tiempo real";
                 gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Open.png" } })
@@ -115,7 +116,8 @@ window_shutters.forEach(item => {
             case "Line_11_second_window":
             case "second_window_rect":
             case "destinos-shutter":
-                selected_option = e.target.id;
+                // selected_option = e.target.id;
+                selected_option = "destinos-shutter";
                 choose_option.style.display = "none";
                 world_map_heading.innerHTML = "Nuestros destinos";
                 gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Open.png" } })
@@ -132,7 +134,8 @@ window_shutters.forEach(item => {
             case "Line_11_third_window":
             case "third_window_rect":
             case "flota-shutter":
-                selected_option = e.target.id;
+                // selected_option = e.target.id;
+                selected_option = "flota-shutter";
                 choose_option.style.display = "none";
                 world_map_heading.innerHTML = "Nuestra flota";
                 gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Open.png" } })
@@ -439,19 +442,9 @@ plane_name__pop_up.addEventListener('click', function () {
 // *********************** DYNAMIC CITY POPUP WITH IMAGE SLIDERS *******************
 
 function populateCityPopUp(id) {
-
     let city_data = {};
     let images = [];
-
     let data = jsonData;
-    // Object.keys(jsonData).forEach(key => {
-    //     if(key == 'city-code') {
-    //         if(jsonData['city-code'] == id) {
-    //             data = 
-    //         }
-    //     }
-    // });
-
     city_data = {
         name: data['city-name'],
         code: data['city-code']
@@ -466,21 +459,16 @@ function populateCityPopUp(id) {
                         };
                         images.push(image);
                     }
-                    // city_data["images"] = images;
                 }
             }
         }
     });
-    // console.log(images)
     var slider_dot = document.getElementsByClassName('slider-dot')[0];
     var img__slider = document.getElementsByClassName("img__slider")[0];
-    // var div = document.createElement('div');
-    // div.setAttribute('class', 'hello');
     slider_dot.setAttribute('style', 'text-align:center');
     let j = 1;
     console.log(images.length);
     for (const i of images) {
-        // var innerDiv = document.createElement("div");
         var span = document.createElement('span');
         var city_data_img = document.createElement('div');
         city_data_img.setAttribute('class', 'city-data__img fade');
@@ -495,12 +483,10 @@ function populateCityPopUp(id) {
         span.addEventListener('onclick', function () {
             sliderClick(j);
         });
-        // innerDiv.innerHTML = `${span}`;
         slider_dot.append(span);
         img__slider.append(city_data_img);
         j++;
     }
-    // slider_dot.append(div);
     gsap.to('.city-data__pop-up', { ease: 'none', autoAlpha: 1, display: 'block' });
     showSlides(1);
 }
