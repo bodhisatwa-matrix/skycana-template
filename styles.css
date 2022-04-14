@@ -92,9 +92,9 @@ body {
 }
 
 .window-shutter {
-  width: 394px;
+  /* width: 394px;
   top: 0;
-  position: absolute;
+  position: absolute; */
   cursor: pointer;
 }
 

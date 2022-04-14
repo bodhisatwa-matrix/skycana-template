@@ -13,22 +13,90 @@ const world_map_options = document.querySelectorAll("#world-map__option");
 const world_map_img = document.querySelector(".world-map__map-img");
 const nurestra_flota_container = document.querySelector(".nuestra-flota");
 
+const first_window = document.querySelector('#Path_511_first_window');
+const first_window_line = document.querySelector('#Line_11_first_window');
+const second_window = document.querySelector('#Path_511_second_window');
+const second_window_line = document.querySelector('#Line_11_second_window');
+const third_window = document.querySelector('#Path_511_third_window');
+const third_window_line = document.querySelector('#Line_11_third_window');
+const shutter_image1 = document.querySelector('#Vuelos_Actuales_Open');
+const shutter_image2 = document.querySelector('#Destinos_Open');
+const shutter_image3 = document.querySelector('#Flota_Open');
+
+
+/** Hover Animation on Sutter Buttons */
+shutter_image1.addEventListener('mouseover', function () {
+    first_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+    first_window_line.setAttribute("transform", "translate(208.29 122.211)");
+});
+shutter_image2.addEventListener('mouseover', function () {
+    second_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+    second_window_line.setAttribute("transform", "translate(208.29 122.211)");
+});
+shutter_image3.addEventListener('mouseover', function () {
+    third_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+    third_window_line.setAttribute("transform", "translate(208.29 122.211)");
+});
+
+shutter_image1.addEventListener('mouseout', function () {
+    first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+    first_window_line.setAttribute("transform", "translate(208.29 452.211)");
+});
+
+shutter_image2.addEventListener('mouseout', function () {
+    second_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+    second_window_line.setAttribute("transform", "translate(208.29 452.211)");
+});
+
+shutter_image3.addEventListener('mouseout', function () {
+    third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+    third_window_line.setAttribute("transform", "translate(208.29 452.211)");
+});
+
+/******************************************************************************/
+
 window_shutters.forEach(item => {
     item.addEventListener("mouseover", e => {
-        gsap.to(`#${e.target.id}`, {
-            opacity: 0,
-            duration: 1,
-        })
+        if (e.target.id === 'vuelos-shutter') {
+            first_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+            first_window_line.setAttribute("transform", "translate(208.29 122.211)");
+        } else if (e.target.id === 'destinos-shutter') {
+            second_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+            second_window_line.setAttribute("transform", "translate(208.29 122.211)");
+        } else if (e.target.id === 'flota-shutter') {
+            third_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+            third_window_line.setAttribute("transform", "translate(208.29 122.211)");
+        }
+        // gsap.to(`#${e.target.id}`, {
+        //     opacity: 0,
+        //     duration: 1,
+        // })
     })
     item.addEventListener("mouseout", e => {
-        gsap.to(`#${e.target.id}`, {
-            opacity: 1,
-            duration: 1,
-        })
+        if (e.target.id === 'vuelos-shutter') {
+            first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+            first_window_line.setAttribute("transform", "translate(208.29 452.211)");
+        } else if (e.target.id === 'destinos-shutter') {
+            second_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+            second_window_line.setAttribute("transform", "translate(208.29 452.211)");
+        } else if (e.target.id === 'flota-shutter') {
+            third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+            third_window_line.setAttribute("transform", "translate(208.29 452.211)");
+        }
+        // gsap.to(`#${e.target.id}`, {
+        //     opacity: 1,
+        //     duration: 1,
+        // })
     })
 
     item.addEventListener("click", e => {
         switch (e.target.id) {
+            case "Path_441":
+            case "Path_442":
+            case "Path_443":
+            case "Rectangle_21":
+            case "Path_511_first_window":
+            case "Line_11_first_window":
             case "vuelos-shutter":
                 selected_option = e.target.id;
                 choose_option.style.display = "none";
@@ -39,6 +107,13 @@ window_shutters.forEach(item => {
                 gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
                 gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 })
                 break;
+            case "Group_22":
+            case "Group_21":
+            case "Path_465":
+            case "Rectangle_25":
+            case "Path_511_second_window":
+            case "Line_11_second_window":
+            case "second_window_rect":
             case "destinos-shutter":
                 selected_option = e.target.id;
                 choose_option.style.display = "none";
@@ -49,6 +124,13 @@ window_shutters.forEach(item => {
                 gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
                 gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 })
                 break;
+            case "Path_445":
+            case "Path_446":
+            case "Path_447":
+            case "Rectangle_23":
+            case "Path_511_third_window":
+            case "Line_11_third_window":
+            case "third_window_rect":
             case "flota-shutter":
                 selected_option = e.target.id;
                 choose_option.style.display = "none";
@@ -328,8 +410,8 @@ function hideLocations() {
 let click = true;
 world_map__map_border.addEventListener('click', function () {
     mapZoomIn();
-    if(selected_option === "vuelos-shutter") showLocations();
-    if(selected_option === "destinos-shutter") showDestinationPoints();
+    if (selected_option === "vuelos-shutter") showLocations();
+    if (selected_option === "destinos-shutter") showDestinationPoints();
 });
 
 function showFirstWindow() {
@@ -407,7 +489,7 @@ function populateCityPopUp(id) {
         img.setAttribute('class', 'slider__img');
         city_data_img.append(img);
         span.setAttribute('class', 'dot');
-        if(j ==1) {
+        if (j == 1) {
             span.setAttribute('class', 'dot active');
         }
         span.addEventListener('onclick', function () {
@@ -508,15 +590,15 @@ function hideDestinationPoins() {
         duration: 0.5,
     });
 }
-function hidePlane(){
-    var timeline = gsap.timeline({repeat:0,repeatDelay:0});
-    timeline.to(".flight-path-container",{
-        display : "none",
-        duration : 0.1,
+function hidePlane() {
+    var timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
+    timeline.to(".flight-path-container", {
+        display: "none",
+        duration: 0.1,
     });
-    timeline.to("#plane",{
-        display : "none",
-        duration : 0.1,
+    timeline.to("#plane", {
+        display: "none",
+        duration: 0.1,
     })
 }
 //******************************************************************* */
@@ -570,7 +652,7 @@ function FlyingPlane(from, to) {
             let rx = 100;
             let ry = 90;
             // if two points distance less then 200
-            if(distance < 200) {
+            if (distance < 200) {
                 rx = 30;
                 ry = 20;
             }
@@ -698,20 +780,20 @@ asienton_pop_up.addEventListener('click', function () {
 var fisrtClick = 1;
 world_map__map_border.addEventListener('click', function () {
     if (selected_option === "flota-shutter") {
-        fisrtClick=1;
+        fisrtClick = 1;
         gsap.to('.video_pop_up', { opacity: 1, autoAlpha: 1 });
-    } else if(selected_option === "vuelos-shutter") {
-        if(fisrtClick != 1) {
+    } else if (selected_option === "vuelos-shutter") {
+        if (fisrtClick != 1) {
             cityClick();
         }
         fisrtClick++;
-        
+
     }
 });
 nuestra_flota__final_popup.addEventListener('click', function () {
     gsap.to('.nuestra-flota__final-popup', { opacity: 0, display: 'none' });
 });
-city_data__header.addEventListener('click', function() {
+city_data__header.addEventListener('click', function () {
     var slider_dot = document.querySelector('.slider-dot');
     var img__slider = document.getElementsByClassName("img__slider")[0];
     slider_dot.innerHTML = "";
