@@ -574,6 +574,7 @@ body {
   border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
+  zoom: 65%;
 }
 
 .plane-name__pop-up .plane-id {
@@ -1334,5 +1335,11 @@ body {
   }
   .world-map__skycana-logo {
     left: -1.5%;
+  }
+  .nuestra-flota__final-popup {
+    zoom: 70%;
+  }
+  .video_pop_up {
+    zoom: 62%;
   }
 }
