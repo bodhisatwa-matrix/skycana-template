@@ -110,7 +110,6 @@ body {
   zoom: 80%;
 }
 
-
 .zoomed-in__heading {
   display: flex;
 }
@@ -125,7 +124,8 @@ body {
 }
 
 .zoomed-in__day {
-  font: var(--unnamed-font-style-normal) normal 600 28px/34px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal 600 28px/34px
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: left;
@@ -147,7 +147,8 @@ body {
 }
 
 .zoomed-in__welcome-msg .temp__value {
-  font: var(--unnamed-font-style-normal) normal 600 28px/34px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal 600 28px/34px
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: left;
@@ -158,7 +159,8 @@ body {
 }
 
 .zoomed-in__welcome-msg .welcome-msg {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 60px/73px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    60px/73px var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
@@ -198,7 +200,8 @@ body {
 }
 
 .zoomed-in__single-window p {
-  font: var(--unnamed-font-style-normal) normal 600 var(--unnamed-font-size-30) / var(--unnamed-line-spacing-37) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal 600 var(--unnamed-font-size-30) /
+    var(--unnamed-line-spacing-37) var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-deecf2);
   text-align: center;
@@ -303,7 +306,8 @@ body {
 }
 
 .world-map__temp-value {
-  font: var(--unnamed-font-style-normal) normal 600 28px/34px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal 600 28px/34px
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: left;
@@ -335,7 +339,6 @@ body {
   margin: 0 30px;
   cursor: pointer;
   user-select: none;
-  
 }
 
 .world-map__single-window img {
@@ -371,7 +374,7 @@ body {
   width: 100px;
   /* border-radius: 50%; */
   /* background-color: var(--unnamed-color-e59c26); */
-  background-image: url('./Assets/Images/Group 100.png');
+  background-image: url("./Assets/Images/Group 100.png");
   background-repeat: no-repeat;
   padding-left: 65px;
 }
@@ -567,33 +570,37 @@ body {
   z-index: 99;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 4px solid #24CAD2;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
 }
 
 .plane-name__pop-up .plane-id {
   margin-top: 25px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-32)/var(--unnamed-line-spacing-39) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    var(--unnamed-font-size-32) / var(--unnamed-line-spacing-39)
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-e59c26);
   text-align: center;
   font: normal normal bold 32px/39px Montserrat;
   letter-spacing: 0px;
-  color: #E59C26;
+  color: #e59c26;
   opacity: 1;
 }
 
 .plane-name__pop-up .plane-name {
   margin-top: 10px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-30)/var(--unnamed-line-spacing-37) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    var(--unnamed-font-size-30) / var(--unnamed-line-spacing-37)
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 30px/37px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
 }
 
@@ -607,7 +614,7 @@ body {
   width: 242px;
   height: 133px;
   background: var(--unnamed-color-035f7e) 0% 0% no-repeat padding-box;
-  background: #035F7E 0% 0% no-repeat padding-box;
+  background: #035f7e 0% 0% no-repeat padding-box;
   border-radius: 18px;
   opacity: 1;
   text-align: center;
@@ -618,7 +625,7 @@ body {
   width: 242px;
   height: 133px;
   background: var(--unnamed-color-035f7e) 0% 0% no-repeat padding-box;
-  background: #035F7E 0% 0% no-repeat padding-box;
+  background: #035f7e 0% 0% no-repeat padding-box;
   border-radius: 18px;
   opacity: 1;
   text-align: center;
@@ -632,24 +639,26 @@ body {
 }
 
 .plane-name__pop-up .timing_label .depature_label {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 24px/29px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    24px/29px var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: left;
   font: normal normal bold 24px/29px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
 }
 
 .plane-name__pop-up .timing_label .arival_label {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 24px/29px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    24px/29px var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: left;
   font: normal normal bold 24px/29px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
 }
 
@@ -662,7 +671,7 @@ body {
   width: 145px;
   height: 59px;
   background: var(--unnamed-color-035f7e) 0% 0% no-repeat padding-box;
-  background: #035F7E 0% 0% no-repeat padding-box;
+  background: #035f7e 0% 0% no-repeat padding-box;
   border-radius: 14px;
   opacity: 1;
   text-align: center;
@@ -673,7 +682,7 @@ body {
   width: 145px;
   height: 59px;
   background: var(--unnamed-color-035f7e) 0% 0% no-repeat padding-box;
-  background: #035F7E 0% 0% no-repeat padding-box;
+  background: #035f7e 0% 0% no-repeat padding-box;
   border-radius: 14px;
   opacity: 1;
   text-align: center;
@@ -708,8 +717,8 @@ body {
   height: 747px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 4px solid #24CAD2;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 4px solid #24cad2;
   opacity: 1;
   position: absolute;
   /* margin: -25px 0 0 -25px; */
@@ -718,6 +727,7 @@ body {
   transform: translate(-50%, -50%);
   z-index: 9;
   border-radius: 32px;
+  zoom: 60%;
 }
 
 /* .city-data__pop-up .city-data__header {
@@ -730,13 +740,14 @@ body {
 .city-data__pop-up .city-data__header .date__temp {
   display: flex;
   flex-direction: column;
-  font: var(--unnamed-font-style-normal) normal 300 var(--unnamed-font-size-50)/var(--unnamed-line-spacing-61) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal 300 var(--unnamed-font-size-50) /
+    var(--unnamed-line-spacing-61) var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: left;
   font: normal normal 300 50px/61px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
 }
 
@@ -744,13 +755,14 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  font: var(--unnamed-font-style-normal) normal 600 28px/34px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal 600 28px/34px
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: left;
   font: normal normal 600 28px/34px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   width: 150px;
 }
@@ -761,24 +773,27 @@ body {
 }
 
 .city-data__pop-up .city-data__header .city_content .city__name {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 51px/62px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    51px/62px var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 51px/62px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
 }
 
 .city-data__pop-up .city-data__header .city_content .city__des {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    var(--unnamed-font-size-22) / var(--unnamed-line-spacing-27)
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 22px/27px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   margin-top: 24px;
 }
@@ -791,7 +806,7 @@ body {
 }
 
 .city-data__img-slider .slider__left-arrow {
-  background-image: url('./Assets/Images/left\ arrow.png');
+  background-image: url("./Assets/Images/left\ arrow.png");
   width: 101px;
   height: 96px;
   /* border: 3px solid var(--unnamed-color-24cad2);
@@ -804,7 +819,7 @@ body {
 
 .city-data__img-slider .slider__right-arrow {
   cursor: pointer;
-  background-image: url('./Assets/Images/right\ arrow.png');
+  background-image: url("./Assets/Images/right\ arrow.png");
   width: 101px;
   height: 96px;
   /* border: 3px solid var(--unnamed-color-24cad2);
@@ -848,16 +863,16 @@ body {
 
 @keyframes fade {
   from {
-    opacity: .4
+    opacity: 0.4;
   }
 
   to {
-    opacity: 1
+    opacity: 1;
   }
 }
 
 .city-data__img {
-  display: none
+  display: none;
 }
 
 /* .second_window_cities {
@@ -877,7 +892,7 @@ body {
   display: inline-block;
   transition: background-color 0.6s ease;
   border: 2px solid var(--unnamed-color-24cad2);
-  border: 2px solid #24CAD2;
+  border: 2px solid #24cad2;
   opacity: 1;
   margin: 0 10px;
 }
@@ -890,8 +905,8 @@ body {
 .active {
   background: var(--unnamed-color-24cad2) 0% 0% no-repeat padding-box;
   border: 2px solid var(--unnamed-color-24cad2);
-  background: #24CAD2 0% 0% no-repeat padding-box;
-  border: 2px solid #24CAD2;
+  background: #24cad2 0% 0% no-repeat padding-box;
+  border: 2px solid #24cad2;
   opacity: 1;
 }
 
@@ -902,24 +917,26 @@ body {
 }
 
 .city-data__pop-up .city-data__header .top-header .time {
-  font: var(--unnamed-font-style-normal) normal 300 var(--unnamed-font-size-50)/var(--unnamed-line-spacing-61) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal 300 var(--unnamed-font-size-50) /
+    var(--unnamed-line-spacing-61) var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: left;
   font: normal normal 300 50px/61px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
 }
 
 .city-data__pop-up .city-data__header .top-header .city_name {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 51px/62px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    51px/62px var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 51px/62px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   flex: 0.9;
 }
@@ -951,25 +968,28 @@ body {
 }
 
 .city-data__pop-up .city-data__header .low-header .temp .temp_data {
-  font: var(--unnamed-font-style-normal) normal 600 28px/34px var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal 600 28px/34px
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: left;
   font: normal normal 600 28px/34px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   margin: 7px 0px 0px 15px;
 }
 
 .city-data__pop-up .city-data__header .low-header .city__description {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    var(--unnamed-font-size-22) / var(--unnamed-line-spacing-27)
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 22px/27px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   max-width: 570px;
   padding-left: 45px;
@@ -983,8 +1003,8 @@ body {
   height: 247px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 4px solid #24CAD2;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
   top: 45%;
@@ -1006,8 +1026,8 @@ body {
   height: 247px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 4px solid #24CAD2;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
   top: 65%;
@@ -1025,7 +1045,7 @@ body {
   width: 85px;
   height: 85px;
   border: 4px solid var(--unnamed-color-035f7e);
-  border: 4px solid #035F7E;
+  border: 4px solid #035f7e;
   opacity: 1;
   padding: 18px;
   border-radius: 50%;
@@ -1033,13 +1053,15 @@ body {
 }
 
 .de_capacided_pop_up p {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    var(--unnamed-font-size-22) / var(--unnamed-line-spacing-27)
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 22px/27px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   padding: 10px;
 }
@@ -1052,8 +1074,8 @@ body {
   height: 247px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 4px solid #24CAD2;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
   top: 65%;
@@ -1071,7 +1093,7 @@ body {
   width: 85px;
   height: 85px;
   border: 4px solid var(--unnamed-color-035f7e);
-  border: 4px solid #035F7E;
+  border: 4px solid #035f7e;
   opacity: 1;
   padding: 18px;
   border-radius: 50%;
@@ -1079,13 +1101,15 @@ body {
 }
 
 .metros_de_largo_pop_up p {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    var(--unnamed-font-size-22) / var(--unnamed-line-spacing-27)
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 22px/27px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   padding: 10px;
 }
@@ -1098,8 +1122,8 @@ body {
   height: 247px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 4px solid #24CAD2;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
   top: 47%;
@@ -1117,7 +1141,7 @@ body {
   width: 85px;
   height: 85px;
   border: 4px solid var(--unnamed-color-035f7e);
-  border: 4px solid #035F7E;
+  border: 4px solid #035f7e;
   opacity: 1;
   padding: 18px;
   border-radius: 50%;
@@ -1125,13 +1149,15 @@ body {
 }
 
 .rango_de_vuelo_pop_up p {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    var(--unnamed-font-size-22) / var(--unnamed-line-spacing-27)
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 22px/27px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   padding: 10px;
 }
@@ -1140,7 +1166,7 @@ body {
   width: 85px;
   height: 85px;
   border: 4px solid var(--unnamed-color-035f7e);
-  border: 4px solid #035F7E;
+  border: 4px solid #035f7e;
   opacity: 1;
   padding: 18px;
   border-radius: 50%;
@@ -1148,13 +1174,15 @@ body {
 }
 
 .asienton_pop_up p {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-22)/var(--unnamed-line-spacing-27) var(--unnamed-font-family-montserrat);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
+    var(--unnamed-font-size-22) / var(--unnamed-line-spacing-27)
+    var(--unnamed-font-family-montserrat);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-035f7e);
   text-align: center;
   font: normal normal bold 22px/27px Montserrat;
   letter-spacing: 0px;
-  color: #035F7E;
+  color: #035f7e;
   opacity: 1;
   padding: 10px;
 }
@@ -1168,8 +1196,8 @@ body {
   height: 428px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 4px solid #24CAD2;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
   top: 50%;
@@ -1196,7 +1224,7 @@ body {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #E59C26;
+  background-color: #e59c26;
   display: block;
   z-index: 3;
 }
@@ -1205,23 +1233,23 @@ body {
   position: absolute;
   text-align: center;
   font: normal normal bold 20px Montserrat;
-  color: #E59C26;
+  color: #e59c26;
   user-select: none;
 }
 
 /* styles related to destination point */
-.destination-point{
+.destination-point {
   position: absolute;
   width: 30px;
   z-index: 3;
   opacity: 0;
   display: none;
 }
-.destination-point__city-name{
+.destination-point__city-name {
   position: absolute;
   text-align: center;
   font: normal normal bold 20px Montserrat;
-  color: #E59C26;
+  color: #e59c26;
   user-select: none;
   opacity: 0;
   display: none;
@@ -1271,23 +1299,40 @@ body {
   }
 }
 
-
-
-@media screen and (max-width : 1366px){
-  .zoomed-in{
+@media screen and (max-width: 1366px) {
+  .zoomed-in {
     padding: 36px 0px 0px 41px;
     zoom: 65%;
   }
   .zoomed-in__single-window {
     margin: -10px 1em 0 1em;
-
   }
-  .world-map__single-window{
+  .world-map__single-window {
     margin: 0 20px;
   }
-  
+
   .world-map__heading {
     font: normal normal bold 34px Montserrat;
   }
 
+  .world-map__temp-value {
+    font: normal normal 600 24px Montserrat;
+  }
+
+  .world-map__skycana-logo {
+    transform: scale(0.6);
+  }
+  .world-map__time-now {
+    font: normal normal 300 30px Montserrat;
+  }
+  .world-map__day {
+    font: normal normal 600 20px Montserrat;
+  }
+  .world-map__temp img {
+    width: 37px;
+    height: 30px;
+  }
+  .world-map__skycana-logo {
+    left: -1.5%;
+  }
 }
