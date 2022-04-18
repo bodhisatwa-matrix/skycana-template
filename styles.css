@@ -110,12 +110,6 @@ body {
   zoom: 80%;
 }
 
-@media screen and (max-width : 1366px){
-  .zoomed-in{
-    padding: 36px 0px 0px 41px;
-    zoom: 65%;
-  }
-}
 
 .zoomed-in__heading {
   display: flex;
@@ -195,13 +189,6 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
-}
-
-@media screen and (max-width : 1366px) {
-  .zoomed-in__single-window {
-    margin: -10px 1em 0 1em;
-
-  }
 }
 
 .zoomed-in__single-window .open-window {
@@ -1282,4 +1269,25 @@ body {
   100% {
     offset-distance: 100%;
   }
+}
+
+
+
+@media screen and (max-width : 1366px){
+  .zoomed-in{
+    padding: 36px 0px 0px 41px;
+    zoom: 65%;
+  }
+  .zoomed-in__single-window {
+    margin: -10px 1em 0 1em;
+
+  }
+  .world-map__single-window{
+    margin: 0 20px;
+  }
+  
+  .world-map__heading {
+    font: normal normal bold 34px Montserrat;
+  }
+
 }
