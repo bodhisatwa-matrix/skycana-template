@@ -102,7 +102,8 @@ window_shutters.forEach(item => {
                 selected_option = "vuelos-shutter";
                 choose_option.style.display = "none";
                 world_map_heading.innerHTML = "Vuelos en tiempo real";
-                gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Open.png" } })
+                // gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Open.png" } })
+                smallFirstWindowMouseOver();
                 gsap.from(".world-map", { opacity: 0 })
                 gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 })
                 gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
@@ -120,7 +121,8 @@ window_shutters.forEach(item => {
                 selected_option = "destinos-shutter";
                 choose_option.style.display = "none";
                 world_map_heading.innerHTML = "Nuestros destinos";
-                gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Open.png" } })
+                // gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Open.png" } })
+                smallSecondWindowMouseOver();
                 gsap.from(".world-map", { opacity: 0 })
                 gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 })
                 gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
@@ -138,7 +140,8 @@ window_shutters.forEach(item => {
                 selected_option = "flota-shutter";
                 choose_option.style.display = "none";
                 world_map_heading.innerHTML = "Nuestra flota";
-                gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Open.png" } })
+                // gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Open.png" } })
+                smallThirdWindowMouseOver();
                 gsap.from(".world-map", { opacity: 0 })
                 gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 })
                 gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
@@ -157,28 +160,53 @@ world_map_options.forEach(item => {
     const phrase = item.classList[0].split("__")[1].split("-")[0];
     const phrase_capital = phrase[0].toUpperCase() + phrase.substring(1);
     item.addEventListener("mouseover", e => {
+        console.log(phrase, phrase_capital)
         if (selected_option.split("-")[0] !== phrase) {
-            gsap.from(`.${item.classList[0]}`, { opacity: 0.5 })
-            gsap.to(`.${item.classList[0]}`, { opacity: 1, attr: { src: `./Assets/Images/${phrase_capital}_Open.png` }, duration: 2 })
+            if(phrase_capital === 'Vuelos') {
+                smallFirstWindowMouseOver();
+            } else if(phrase_capital === 'Destinos') {
+                smallSecondWindowMouseOver();
+            } else if(phrase_capital === 'Flota') {
+                smallThirdWindowMouseOver();
+            } else {
+                console.log('somthing went wrong! on small shutter window mouse over');
+            }
+            // gsap.from(`.${item.classList[0]}`, { opacity: 0.5 })
+            // gsap.to(`.${item.classList[0]}`, { opacity: 1, attr: { src: `./Assets/Images/${phrase_capital}_Open.png` }, duration: 2 })
         }
     });
     item.addEventListener("mouseout", e => {
         if (selected_option.split("-")[0] !== phrase) {
-            gsap.from(`.${item.classList[0]}`, { opacity: 0.5 })
-            gsap.to(`.${item.classList[0]}`, { opacity: 1, attr: { src: `./Assets/Images/${phrase_capital}_Closed.png` }, duration: 2 })
+            // gsap.from(`.${item.classList[0]}`, { opacity: 0.5 })
+            // gsap.to(`.${item.classList[0]}`, { opacity: 1, attr: { src: `./Assets/Images/${phrase_capital}_Closed.png` }, duration: 2 })
+            if(phrase_capital === 'Vuelos') {
+                smallFirstWindowMouseOut();
+            } else if(phrase_capital === 'Destinos') {
+                smallSecondWindowMouseOut();
+            } else if(phrase_capital === 'Flota') {
+                smallThirdWindowMouseOut();
+            } else {
+                console.log('somthing went wrong! on small shutter window mouse out');
+            }
         }
     })
     item.addEventListener("click", e => {
         if (selected_option.split("-")[0] !== phrase) {
             const isVisible = document.getElementsByClassName('world-map__map-img-zoom')[0].style.display;
-            const temp_option = e.target.classList[0].split("__")[1].split("-")[0] + "-shutter";
+            // const temp_option = e.target.classList[0].split("__")[1].split("-")[0] + "-shutter";
+            const temp_option = item.classList[0].split("__")[1].split("-")[0];
+            console.log(temp_option, "hi")
             switch (temp_option) {
-                case "vuelos-shutter":
+                // case "vuelos-shutter":
+                case "vuelos":
                     selected_option = temp_option;
                     world_map_heading.innerHTML = "Vuelos en tiempo real";
-                    gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Open.png" } })
-                    gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Closed.png" } })
-                    gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
+                    smallFirstWindowMouseOver();
+                    smallSecondWindowMouseOut();
+                    smallThirdWindowMouseOut();
+                    // gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Open.png" } })
+                    // gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Closed.png" } })
+                    // gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
                     gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
                     gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
                     if (isVisible == 'block') {
@@ -188,13 +216,17 @@ world_map_options.forEach(item => {
                     if (mapIsZommedIn) showLocations();
                     hideDestinationPoins();
                     break;
-                case "destinos-shutter":
+                // case "destinos-shutter":
+                case "destinos":
                     hideLocations()
                     selected_option = temp_option;
                     world_map_heading.innerHTML = "Nuestros destinos";
-                    gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Closed.png" } })
-                    gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Open.png" } })
-                    gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
+                    smallFirstWindowMouseOut();
+                    smallSecondWindowMouseOver();
+                    smallThirdWindowMouseOut();
+                    // gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Closed.png" } })
+                    // gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Open.png" } })
+                    // gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
                     gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
                     gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
                     if (isVisible == 'block') {
@@ -204,13 +236,17 @@ world_map_options.forEach(item => {
                     if (mapIsZommedIn) showDestinationPoints();
                     hidePlane();
                     break;
-                case "flota-shutter":
+                // case "flota-shutter":
+                case "flota":
                     hideLocations();
                     selected_option = temp_option;
                     world_map_heading.innerHTML = "Nuestra flota";
-                    gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Closed.png" } })
-                    gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Closed.png" } })
-                    gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Open.png" } })
+                    smallThirdWindowMouseOver();
+                    smallFirstWindowMouseOut();
+                    smallSecondWindowMouseOut();
+                    // gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Closed.png" } })
+                    // gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Closed.png" } })
+                    // gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Open.png" } })
                     gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
                     gsap.to(".nuestra-flota", { opacity: 1, display: "block", duration: 2 });
                     // gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
@@ -797,3 +833,43 @@ function cloudShiftToOriginal() {
 }
 
 /*******************************************************/
+
+/****** funtions and query selector for small shutter window animation */
+const small_first_window = document.querySelector('#Path___484');
+const small_first_window_line = document.querySelector('#Line___3');
+const small_second_window = document.querySelector('#Rectangle_i3');//set height
+const small_second_window_line = document.querySelector('#Line_i3');
+const small_third_window = document.querySelector('#Rectangle__3');
+const small_third_window_line = document.querySelector('#Line__3');
+/**
+ * first window default value
+ * Path__484:- d="M0,0H175.7V201.532H0Z" to d="M0,0H175.7V51.532H0Z" and Line___3:- transform="translate(67.296 160.928)" to translate(67.296 20.928)"
+ * * second window default value
+ * Rectangle_i3:- height(199.119) to height(54.119) and Line_i3:- transform="translate(67.614 158.131)" to transform="translate(67.614 24.131)"
+ * * * third window default value
+ * Rectangle__3:- height(202.208) to height(52.208) and Line__3:- transform="translate(68.867 164.178)" to transform="translate(68.867 24.178)"
+ */
+function smallFirstWindowMouseOver() {
+    small_first_window.setAttribute("d","M0,0H175.7V51.532H0Z");
+    small_first_window_line.setAttribute("transform", "translate(67.296 20.928)");
+}
+function smallFirstWindowMouseOut() {
+    small_first_window.setAttribute("d","M0,0H175.7V201.532H0Z");
+    small_first_window_line.setAttribute("transform", "translate(67.296 160.928)");
+}
+function smallSecondWindowMouseOver() {
+    small_second_window.setAttribute("height", "54.119");
+    small_second_window_line.setAttribute("transform", "translate(67.614 24.131)");
+}
+function smallSecondWindowMouseOut() {
+    small_second_window.setAttribute("height", "199.119");
+    small_second_window_line.setAttribute("transform", "translate(67.614 158.131)");
+}
+function smallThirdWindowMouseOver() {
+    small_third_window.setAttribute("height", "52.208");
+    small_third_window_line.setAttribute("transform", "translate(68.867 24.178)");
+}
+function smallThirdWindowMouseOut() {
+    small_third_window.setAttribute("height", "202.208");
+    small_third_window_line.setAttribute("transform", "translate(68.867 164.178)");
+}
