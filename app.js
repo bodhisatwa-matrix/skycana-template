@@ -195,11 +195,11 @@ world_map_options.forEach(item => {
             const isVisible = document.getElementsByClassName('world-map__map-img-zoom')[0].style.display;
             // const temp_option = e.target.classList[0].split("__")[1].split("-")[0] + "-shutter";
             const temp_option = item.classList[0].split("__")[1].split("-")[0];
-            console.log(temp_option, "hi")
             switch (temp_option) {
                 // case "vuelos-shutter":
                 case "vuelos":
-                    selected_option = temp_option;
+                    // selected_option = temp_option;
+                    selected_option = "vuelos-shutter";
                     world_map_heading.innerHTML = "Vuelos en tiempo real";
                     smallFirstWindowMouseOver();
                     smallSecondWindowMouseOut();
@@ -219,7 +219,8 @@ world_map_options.forEach(item => {
                 // case "destinos-shutter":
                 case "destinos":
                     hideLocations()
-                    selected_option = temp_option;
+                    // selected_option = temp_option;
+                    selected_option = "destinos-shutter";
                     world_map_heading.innerHTML = "Nuestros destinos";
                     smallFirstWindowMouseOut();
                     smallSecondWindowMouseOver();
@@ -239,7 +240,8 @@ world_map_options.forEach(item => {
                 // case "flota-shutter":
                 case "flota":
                     hideLocations();
-                    selected_option = temp_option;
+                    // selected_option = temp_option;
+                    selected_option = "flota-shutter";
                     world_map_heading.innerHTML = "Nuestra flota";
                     smallThirdWindowMouseOver();
                     smallFirstWindowMouseOut();
