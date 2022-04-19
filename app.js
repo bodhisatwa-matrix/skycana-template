@@ -570,9 +570,6 @@ destination.forEach(des => {
 
 // *********************************************************************
 
-
-
-
 var airport = new Airport();
 function takeOff(e) {
     if (selected_option === "vuelos-shutter" && mapIsZommedIn) {
@@ -585,7 +582,6 @@ function takeOff(e) {
         }
     }
 }
-
 
 //  ui related functions***********************************************
 function showDestinationPoints() {
@@ -768,9 +764,6 @@ function DestinationPoint(x, y, id, cityName) {
 
 // *********** end of utility classes ***********************************
 
-
-
-
 /****************Close plane page pop up****************/
 
 var video_pop_up = document.getElementsByClassName('video_pop_up')[0];
@@ -836,10 +829,10 @@ function cloudShiftToOriginal() {
 
 /*******************************************************/
 
-/****** funtions and query selector for small shutter window animation */
+/****** functions and query selector for small shutter window animation */
 const small_first_window = document.querySelector('#Path___484');
 const small_first_window_line = document.querySelector('#Line___3');
-const small_second_window = document.querySelector('#Rectangle_i3');//set height
+const small_second_window = document.querySelector('#Rectangle_i3');
 const small_second_window_line = document.querySelector('#Line_i3');
 const small_third_window = document.querySelector('#Rectangle__3');
 const small_third_window_line = document.querySelector('#Line__3');
@@ -875,3 +868,4 @@ function smallThirdWindowMouseOut() {
     small_third_window.setAttribute("height", "202.208");
     small_third_window_line.setAttribute("transform", "translate(68.867 164.178)");
 }
+/****************************************************************************/

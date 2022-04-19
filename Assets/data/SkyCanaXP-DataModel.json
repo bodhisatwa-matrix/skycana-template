@@ -20,8 +20,8 @@
       "id": "mia",
       "name": "Miami",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 951,
-      "y": 200,
+      "x": 680,
+      "y": 130,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -42,8 +42,8 @@
       "id": "mex",
       "name": "Mexico",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 574,
-      "y": 396,
+      "x": 444,
+      "y": 236,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
