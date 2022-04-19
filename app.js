@@ -160,7 +160,6 @@ world_map_options.forEach(item => {
     const phrase = item.classList[0].split("__")[1].split("-")[0];
     const phrase_capital = phrase[0].toUpperCase() + phrase.substring(1);
     item.addEventListener("mouseover", e => {
-        console.log(phrase, phrase_capital)
         if (selected_option.split("-")[0] !== phrase) {
             if(phrase_capital === 'Vuelos') {
                 smallFirstWindowMouseOver();
@@ -505,7 +504,7 @@ function populateCityPopUp(id) {
     var img__slider = document.getElementsByClassName("img__slider")[0];
     slider_dot.setAttribute('style', 'text-align:center');
     let j = 1;
-    console.log(images.length);
+    // console.log(images.length);
     for (const i of images) {
         var span = document.createElement('span');
         var city_data_img = document.createElement('div');
@@ -845,7 +844,7 @@ const small_third_window_line = document.querySelector('#Line__3');
  * Rectangle__3:- height(202.208) to height(52.208) and Line__3:- transform="translate(68.867 164.178)" to transform="translate(68.867 24.178)"
  */
 function smallFirstWindowMouseOver() {
-    small_first_window.setAttribute("d","M0,0H175.7V51.532H0Z");
+    small_first_window.setAttribute("d","M0,0H175.7V57.532H0Z");
     small_first_window_line.setAttribute("transform", "translate(67.296 20.928)");
 }
 function smallFirstWindowMouseOut() {
@@ -853,7 +852,7 @@ function smallFirstWindowMouseOut() {
     small_first_window_line.setAttribute("transform", "translate(67.296 160.928)");
 }
 function smallSecondWindowMouseOver() {
-    small_second_window.setAttribute("height", "54.119");
+    small_second_window.setAttribute("height", "62.119");
     small_second_window_line.setAttribute("transform", "translate(67.614 24.131)");
 }
 function smallSecondWindowMouseOut() {
@@ -861,7 +860,7 @@ function smallSecondWindowMouseOut() {
     small_second_window_line.setAttribute("transform", "translate(67.614 158.131)");
 }
 function smallThirdWindowMouseOver() {
-    small_third_window.setAttribute("height", "52.208");
+    small_third_window.setAttribute("height", "58.208");
     small_third_window_line.setAttribute("transform", "translate(68.867 24.178)");
 }
 function smallThirdWindowMouseOut() {
