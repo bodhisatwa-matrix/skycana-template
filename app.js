@@ -309,6 +309,7 @@ function clickSmallShutter(which) {
             break;
     }
 }
+
 /*world_map__windows.addEventListener('mouseout', function() {
     setTimeout(() => {
         // smallFirstWindowMouseOut();
