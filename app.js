@@ -48,9 +48,13 @@ window.addEventListener("keypress", function (e) {
   if (e.key == "Enter") {
     choose_option.style.pointerEvents = "all";
     document.body.style.cursor = "cursor";
-    this.document.querySelector(".blink").style.display = "none";
-    openFullscreen();    
-    // this.document.body.requestFullScreen();
+    document.querySelector(".blink").style.display = "none";
+    openFullscreen();
+  }
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    console.log("ok");
   }
 });
 /* View in fullscreen */
@@ -67,14 +71,16 @@ function openFullscreen() {
 }
 /* Close fullscreen */
 function closeFullscreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-      document.msExitFullscreen();
-    }
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    /* IE11 */
+    document.msExitFullscreen();
   }
+}
 /** UBOX Code **/
 /* Vision Range Area */
 /*var xPosMin = 0;
@@ -213,48 +219,56 @@ shutter_image3.addEventListener("transitionend", function () {
 shutter_image1.addEventListener("mouseout", function () {
   first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   first_window_line.setAttribute("transform", "translate(208.29 452.211)");
-  if(timeoutID) {
-      clearTimeout(timeoutID);
+  if (timeoutID) {
+    clearTimeout(timeoutID);
   }
 });
 
 shutter_image2.addEventListener("mouseout", function () {
   second_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   second_window_line.setAttribute("transform", "translate(208.29 452.211)");
-  if(timeoutID) {
+  if (timeoutID) {
     clearTimeout(timeoutID);
-}
+  }
 });
 
 shutter_image3.addEventListener("mouseout", function () {
   third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   third_window_line.setAttribute("transform", "translate(208.29 452.211)");
+  if (timeoutID) {
+    clearTimeout(timeoutID);
+  }
 });
 /********** */
 
 function hoverToClick(which) {
-    console.log(which)
-    switch(which) {
-        case "vuelos-shutter":
-            timeoutID = setTimeout(() => {
-                mapZoomIn();
-                showLocations();
-            }, 3000);
-            break;
-        case "destinos-shutter": 
-            timeoutID = setTimeout(() => {
-                mapZoomIn();
-                showDestinationPoints();
-            }, 3000);
-            break;
-        default: 
-            console.log("Wrong hover!");
-            break;
-    }
-    
+  const isVisible = document.getElementsByClassName(
+    "world-map__map-img-zoom"
+  )[0].style.display;
+  switch (which) {
+    case "vuelos-shutter":
+      timeoutID = setTimeout(() => {
+        if (!mapIsZommedIn) {
+          mapZoomIn();
+          // mapIsZommedIn = true;
+          showLocations();
+        }
+      }, 3000);
+      break;
+    case "destinos-shutter":
+      timeoutID = setTimeout(() => {
+        if (!mapIsZommedIn) {
+          mapZoomIn();
+          showDestinationPoints();
+        }
+        // mapIsZommedIn = true;
+      }, 3000);
+      break;
+    default:
+      console.log("Wrong hover!");
+      break;
+  }
 }
-
-
 
 function openShutterWindowOne() {
   // selected_option = e.target.id;
@@ -281,7 +295,7 @@ function openShutterWindowTwo() {
   gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
   gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
   gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
-  hoverToClick(selected_option)
+  hoverToClick(selected_option);
 }
 
 function openShutterWindowThree() {
@@ -457,12 +471,18 @@ world_map_options.forEach((item) => {
     if (selected_option.split("-")[0] !== phrase) {
       if (phrase_capital === "Vuelos") {
         smallFirstWindowMouseOver();
+        smallSecondWindowMouseOut();
+        smallThirdWindowMouseOut();
         // hoverToClick(4);
       } else if (phrase_capital === "Destinos") {
         smallSecondWindowMouseOver();
+        smallFirstWindowMouseOut();
+        smallThirdWindowMouseOut();
         // hoverToClick(5);
       } else if (phrase_capital === "Flota") {
         smallThirdWindowMouseOver();
+        smallFirstWindowMouseOut();
+        smallSecondWindowMouseOut();
         // hoverToClick(6);
       } else {
         console.log("somthing went wrong! on small shutter window mouse over");
@@ -477,11 +497,13 @@ world_map_options.forEach((item) => {
         // smallFirstWindowMouseOut();
         if (small_first_window.getAttribute("d") == "M0,0H175.7V57.532H0Z") {
           clickSmallShutter(1);
+          hoverToClick(selected_option);
         }
       } else if (phrase_capital === "Destinos") {
         // smallSecondWindowMouseOut();
         if (small_second_window.getAttribute("height") == "62.119") {
           clickSmallShutter(2);
+          hoverToClick(selected_option);
         }
       } else if (phrase_capital === "Flota") {
         // smallThirdWindowMouseOut();
