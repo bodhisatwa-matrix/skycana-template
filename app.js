@@ -36,25 +36,45 @@ const animationTime = {
   big_shutter_window: 3,
   small_shutter_window: 3,
 };
+
 localStorage.setItem("animation", JSON.stringify(animationTime));
 /*********************************/
 var elem = document.documentElement;
 window.addEventListener("DOMContentLoaded", function () {
-  choose_option.style.pointerEvents = "none";
-  document.body.style.cursor = "none";
+  loadFirstTime();
 });
+
+function loadFirstTime() {
+    hideLocations();
+    hideDestinationPoins();
+    smallFirstWindowMouseOut();
+    smallSecondWindowMouseOut();
+    smallThirdWindowMouseOut();
+    selected_option = "";
+    choose_option.style.pointerEvents = "none";
+    document.body.style.cursor = "none";
+    document.querySelector(".blink").style.display = "block";
+    // document.querySelector('.world-map__map-img-zoom').style.display = "none";
+    // document.querySelector('.world-map__map-border').style.display = "block";
+    mapZoomOut();
+    mapIsZommedIn = false;
+}
 
 window.addEventListener("keypress", function (e) {
   if (e.key == "Enter") {
     choose_option.style.pointerEvents = "all";
-    document.body.style.cursor = "cursor";
+    document.body.style.cursor = "url('./Assets/Images/icon_walking_40.png'), auto";
     document.querySelector(".blink").style.display = "none";
     openFullscreen();
   }
 });
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    console.log("ok");
+  if (e.key === "Escape" || e.key === 'Esc') {
+    // window.location.reload();
+    const timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
+    timeline.to('.world-map', {opacity: 0, display: "none", duration: 0});
+    timeline.to('.zoomed-in', {opacity: 1, display: "block", duration: 2});
+    loadFirstTime();
   }
 });
 /* View in fullscreen */
@@ -242,9 +262,7 @@ shutter_image3.addEventListener("mouseout", function () {
 /********** */
 
 function hoverToClick(which) {
-  const isVisible = document.getElementsByClassName(
-    "world-map__map-img-zoom"
-  )[0].style.display;
+    console.log("Hell")
   switch (which) {
     case "vuelos-shutter":
       timeoutID = setTimeout(() => {
@@ -744,6 +762,15 @@ function mapZoomIn() {
     gsap.to(".world-map__map-img", { opacity: 1, duration: 0.5, delay: 0.5 });
     mapIsZommedIn = true;
   }
+}
+
+function mapZoomOut() {
+    gsap.from(".world-map__map-img", { opacity: 0 });
+    gsap.to(".world-map__map-img", {
+      attr: { src: "./Assets/Images/world-map.png" },
+    });
+    gsap.to(".world-map__map-img", { opacity: 1, duration: 0.5, delay: 0.5 });
+    mapIsZommedIn = false;
 }
 
 function showLocations() {
