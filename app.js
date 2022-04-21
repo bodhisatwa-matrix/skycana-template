@@ -145,37 +145,59 @@ setAnimationSpeed();
 shutter_image1.addEventListener('mouseover', function () {
     first_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
     first_window_line.setAttribute("transform", "translate(208.29 122.211)");
-    hoverToClick(1);
 });
+
 
 shutter_image2.addEventListener('mouseover', function () {
     second_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
     second_window_line.setAttribute("transform", "translate(208.29 122.211)");
-    hoverToClick(2);
 });
 
 shutter_image3.addEventListener('mouseover', function () {
     third_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
     third_window_line.setAttribute("transform", "translate(208.29 122.211)");
-    hoverToClick(3);
+});
+
+shutter_image1.addEventListener('transitionend', function() {
+    if(first_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+        openShutterWindowOne();
+    }
+});
+
+shutter_image2.addEventListener('transitionend', function () {
+    if(second_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+        openShutterWindowTwo();
+    }
+});
+
+shutter_image3.addEventListener('transitionend', function () {
+    if(third_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+        openShutterWindowThree();
+    }
 });
 
 shutter_image1.addEventListener('mouseout', function () {
     first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
     first_window_line.setAttribute("transform", "translate(208.29 452.211)");
-    // clearTimeout(timeoutID);
+    if(timeoutID) {
+        clearTimeout(timeoutID);
+    }
 });
 
 shutter_image2.addEventListener('mouseout', function () {
     second_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
     second_window_line.setAttribute("transform", "translate(208.29 452.211)");
-    // clearTimeout(timeoutID);
+    if(timeoutID) {
+        clearTimeout(timeoutID);
+    }
 });
 
 shutter_image3.addEventListener('mouseout', function () {
     third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
     third_window_line.setAttribute("transform", "translate(208.29 452.211)");
-    // clearTimeout(timeoutID);
+    if(timeoutID) {
+        clearTimeout(timeoutID);
+    }
 });
 /********** */
 var timeoutID;
@@ -405,18 +427,40 @@ world_map_options.forEach(item => {
         if (selected_option.split("-")[0] !== phrase) {
             if(phrase_capital === 'Vuelos') {
                 smallFirstWindowMouseOver();
-                hoverToClick(4);
+                // hoverToClick(4);
             } else if(phrase_capital === 'Destinos') {
                 smallSecondWindowMouseOver();
-                hoverToClick(5);
+                // hoverToClick(5);
             } else if(phrase_capital === 'Flota') {
                 smallThirdWindowMouseOver();
-                hoverToClick(6);
+                // hoverToClick(6);
             } else {
                 console.log('somthing went wrong! on small shutter window mouse over');
             }
             // gsap.from(`.${item.classList[0]}`, { opacity: 0.5 })
             // gsap.to(`.${item.classList[0]}`, { opacity: 1, attr: { src: `./Assets/Images/${phrase_capital}_Open.png` }, duration: 2 })
+        }
+    });
+    item.addEventListener('transitionend', e => {
+        if (selected_option.split("-")[0] !== phrase) {
+            if(phrase_capital === 'Vuelos') {
+                // smallFirstWindowMouseOut();
+                if(small_first_window.getAttribute("d") == "M0,0H175.7V57.532H0Z") {
+                    clickSmallShutter(1);
+                }
+            } else if(phrase_capital === 'Destinos') {
+                // smallSecondWindowMouseOut();
+                if(small_second_window.getAttribute("height") == "62.119") {
+                    clickSmallShutter(2);
+                }
+            } else if(phrase_capital === 'Flota') {
+                // smallThirdWindowMouseOut();
+                if(small_third_window.getAttribute("height") == "58.208") {
+                    clickSmallShutter(3);
+                }
+            } else {
+                console.log('somthing went wrong! on small shutter window transition end');
+            }
         }
     });
     item.addEventListener("mouseout", e => {
