@@ -39,7 +39,17 @@ const animationTime = {
 localStorage.setItem('animation', JSON.stringify(animationTime));
 /*********************************/
 
-
+window.addEventListener('DOMContentLoaded', function() {
+    choose_option.style.pointerEvents = "none";
+    document.body.style.cursor = "none";
+})
+window.addEventListener('keypress', function(e) {
+    if(e.key == "Enter") {
+        choose_option.style.pointerEvents = "all";
+        document.body.style.cursor = "cursor";
+        this.document.querySelector('.blink').style.display = "none";
+    }
+});
 /** UBOX Code **/
 /* Vision Range Area */
 /*var xPosMin = 0;

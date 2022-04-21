@@ -1343,7 +1343,11 @@ body {
   .video_pop_up {
     zoom: 62%;
   }
-  .metros_de_largo_pop_up,.de_capacided_pop_up, .asienton_pop_up, .asienton_pop_up, .rango_de_vuelo_pop_up {
+  .metros_de_largo_pop_up,
+  .de_capacided_pop_up,
+  .asienton_pop_up,
+  .asienton_pop_up,
+  .rango_de_vuelo_pop_up {
     zoom: 60%;
   }
 }
@@ -1354,7 +1358,7 @@ body {
   right: 100px;
   width: 180px;
   height: 180px;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid #fff;
   display: none;
 }
@@ -1385,4 +1389,38 @@ body {
   left: 65%;
   border: 1px solid #fff;
   background-color: rgba(255, 255, 255, 0.65);
+}
+.info-msg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.info-msg > .blink {
+  margin-top: 64px;
+  -webkit-animation: 1s linear infinite condemned_blink_effect; /* for Safari 4.0 - 8.0 */
+  animation: 1s linear infinite condemned_blink_effect;
+}
+/* for Safari 4.0 - 8.0 */
+@-webkit-keyframes condemned_blink_effect {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes condemned_blink_effect {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
 }
