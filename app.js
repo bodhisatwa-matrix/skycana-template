@@ -43,7 +43,7 @@ var elem = document.documentElement;
 window.addEventListener("DOMContentLoaded", function () {
   loadFirstTime();
 });
-
+/*********** App is loaded for first time */
 function loadFirstTime() {
     hideLocations();
     hideDestinationPoins();
@@ -54,12 +54,11 @@ function loadFirstTime() {
     choose_option.style.pointerEvents = "none";
     document.body.style.cursor = "none";
     document.querySelector(".blink").style.display = "block";
-    // document.querySelector('.world-map__map-img-zoom').style.display = "none";
-    // document.querySelector('.world-map__map-border').style.display = "block";
     mapZoomOut();
     mapIsZommedIn = false;
 }
-
+/************************************************ */
+/***** Enter Button Press to start mouse cursor */
 window.addEventListener("keypress", function (e) {
   if (e.key == "Enter") {
     choose_option.style.pointerEvents = "all";
@@ -68,15 +67,17 @@ window.addEventListener("keypress", function (e) {
     openFullscreen();
   }
 });
+/***************************/
+/***Escape Button Press  */
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape" || e.key === 'Esc') {
-    // window.location.reload();
     const timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
     timeline.to('.world-map', {opacity: 0, display: "none", duration: 0});
     timeline.to('.zoomed-in', {opacity: 1, display: "block", duration: 2});
     loadFirstTime();
   }
 });
+/************************/
 /* View in fullscreen */
 function openFullscreen() {
   if (elem.requestFullscreen) {
@@ -179,6 +180,7 @@ var webTest = false;
   
   window.onkeyup = checkKeyUp;*/
 /*************/
+/******** Set all window's animation speed from localstorage ************/
 var timeoutID;
 function setAnimationSpeed() {
   let data = JSON.parse(localStorage.getItem("animation"));
@@ -200,19 +202,21 @@ function setAnimationSpeed() {
   }
 }
 setAnimationSpeed();
+/******** ************/
 
 /**  */
-/** Hover Animation on Sutter Buttons */
+/** Hover Animation on Sutter Buttons(Big) */
+/* Shutter Window 1 {Big} Hover */
 shutter_image1.addEventListener("mouseover", function () {
   first_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
   first_window_line.setAttribute("transform", "translate(208.29 122.211)");
 });
-
+/* Shutter Window 2 {Big} Hover */
 shutter_image2.addEventListener("mouseover", function () {
   second_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
   second_window_line.setAttribute("transform", "translate(208.29 122.211)");
 });
-
+/* Shutter Window 3 {Big} Hover */
 shutter_image3.addEventListener("mouseover", function () {
   third_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
   third_window_line.setAttribute("transform", "translate(208.29 122.211)");
@@ -235,7 +239,7 @@ shutter_image3.addEventListener("transitionend", function () {
     openShutterWindowThree();
   }
 });
-
+/* Shutter Window 1 {Big} mouseout*/
 shutter_image1.addEventListener("mouseout", function () {
   first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   first_window_line.setAttribute("transform", "translate(208.29 452.211)");
@@ -243,7 +247,7 @@ shutter_image1.addEventListener("mouseout", function () {
     clearTimeout(timeoutID);
   }
 });
-
+/* Shutter Window 2 {Big} mouseout*/
 shutter_image2.addEventListener("mouseout", function () {
   second_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   second_window_line.setAttribute("transform", "translate(208.29 452.211)");
@@ -251,7 +255,7 @@ shutter_image2.addEventListener("mouseout", function () {
     clearTimeout(timeoutID);
   }
 });
-
+/* Shutter Window 3 {Big} mouseout*/
 shutter_image3.addEventListener("mouseout", function () {
   third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   third_window_line.setAttribute("transform", "translate(208.29 452.211)");
@@ -260,7 +264,7 @@ shutter_image3.addEventListener("mouseout", function () {
   }
 });
 /********** */
-
+/* Auto click on hover for certain time*/
 function hoverToClick(which) {
     console.log("Hell")
   switch (which) {
@@ -287,7 +291,8 @@ function hoverToClick(which) {
       break;
   }
 }
-
+/*******************/
+/* Open First Window */
 function openShutterWindowOne() {
   // selected_option = e.target.id;
   selected_option = "vuelos-shutter";
@@ -301,7 +306,8 @@ function openShutterWindowOne() {
   gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
   hoverToClick(selected_option);
 }
-
+/******************** */
+/* Open Second Window */
 function openShutterWindowTwo() {
   // selected_option = e.target.id;
   selected_option = "destinos-shutter";
@@ -315,7 +321,8 @@ function openShutterWindowTwo() {
   gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
   hoverToClick(selected_option);
 }
-
+/************************ */
+/* Open Third Window */
 function openShutterWindowThree() {
   // selected_option = e.target.id;
   selected_option = "flota-shutter";
@@ -328,7 +335,8 @@ function openShutterWindowThree() {
   gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
   gsap.to(".nuestra-flota", { opacity: 1, display: "block", duration: 2 });
 }
-
+/************************ */
+/* Function for auto click on small shutter window*/
 function clickSmallShutter(which) {
   const isVisible = document.getElementsByClassName(
     "world-map__map-img-zoom"
@@ -393,7 +401,7 @@ function clickSmallShutter(which) {
       break;
   }
 }
-
+/************************** */
 /*world_map__windows.addEventListener('mouseout', function() {
     setTimeout(() => {
         // smallFirstWindowMouseOut();
@@ -407,7 +415,7 @@ function clickSmallShutter(which) {
     }, 2000);    
 });*/
 /******************************************************************************/
-
+/* For Each Loop for handle all big shutter window */
 window_shutters.forEach((item) => {
   item.addEventListener("mouseover", (e) => {
     if (e.target.id === "vuelos-shutter") {
@@ -480,8 +488,10 @@ window_shutters.forEach((item) => {
     }
   });
 });
+/******************************** */
 
 var clickedButton = 0;
+/* For Each Loop for handle all 3 content window */
 world_map_options.forEach((item) => {
   const phrase = item.classList[0].split("__")[1].split("-")[0];
   const phrase_capital = phrase[0].toUpperCase() + phrase.substring(1);
@@ -577,7 +587,7 @@ world_map_options.forEach((item) => {
     }
   });
 });
-
+/********************/
 // ************************ PLANE SLIDER *******************************
 var slider_right_arrow = document.querySelector(".nuestra-flota__right-arrow");
 var slider_left_arrow = document.querySelector(".nuestra-flota__left-arrow");
@@ -752,7 +762,7 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
   });
 });
 
-// function for map zoom in feature
+/* Function for map zoom in feature */
 function mapZoomIn() {
   if (!mapIsZommedIn && selected_option !== "flota-shutter") {
     gsap.from(".world-map__map-img", { opacity: 0 });
@@ -763,7 +773,8 @@ function mapZoomIn() {
     mapIsZommedIn = true;
   }
 }
-
+/**************************************/
+/* Function for map zoom out in feature */
 function mapZoomOut() {
     gsap.from(".world-map__map-img", { opacity: 0 });
     gsap.to(".world-map__map-img", {
@@ -772,7 +783,8 @@ function mapZoomOut() {
     gsap.to(".world-map__map-img", { opacity: 1, duration: 0.5, delay: 0.5 });
     mapIsZommedIn = false;
 }
-
+/**************************************/
+/*** function for show first content window locations from json file */
 function showLocations() {
   if (selected_option === "vuelos-shutter") {
     gsap.from(".world-map__destinations", { opacity: 0 });
@@ -786,11 +798,14 @@ function showLocations() {
     gsap.to(".location-point__city-name", { display: "block", duration: 0.1 });
   }
 }
+/**********************/
+/** function for hide first content window locations **/
 function hideLocations() {
   gsap.to(".location-point", { display: "none", duration: 0.1 });
   gsap.to(".location-point__city-name", { display: "none", duration: 0.1 });
 }
-// click on the world map zoomes on the map
+/******************/
+/* click on the world map zoomes on the map*/
 let click = true;
 world_map__map_border.addEventListener("click", function () {
   mapZoomIn();
@@ -964,6 +979,8 @@ function takeOff(e) {
 }
 
 //  ui related functions***********************************************
+
+/** Show second content window locations from json file **/
 function showDestinationPoints() {
   var timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
   timeline.to(".destination-point", {
@@ -977,7 +994,8 @@ function showDestinationPoints() {
     duration: 0.5,
   });
 }
-
+/*********************************/
+/** hide second content window locations */
 function hideDestinationPoins() {
   var timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
   timeline.to(".destination-point", {
@@ -991,7 +1009,8 @@ function hideDestinationPoins() {
     duration: 0.5,
   });
 }
-
+/*****************************************/
+/** Hide plane animation */
 function hidePlane() {
   var timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
   timeline.to(".flight-path-container", {
