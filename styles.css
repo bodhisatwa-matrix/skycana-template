@@ -1425,3 +1425,68 @@ body {
     visibility: visible;
   }
 }
+
+/* ---- Position Viewer ---- */
+
+#position-viewer{
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  width: 180px;
+  height: 180px;
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid #fff;
+  /* display: none; */
+}
+
+#interactive-area1{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.65);
+}
+#interactive-area2{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.65);
+}
+#interactive-area3{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+.player{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+#user-position{
+  position:absolute;
+  color: #3399ff;
+  background-color: #000;
+  font-size: 50px;
+  padding: 20px;
+  top: 0;
+  right: 0;
+  /* opacity: {parameter:showUserPosition}; */
+  font-family: sans-serif;
+}
+
+#skeletonsCanvas{
+  /* opacity: {parameter:showSkeletons}; */
+}

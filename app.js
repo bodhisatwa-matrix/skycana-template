@@ -30,7 +30,7 @@ const small_second_window = document.querySelector("#Rectangle_i3");
 const small_second_window_line = document.querySelector("#Line_i3");
 const small_third_window = document.querySelector("#Rectangle__3");
 const small_third_window_line = document.querySelector("#Line__3");
-
+var isInside = false;
 /** LocalStorage value */
 const animationTime = {
   big_shutter_window: 3,
@@ -43,39 +43,50 @@ var elem = document.documentElement;
 window.addEventListener("DOMContentLoaded", function () {
   loadFirstTime();
 });
+function backToHome() {
+  selected_option = "";
+  hideLocations();
+  hideDestinationPoins();
+  smallFirstWindowMouseOut();
+  smallSecondWindowMouseOut();
+  smallThirdWindowMouseOut();
+  gsap.to(".world-map", { opacity: 0, display: "none", duration: 0.01 })
+  gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
+  choose_option.style.display = "block";
+}
 /*********** App is loaded for first time */
 function loadFirstTime() {
-    hideLocations();
-    hideDestinationPoins();
-    smallFirstWindowMouseOut();
-    smallSecondWindowMouseOut();
-    smallThirdWindowMouseOut();
-    selected_option = "";
-    choose_option.style.pointerEvents = "none";
-    document.body.style.cursor = "none";
-    document.querySelector(".blink").style.display = "block";
-    mapZoomOut();
-    mapIsZommedIn = false;
+  hideLocations();
+  hideDestinationPoins();
+  smallFirstWindowMouseOut();
+  smallSecondWindowMouseOut();
+  smallThirdWindowMouseOut();
+  selected_option = "";
+  // choose_option.style.pointerEvents = "none";
+  // document.body.style.cursor = "none";
+  // document.querySelector(".blink").style.display = "block";
+  mapZoomOut();
+  mapIsZommedIn = false;
 }
 /************************************************ */
 /***** Enter Button Press to start mouse cursor */
 window.addEventListener("keypress", function (e) {
-  if (e.key == "Enter") {
+  /*if (e.key == "Enter") {
     choose_option.style.pointerEvents = "all";
     document.body.style.cursor = "url('./Assets/Images/icon_walking_40.png'), auto";
     document.querySelector(".blink").style.display = "none";
     openFullscreen();
-  }
+  }*/
 });
 /***************************/
 /***Escape Button Press  */
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" || e.key === 'Esc') {
+  /*if (e.key === "Escape" || e.key === 'Esc') {
     const timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
     timeline.to('.world-map', {opacity: 0, display: "none", duration: 0});
     timeline.to('.zoomed-in', {opacity: 1, display: "block", duration: 2});
     loadFirstTime();
-  }
+  }*/
 });
 /************************/
 /* View in fullscreen */
@@ -102,84 +113,6 @@ function closeFullscreen() {
     document.msExitFullscreen();
   }
 }
-/** UBOX Code **/
-/* Vision Range Area */
-/*var xPosMin = 0;
-var xPosMax = 100;
-var zPosMin = 0;
-var zPosMax = 100;*/
-
-/* Interactive Area */
-/*var xPosMin_i = 35;
-var xPosMax_i = 65;
-var zPosMin_i = 35;
-var zPosMax_i = 65;
-var xDistance = (xPosMax + (xPosMin * -1));
-var zDistance = (zPosMax + (zPosMin * -1));*/
-
-/* Variables handle the users position */
-/*var mainXPos, xPos1, xPos2 = 0;
-var mainZPos, zPos1, zPos2 = 0;
-
-/* Other Variables */
-/*var currentZone = 0;
-var selectedZone = -1;
-var webTest = false;
-/*function updatePos(sklxz){
-
-    var currentPlayer;
-    if(sklxz != null){
-      mainZPos = window['zPos' + sklxz];
-      mainXPos = window['xPos' + sklxz];
-      currentPlayer = window['player' + sklxz];
-    }else{
-      currentPlayer = window['player1'];
-      sklxz = 1;
-    }
-  
-    // $('#user-position').html('X = ' + mainXPos + ', Z = ' + mainZPos);
-    if( mainZPos <= zPosMin || mainZPos >= zPosMax || mainXPos <= xPosMin || mainXPos >= xPosMax){
-    //   $(window['player' + sklxz]).css('background-color', '#fff');
-      currentZone = 0;
-    }else if( mainZPos > zPosMin_i && mainZPos <= zPosMax_i && mainXPos > xPosMin_i && mainXPos <= xPosMax_i){
-    //   $(window['player' + sklxz]).css('background-color', '#f00');
-      currentZone = 2;
-    }else{
-    //   $(window['player' + sklxz]).css('background-color', '#000');
-      currentZone = 1;
-    }
-  
-    if(currentZone != selectedZone){
-      selectedZone = currentZone;
-    //   changeContent(selectedZone); 
-    }
-    console.log(mainXPos, mainZPos);
-  }*/
-
-/*function follow(evt) {
-
-    if(webTest){
-      mainXPos = Math.round((evt.pageX/window.innerWidth) * 100);
-      mainZPos = Math.round((evt.pageY/window.innerHeight) * 100);
-    //   $('#player1').css('top', ((mainZPos-zPosMin)*100)/zDistance + '%').css('left', ((mainXPos-xPosMin)*100)/xDistance + '%').show();
-      updatePos(null);
-    }
-  
-  }
-
-  function checkKeyUp(e) {
-
-    e = e || window.event; 
-    if (e.keyCode == '13') {
-      document.onmousemove = follow; 
-      webTest = true;
-    //   $('#player1, #position-viewer').css('opacity', '1').show();
-    }
-  
-  }
-  
-  window.onkeyup = checkKeyUp;*/
-/*************/
 /******** Set all window's animation speed from localstorage ************/
 var timeoutID;
 function setAnimationSpeed() {
@@ -223,28 +156,40 @@ shutter_image3.addEventListener("mouseover", function () {
 });
 
 shutter_image1.addEventListener("transitionend", function () {
-  if (first_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
-    openShutterWindowOne();
-  }
+  // openWindow1();
 });
 
 shutter_image2.addEventListener("transitionend", function () {
-  if (second_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
-    openShutterWindowTwo();
-  }
+  // openWindow2();
 });
 
 shutter_image3.addEventListener("transitionend", function () {
+  // openWindow3();
+});
+
+function openWindow1() {
+  if (first_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+    openShutterWindowOne();
+  }
+}
+
+function openWindow2() {
+  if (second_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+    openShutterWindowTwo();
+  }
+}
+function openWindow3() {
   if (third_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
     openShutterWindowThree();
   }
-});
+}
+
 /* Shutter Window 1 {Big} mouseout*/
 shutter_image1.addEventListener("mouseout", function () {
   first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   first_window_line.setAttribute("transform", "translate(208.29 452.211)");
   if (timeoutID) {
-    clearTimeout(timeoutID);
+    // clearTimeout(timeoutID);
   }
 });
 /* Shutter Window 2 {Big} mouseout*/
@@ -252,7 +197,7 @@ shutter_image2.addEventListener("mouseout", function () {
   second_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   second_window_line.setAttribute("transform", "translate(208.29 452.211)");
   if (timeoutID) {
-    clearTimeout(timeoutID);
+    // clearTimeout(timeoutID);
   }
 });
 /* Shutter Window 3 {Big} mouseout*/
@@ -260,27 +205,34 @@ shutter_image3.addEventListener("mouseout", function () {
   third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   third_window_line.setAttribute("transform", "translate(208.29 452.211)");
   if (timeoutID) {
-    clearTimeout(timeoutID);
+    // clearTimeout(timeoutID);
   }
 });
 /********** */
 /* Auto click on hover for certain time*/
 function hoverToClick(which) {
-    console.log("Hell")
+  console.log("Hover to click called");
   switch (which) {
     case "vuelos-shutter":
+      console.log("switch-case used")
       timeoutID = setTimeout(() => {
         if (!mapIsZommedIn) {
           mapZoomIn();
           // mapIsZommedIn = true;
           showLocations();
+          console.log("Timeout called")
+        } else {
+          showLocations();
         }
-      }, 3000);
+      }, 1000);
       break;
     case "destinos-shutter":
       timeoutID = setTimeout(() => {
         if (!mapIsZommedIn) {
           mapZoomIn();
+          showDestinationPoints();
+          console.log("Timeout called1")
+        } else {
           showDestinationPoints();
         }
         // mapIsZommedIn = true;
@@ -294,6 +246,7 @@ function hoverToClick(which) {
 /*******************/
 /* Open First Window */
 function openShutterWindowOne() {
+  console.log("first window");
   // selected_option = e.target.id;
   selected_option = "vuelos-shutter";
   choose_option.style.display = "none";
@@ -309,6 +262,7 @@ function openShutterWindowOne() {
 /******************** */
 /* Open Second Window */
 function openShutterWindowTwo() {
+  console.log("second window");
   // selected_option = e.target.id;
   selected_option = "destinos-shutter";
   choose_option.style.display = "none";
@@ -324,6 +278,7 @@ function openShutterWindowTwo() {
 /************************ */
 /* Open Third Window */
 function openShutterWindowThree() {
+  console.log("third window");
   // selected_option = e.target.id;
   selected_option = "flota-shutter";
   choose_option.style.display = "none";
@@ -764,6 +719,7 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
 
 /* Function for map zoom in feature */
 function mapZoomIn() {
+  console.log(selected_option, mapIsZommedIn);
   if (!mapIsZommedIn && selected_option !== "flota-shutter") {
     gsap.from(".world-map__map-img", { opacity: 0 });
     gsap.to(".world-map__map-img", {
@@ -771,21 +727,23 @@ function mapZoomIn() {
     });
     gsap.to(".world-map__map-img", { opacity: 1, duration: 0.5, delay: 0.5 });
     mapIsZommedIn = true;
+    console.log("zoom map called")
   }
 }
 /**************************************/
 /* Function for map zoom out in feature */
 function mapZoomOut() {
-    gsap.from(".world-map__map-img", { opacity: 0 });
-    gsap.to(".world-map__map-img", {
-      attr: { src: "./Assets/Images/world-map.png" },
-    });
-    gsap.to(".world-map__map-img", { opacity: 1, duration: 0.5, delay: 0.5 });
-    mapIsZommedIn = false;
+  gsap.from(".world-map__map-img", { opacity: 0 });
+  gsap.to(".world-map__map-img", {
+    attr: { src: "./Assets/Images/world-map.png" },
+  });
+  gsap.to(".world-map__map-img", { opacity: 1, duration: 0.5, delay: 0.5 });
+  mapIsZommedIn = false;
 }
 /**************************************/
 /*** function for show first content window locations from json file */
 function showLocations() {
+  console.log(selected_option);
   if (selected_option === "vuelos-shutter") {
     gsap.from(".world-map__destinations", { opacity: 0 });
     gsap.to(".world-map__destinations", {
@@ -796,6 +754,7 @@ function showLocations() {
     });
     gsap.to(".location-point", { display: "block", duration: 0.1 });
     gsap.to(".location-point__city-name", { display: "block", duration: 0.1 });
+    console.log("Show location called")
   }
 }
 /**********************/
@@ -890,7 +849,6 @@ function populateCityPopUp(id) {
   var img__slider = document.getElementsByClassName("img__slider")[0];
   slider_dot.setAttribute("style", "text-align:center");
   let j = 1;
-  // console.log(images.length);
   for (const i of images) {
     var span = document.createElement("span");
     var city_data_img = document.createElement("div");
@@ -1291,3 +1249,250 @@ function smallThirdWindowMouseOut() {
   );
 }
 /****************************************************************************/
+/************Ubox Code ****************/
+var window1 = shutter_image1.getBoundingClientRect();
+/* Vision Range Area */
+var xPosMin = 0;
+var xPosMax = 100;
+var zPosMin = 0;
+var zPosMax = 100;
+
+/* Interactive Area */
+var xPosMin_i = 20;
+var xPosMax_i = 37;
+var zPosMin_i = 30;
+var zPosMax_i = 75;
+
+//var xPosMin_i = (window1.x * 0.043).toFixed();
+//var xPosMax_i = ((window1.x + window1.width) * 0.044).toFixed();
+//var zPosMin_i = ((window1.y + window1.height) * 0.033).toFixed();
+//var zPosMax_i = (window1.y * 0.227).toFixed();
+
+var window2 = shutter_image2.getBoundingClientRect();
+var xPosMin2 = (window2.x * 0.043).toFixed();
+var xPosMax2 = ((window2.x + window2.width) * 0.04).toFixed();
+var zPosMin2 = ((window2.y + window2.height) * 0.033).toFixed();
+var zPosMax2 = (window2.y * 0.227).toFixed();
+
+var window3 = shutter_image3.getBoundingClientRect();
+var xPosMin3 = (window3.x * 0.043).toFixed();
+var xPosMax3 = ((window3.x + window3.width) * 0.04).toFixed();
+var zPosMin3 = ((window3.y + window3.height) * 0.033).toFixed();
+var zPosMax3 = (window3.y * 0.227).toFixed();
+
+console.log(xPosMin_i, xPosMax_i, zPosMin_i, zPosMax_i);
+
+var xDistance = xPosMax + xPosMin * -1;
+var zDistance = zPosMax + zPosMin * -1;
+
+/* Variables handle the users position */
+var mainXPos,
+  xPos1,
+  xPos2 = 0;
+var mainZPos,
+  zPos1,
+  zPos2 = 0;
+
+/* Other Variables */
+var currentZone = 0;
+var selectedZone = -1;
+var webTest = true;
+
+// POSITION VIEWER
+
+function createPositionViewer() {
+  $("#interactive-area1")
+    .css("height", zPosMax_i - zPosMin_i + "%")
+    .css("top", zPosMin_i + "%");
+  $("#interactive-area1")
+    .css("width", xPosMax_i - xPosMin_i + "%")
+    .css("left", xPosMin_i + "%");
+
+  $("#interactive-area2")
+    .css("height", zPosMax2 - zPosMin2 + "%")
+    .css("top", zPosMin2 + "%");
+  $("#interactive-area2")
+    .css("width", xPosMax2 - xPosMin2 + "%")
+    .css("left", xPosMin2 + "%");
+
+  $("#interactive-area3")
+    .css("height", zPosMax3 - zPosMin3 + "%")
+    .css("top", zPosMin3 + "%");
+  $("#interactive-area3")
+    .css("width", xPosMax3 - xPosMin3 + "%")
+    .css("left", xPosMin3 + "%");
+}
+
+createPositionViewer();
+
+// X AND Z MOVEMENT
+
+function updatePos(sklxz) {
+  var currentPlayer;
+  if (sklxz != null) {
+    mainZPos = window["zPos" + sklxz];
+    mainXPos = window["xPos" + sklxz];
+    currentPlayer = window["player" + sklxz];
+  } else {
+    currentPlayer = window["player1"];
+    sklxz = 1;
+  }
+
+  // $("#user-position").html("X = " + mainXPos + ", Z = " + mainZPos);
+  if (
+    mainZPos <= zPosMin ||
+    mainZPos >= zPosMax ||
+    mainXPos <= xPosMin ||
+    mainXPos >= xPosMax
+  ) {
+    $(window["player" + sklxz]).css("background-color", "#fff");
+    currentZone = 0;
+  } else if (
+    (mainZPos > zPosMin_i &&
+      mainZPos <= zPosMax_i &&
+      mainXPos > xPosMin_i &&
+      mainXPos <= xPosMax_i) ||
+    (mainZPos > zPosMin2 &&
+      mainZPos <= zPosMax2 &&
+      mainXPos > xPosMin2 &&
+      mainXPos <= xPosMax2) ||
+    (mainZPos > zPosMin3 &&
+      mainZPos <= zPosMax3 &&
+      mainXPos > xPosMin3 &&
+      mainXPos <= xPosMax3)
+  ) {
+    $(window["player" + sklxz]).css("background-color", "#f00");
+    currentZone = 2;
+  } else {
+    $(window["player" + sklxz]).css("background-color", "#000");
+    currentZone = 1;
+  }
+
+  if (currentZone != selectedZone) {
+    selectedZone = currentZone;
+    changeContent(selectedZone);
+  }
+}
+var tiempo;
+function changeContent(num) {
+  clearTimeout(tiempo);
+  if (num >= 2) {
+    console.log("Inside active area", isInside);
+    isInside = true;
+    // first_window.getAnimations(['transition'])[0].finished.then(r => {
+    //   openShutterWindowOne();
+    // });
+    // second_window.getAnimations(['transition'])[0].finished.then(r => {
+    //   openShutterWindowTwo();
+    // });
+    // third_window.getAnimations(['transition'])[0].finished.then(r => {
+    //   console.log("ok");
+    // });
+    
+
+    if (first_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+      tiempo = setTimeout(function () {
+        // timpo = openShutterWindowOne();
+      }, 2500);
+    } else if (second_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+      setTimeout(function () {
+        tiempo = openShutterWindowTwo();
+      }, 2500);
+    } else if (third_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+      setTimeout(function () {
+        // tiempo = openShutterWindowThree();
+      }, 2500);
+    } else {
+      console.log("error!", num);
+    }
+    // setTimeout(selectVuelosShutter() , 3000);
+  } else {
+    console.log("Outside active area", isInside);
+    if(isInside) {
+      tiempo = setTimeout(function () {
+        backToHome();
+      }, 3000);
+    }
+  }
+}
+
+var canvas = document.getElementById("skeletonsCanvas");
+var context = canvas.getContext("2d");
+
+function getSkeletons(jsonObject) {
+  if (context == null) {
+    return;
+  }
+
+  var skl = 0;
+
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  try {
+    for (var i = 0; i < jsonObject.skeletons.length; i++) {
+      skl++;
+
+      for (var j = 0; j < jsonObject.skeletons[i].joints.length; j++) {
+        var joint = jsonObject.skeletons[i].joints[j];
+
+        // Draw!!!
+        context.fillStyle = "#FF0000";
+        context.beginPath();
+        context.arc(joint.x, joint.y, 10, 0, Math.PI * 2, true);
+        context.closePath();
+        context.fill();
+
+        var cordx = (joint.x * 100) / 640;
+        var cordy = 100 - (joint.y * 100) / 480;
+        var cordz = (joint.z * 100) / 4;
+
+        if (joint.name == "spinecenter") {
+          document.getElementById("spinecenter" + skl).style.left =
+            cordx + "px";
+          document.getElementById("spinecenter" + skl).style.top = cordy + "px";
+          document.getElementById("spinecenter" + skl).style.zIndex =
+            Math.floor(cordz);
+          window["xPos" + skl] = Math.round(
+            document
+              .getElementById("spinecenter" + skl)
+              .style.left.replace("px", "")
+          );
+          window["yPos" + skl] = Math.round(
+            document
+              .getElementById("spinecenter" + skl)
+              .style.top.replace("px", "")
+          );
+          window["zPos" + skl] = Number(
+            document.getElementById("spinecenter" + skl).style.zIndex
+          );
+          $("#player" + skl).css(
+            "top",
+            ((window["zPos" + skl] - zPosMin) * 100) / zDistance + "%"
+          );
+          $("#player" + skl).css(
+            "left",
+            ((window["xPos" + skl] - xPosMin) * 100) / xDistance + "%"
+          );
+          $("#player" + skl).show();
+        }
+        updatePos(1);
+      }
+    }
+  } catch (err) {
+    //do nothing
+  }
+}
+function follow(evt) {
+  if (webTest) {
+    mainXPos = Math.round((evt.pageX / window.innerWidth) * 100);
+    mainZPos = Math.round((evt.pageY / window.innerHeight) * 100);
+    $("#player1")
+      .css("top", ((mainZPos - zPosMin) * 100) / zDistance + "%")
+      .css("left", ((mainXPos - xPosMin) * 100) / xDistance + "%")
+      .show();
+    updatePos(null);
+  }
+}
+document.onmousemove = follow;
+/**************************************/
+//clickSmallShutter(1);
+// hoverToClick(selected_option);
