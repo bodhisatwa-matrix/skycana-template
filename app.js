@@ -62,8 +62,8 @@ function loadFirstTime() {
   smallSecondWindowMouseOut();
   smallThirdWindowMouseOut();
   selected_option = "";
-  // choose_option.style.pointerEvents = "none";
-  // document.body.style.cursor = "none";
+  choose_option.style.pointerEvents = "none";
+  document.body.style.cursor = "none";
   // document.querySelector(".blink").style.display = "block";
   mapZoomOut();
   mapIsZommedIn = false;
@@ -71,6 +71,13 @@ function loadFirstTime() {
 /************************************************ */
 /***** Enter Button Press to start mouse cursor */
 window.addEventListener("keypress", function (e) {
+  if(e.key == "49") {
+    alert("1 pressed!");
+  } else if(e.key == "50") {
+    alert("2 pressed!");
+  } else if(e.key == "51") {
+    alert("3 pressed!");
+  }
   /*if (e.key == "Enter") {
     choose_option.style.pointerEvents = "all";
     document.body.style.cursor = "url('./Assets/Images/icon_walking_40.png'), auto";
@@ -79,8 +86,43 @@ window.addEventListener("keypress", function (e) {
   }*/
 });
 /***************************/
-/***Escape Button Press  */
+/***1, 2, 3 Button Press key press event */
+var pressedKey = 0;
+var animationStarted = 0;
 document.addEventListener("keydown", function (e) {
+  switch(e.key) {
+    case "1": {
+      if(e.key == pressedKey) {
+        //open window
+        openWindow(e.key);
+      }
+      startAnimation(e.key);
+      pressedKey = e.key;
+      break;
+    }
+    case "2": {
+      if(e.key == pressedKey) {
+        //open window
+        openWindow(e.key);
+      }
+      startAnimation(e.key);
+      pressedKey = e.key;
+      break;
+    }
+    case "3": {
+      if(e.key == pressedKey) {
+        //open window
+        openWindow(e.key);
+      }
+      startAnimation(e.key);
+      pressedKey = e.key;
+      break;
+    }
+    default: {
+      console.log("other key pressed!");
+      break;
+    }
+  }
   /*if (e.key === "Escape" || e.key === 'Esc') {
     const timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
     timeline.to('.world-map', {opacity: 0, display: "none", duration: 0});
@@ -89,6 +131,87 @@ document.addEventListener("keydown", function (e) {
   }*/
 });
 /************************/
+/********** Keyboard Events for 1,2,3 key press ***********/
+function openWindow(windowNumber) {
+  stopAnimation();
+  switch (windowNumber) {
+    case "1": {
+      selected_option = "vuelos-shutter";
+      choose_option.style.display = "none";
+      world_map_heading.innerHTML = "Vuelos en tiempo real";
+      gsap.from(".world-map", { opacity: 0 });
+      gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
+      gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
+      gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
+      break;
+    }
+    case "2": {
+      selected_option = "destinos-shutter";
+      choose_option.style.display = "none";
+      world_map_heading.innerHTML = "Nuestros destinos";
+      gsap.from(".world-map", { opacity: 0 });
+      gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
+      gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
+      gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
+      break;
+    }
+    case "3": {
+      selected_option = "flota-shutter";
+      choose_option.style.display = "none";
+      world_map_heading.innerHTML = "Nuestra flota";
+      gsap.from(".world-map", { opacity: 0 });
+      gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
+      gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
+      gsap.to(".nuestra-flota", { opacity: 1, display: "block", duration: 2 });
+      break;
+    }
+    default: {
+      console.log("wrong window number");
+      break;
+    }
+  }
+}
+
+function closeWindow(windowNumber) {
+
+}
+
+function startAnimation(windowNumber) {
+  stopAnimation();
+  // start animation of a window
+  switch(windowNumber) {
+    case "1": {
+      first_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+      first_window_line.setAttribute("transform", "translate(208.29 122.211)");
+      break;
+    }
+    case "2": {
+      second_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+      second_window_line.setAttribute("transform", "translate(208.29 122.211)");
+      break;
+    }
+    case "3": {
+      third_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
+      third_window_line.setAttribute("transform", "translate(208.29 122.211)");
+      break;
+    }
+    default: {
+      console.log("wrong window number");
+      break;
+    }
+  }
+}
+
+function stopAnimation() {
+  first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+  first_window_line.setAttribute("transform", "translate(208.29 452.211)");
+  second_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+  second_window_line.setAttribute("transform", "translate(208.29 452.211)");
+  third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
+  third_window_line.setAttribute("transform", "translate(208.29 452.211)");
+}
+
+/**********************************************************/
 /* View in fullscreen */
 function openFullscreen() {
   if (elem.requestFullscreen) {
@@ -1249,250 +1372,3 @@ function smallThirdWindowMouseOut() {
   );
 }
 /****************************************************************************/
-/************Ubox Code ****************/
-var window1 = shutter_image1.getBoundingClientRect();
-/* Vision Range Area */
-var xPosMin = 0;
-var xPosMax = 100;
-var zPosMin = 0;
-var zPosMax = 100;
-
-/* Interactive Area */
-var xPosMin_i = 20;
-var xPosMax_i = 37;
-var zPosMin_i = 30;
-var zPosMax_i = 75;
-
-//var xPosMin_i = (window1.x * 0.043).toFixed();
-//var xPosMax_i = ((window1.x + window1.width) * 0.044).toFixed();
-//var zPosMin_i = ((window1.y + window1.height) * 0.033).toFixed();
-//var zPosMax_i = (window1.y * 0.227).toFixed();
-
-var window2 = shutter_image2.getBoundingClientRect();
-var xPosMin2 = (window2.x * 0.043).toFixed();
-var xPosMax2 = ((window2.x + window2.width) * 0.04).toFixed();
-var zPosMin2 = ((window2.y + window2.height) * 0.033).toFixed();
-var zPosMax2 = (window2.y * 0.227).toFixed();
-
-var window3 = shutter_image3.getBoundingClientRect();
-var xPosMin3 = (window3.x * 0.043).toFixed();
-var xPosMax3 = ((window3.x + window3.width) * 0.04).toFixed();
-var zPosMin3 = ((window3.y + window3.height) * 0.033).toFixed();
-var zPosMax3 = (window3.y * 0.227).toFixed();
-
-console.log(xPosMin_i, xPosMax_i, zPosMin_i, zPosMax_i);
-
-var xDistance = xPosMax + xPosMin * -1;
-var zDistance = zPosMax + zPosMin * -1;
-
-/* Variables handle the users position */
-var mainXPos,
-  xPos1,
-  xPos2 = 0;
-var mainZPos,
-  zPos1,
-  zPos2 = 0;
-
-/* Other Variables */
-var currentZone = 0;
-var selectedZone = -1;
-var webTest = true;
-
-// POSITION VIEWER
-
-function createPositionViewer() {
-  $("#interactive-area1")
-    .css("height", zPosMax_i - zPosMin_i + "%")
-    .css("top", zPosMin_i + "%");
-  $("#interactive-area1")
-    .css("width", xPosMax_i - xPosMin_i + "%")
-    .css("left", xPosMin_i + "%");
-
-  $("#interactive-area2")
-    .css("height", zPosMax2 - zPosMin2 + "%")
-    .css("top", zPosMin2 + "%");
-  $("#interactive-area2")
-    .css("width", xPosMax2 - xPosMin2 + "%")
-    .css("left", xPosMin2 + "%");
-
-  $("#interactive-area3")
-    .css("height", zPosMax3 - zPosMin3 + "%")
-    .css("top", zPosMin3 + "%");
-  $("#interactive-area3")
-    .css("width", xPosMax3 - xPosMin3 + "%")
-    .css("left", xPosMin3 + "%");
-}
-
-createPositionViewer();
-
-// X AND Z MOVEMENT
-
-function updatePos(sklxz) {
-  var currentPlayer;
-  if (sklxz != null) {
-    mainZPos = window["zPos" + sklxz];
-    mainXPos = window["xPos" + sklxz];
-    currentPlayer = window["player" + sklxz];
-  } else {
-    currentPlayer = window["player1"];
-    sklxz = 1;
-  }
-
-  // $("#user-position").html("X = " + mainXPos + ", Z = " + mainZPos);
-  if (
-    mainZPos <= zPosMin ||
-    mainZPos >= zPosMax ||
-    mainXPos <= xPosMin ||
-    mainXPos >= xPosMax
-  ) {
-    $(window["player" + sklxz]).css("background-color", "#fff");
-    currentZone = 0;
-  } else if (
-    (mainZPos > zPosMin_i &&
-      mainZPos <= zPosMax_i &&
-      mainXPos > xPosMin_i &&
-      mainXPos <= xPosMax_i) ||
-    (mainZPos > zPosMin2 &&
-      mainZPos <= zPosMax2 &&
-      mainXPos > xPosMin2 &&
-      mainXPos <= xPosMax2) ||
-    (mainZPos > zPosMin3 &&
-      mainZPos <= zPosMax3 &&
-      mainXPos > xPosMin3 &&
-      mainXPos <= xPosMax3)
-  ) {
-    $(window["player" + sklxz]).css("background-color", "#f00");
-    currentZone = 2;
-  } else {
-    $(window["player" + sklxz]).css("background-color", "#000");
-    currentZone = 1;
-  }
-
-  if (currentZone != selectedZone) {
-    selectedZone = currentZone;
-    changeContent(selectedZone);
-  }
-}
-var tiempo;
-function changeContent(num) {
-  clearTimeout(tiempo);
-  if (num >= 2) {
-    console.log("Inside active area", isInside);
-    isInside = true;
-    // first_window.getAnimations(['transition'])[0].finished.then(r => {
-    //   openShutterWindowOne();
-    // });
-    // second_window.getAnimations(['transition'])[0].finished.then(r => {
-    //   openShutterWindowTwo();
-    // });
-    // third_window.getAnimations(['transition'])[0].finished.then(r => {
-    //   console.log("ok");
-    // });
-    
-
-    if (first_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
-      tiempo = setTimeout(function () {
-        // timpo = openShutterWindowOne();
-      }, 2500);
-    } else if (second_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
-      setTimeout(function () {
-        tiempo = openShutterWindowTwo();
-      }, 2500);
-    } else if (third_window.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
-      setTimeout(function () {
-        // tiempo = openShutterWindowThree();
-      }, 2500);
-    } else {
-      console.log("error!", num);
-    }
-    // setTimeout(selectVuelosShutter() , 3000);
-  } else {
-    console.log("Outside active area", isInside);
-    if(isInside) {
-      tiempo = setTimeout(function () {
-        backToHome();
-      }, 3000);
-    }
-  }
-}
-
-var canvas = document.getElementById("skeletonsCanvas");
-var context = canvas.getContext("2d");
-
-function getSkeletons(jsonObject) {
-  if (context == null) {
-    return;
-  }
-
-  var skl = 0;
-
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  try {
-    for (var i = 0; i < jsonObject.skeletons.length; i++) {
-      skl++;
-
-      for (var j = 0; j < jsonObject.skeletons[i].joints.length; j++) {
-        var joint = jsonObject.skeletons[i].joints[j];
-
-        // Draw!!!
-        context.fillStyle = "#FF0000";
-        context.beginPath();
-        context.arc(joint.x, joint.y, 10, 0, Math.PI * 2, true);
-        context.closePath();
-        context.fill();
-
-        var cordx = (joint.x * 100) / 640;
-        var cordy = 100 - (joint.y * 100) / 480;
-        var cordz = (joint.z * 100) / 4;
-
-        if (joint.name == "spinecenter") {
-          document.getElementById("spinecenter" + skl).style.left =
-            cordx + "px";
-          document.getElementById("spinecenter" + skl).style.top = cordy + "px";
-          document.getElementById("spinecenter" + skl).style.zIndex =
-            Math.floor(cordz);
-          window["xPos" + skl] = Math.round(
-            document
-              .getElementById("spinecenter" + skl)
-              .style.left.replace("px", "")
-          );
-          window["yPos" + skl] = Math.round(
-            document
-              .getElementById("spinecenter" + skl)
-              .style.top.replace("px", "")
-          );
-          window["zPos" + skl] = Number(
-            document.getElementById("spinecenter" + skl).style.zIndex
-          );
-          $("#player" + skl).css(
-            "top",
-            ((window["zPos" + skl] - zPosMin) * 100) / zDistance + "%"
-          );
-          $("#player" + skl).css(
-            "left",
-            ((window["xPos" + skl] - xPosMin) * 100) / xDistance + "%"
-          );
-          $("#player" + skl).show();
-        }
-        updatePos(1);
-      }
-    }
-  } catch (err) {
-    //do nothing
-  }
-}
-function follow(evt) {
-  if (webTest) {
-    mainXPos = Math.round((evt.pageX / window.innerWidth) * 100);
-    mainZPos = Math.round((evt.pageY / window.innerHeight) * 100);
-    $("#player1")
-      .css("top", ((mainZPos - zPosMin) * 100) / zDistance + "%")
-      .css("left", ((mainXPos - xPosMin) * 100) / xDistance + "%")
-      .show();
-    updatePos(null);
-  }
-}
-document.onmousemove = follow;
-/**************************************/
-//clickSmallShutter(1);
-// hoverToClick(selected_option);
