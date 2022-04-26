@@ -386,7 +386,7 @@ body {
   top: 17%;
   left: 50%;
   font-size: 31px;
-  transform: translate(-50%, 0px) scaleX(-1);
+  transform: translate(-50%, 0px);
 }
 
 .nuestra-flota {
@@ -399,11 +399,15 @@ body {
   left: 50%;
   transform: translate(-50%, 0px);
   text-align: center;
+  background-color: #fff;
+  border-radius: 55px;
+  padding: 30px;
 }
 
 .nuestra-flota__destination__title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
+  color: #035f7e;
 }
 
 .nuestra-flota__destination__value {
@@ -462,8 +466,8 @@ body {
 
 .nuestra-flota__plus-buttons__two {
   position: absolute;
-  top: 37%;
-  right: 45%;
+  top: 54%;
+  right: 48%;
   width: 34px;
 }
 
@@ -1004,15 +1008,15 @@ body {
   position: absolute;
   top: 0;
   width: 276px;
-  height: 247px;
+  height: 175px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
-  top: 45%;
-  left: 35%;
+  top: 60%;
+  left: 33%;
   transform: translate(-50%, -50%);
   /* display: none; */
   display: flex;
@@ -1074,8 +1078,8 @@ body {
   visibility: hidden;
   position: absolute;
   top: 0;
-  width: 276px;
-  height: 247px;
+  width: 345px;
+  height: 175px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -1122,16 +1126,16 @@ body {
   visibility: hidden;
   position: absolute;
   top: 0;
-  width: 276px;
-  height: 247px;
+  width: 300px;
+  height: 200px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
-  top: 47%;
-  left: 50%;
+  top: 30%;
+  left: 35%;
   transform: translate(-50%, -50%);
   /* display: none; */
   display: flex;
