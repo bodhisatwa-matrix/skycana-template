@@ -173,9 +173,9 @@ function openWindow(windowNumber) {
   }
 }
 
-function closeWindow(windowNumber) {
+// function closeWindow(windowNumber) {
 
-}
+// }
 /**** Transition end event listener ******/
 var t;
 document.body.addEventListener('transitionend', function(event) {
