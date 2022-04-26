@@ -88,34 +88,35 @@ window.addEventListener("keypress", function (e) {
 /***************************/
 /***1, 2, 3 Button Press key press event */
 var pressedKey = 0;
-var animationStarted = 0;
+var animationStarted = false;
+var animationStopped = false;
 document.addEventListener("keydown", function (e) {
   switch(e.key) {
     case "1": {
       if(e.key == pressedKey) {
-        //open window
         openWindow(e.key);
+      } else {
+        startAnimation(e.key);
+        pressedKey = e.key;
       }
-      startAnimation(e.key);
-      pressedKey = e.key;
       break;
     }
     case "2": {
       if(e.key == pressedKey) {
-        //open window
         openWindow(e.key);
+      } else {
+        startAnimation(e.key);
+        pressedKey = e.key;
       }
-      startAnimation(e.key);
-      pressedKey = e.key;
       break;
     }
     case "3": {
       if(e.key == pressedKey) {
-        //open window
         openWindow(e.key);
+      } else {
+        startAnimation(e.key);
+        pressedKey = e.key;
       }
-      startAnimation(e.key);
-      pressedKey = e.key;
       break;
     }
     default: {
@@ -175,6 +176,33 @@ function openWindow(windowNumber) {
 function closeWindow(windowNumber) {
 
 }
+/**** Transition end event listener ******/
+var t;
+document.body.addEventListener('transitionend', function(event) {
+  
+  if(event.target.id == "Path_511_first_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+    window.clearTimeout(t);
+    animationStopped = true;
+    t = setTimeout(function(){
+      stopAnimation();
+      pressedKey = 0;
+    }, 2000);
+  } else if(event.target.id == "Path_511_second_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+    window.clearTimeout(t);
+    animationStopped = true;
+    t = setTimeout(function(){
+      stopAnimation();
+      pressedKey = 0;
+    }, 2000);
+  } else if(event.target.id == "Path_511_third_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
+    window.clearTimeout(t);
+    animationStopped = true;
+    t = setTimeout(function(){
+      stopAnimation();
+      pressedKey = 0;
+    }, 2000);
+  }
+});
 
 function startAnimation(windowNumber) {
   stopAnimation();
@@ -201,6 +229,8 @@ function startAnimation(windowNumber) {
     }
   }
 }
+
+
 
 function stopAnimation() {
   first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
