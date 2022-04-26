@@ -95,27 +95,33 @@ document.addEventListener("keydown", function (e) {
     console.log(mapIsZommedIn, e.key, pressedKey)
     switch(e.key) {
       case "1": {
-        clickSmallShutter(1);
-        // if(e.key == pressedKey) {
-        // } else {
-        //   startSmallWindowAnimation(e.key);
-        // }
+        if(e.key == pressedKey) {
+          clickSmallShutter(1);
+        } else {
+          smallFirstWindowMouseOver();
+          smallSecondWindowMouseOut();
+          smallThirdWindowMouseOut();
+        }
         break;
       }
       case "2": {
-        clickSmallShutter(2);
-        // if(e.key == pressedKey) {
-        // } else {
-        //   startSmallWindowAnimation(e.key);
-        // }
+        if(e.key == pressedKey) {
+          clickSmallShutter(2);
+        } else {
+          smallFirstWindowMouseOut();
+          smallSecondWindowMouseOver();
+          smallThirdWindowMouseOut();
+        }
         break;
       }
       case "3": {
-        clickSmallShutter(3);
-        // if(e.key == pressedKey) {
-        // } else {
-        //   startSmallWindowAnimation(e.key);
-        // }
+        if(e.key == pressedKey) {
+          clickSmallShutter(3);
+        } else {
+          smallFirstWindowMouseOut();
+          smallSecondWindowMouseOut();
+          smallThirdWindowMouseOver();
+        }
         break;
       }
       default: {
@@ -270,6 +276,7 @@ document.body.addEventListener('transitionend', function(event) {
     t = setTimeout(function(){
       stopSmallWindowAnimation()
       pressedKey = 0;
+      
     }, 2000);
   }
 });
@@ -329,11 +336,15 @@ function startSmallWindowAnimation(windowNumber) {
     }
   }
 }
-
+var tt;
 function stopSmallWindowAnimation() {
   smallFirstWindowMouseOut();
   smallSecondWindowMouseOut();
   smallThirdWindowMouseOut();
+  window.clearTimeout(tt)
+  tt = setTimeout(function() {
+    backToHome();
+  }, 3000);
 }
 
 /**********************************************************/
@@ -1292,7 +1303,7 @@ function FlyingPlane(from, to) {
       document.querySelector(".flight-path-container").style.display = "block";
       // plane.style.offsetPath = `path('M${from.x},${from.y} A100,90 0 1,1 ${to.x},${to.y}')`;
       plane.style.offsetPath = `path('M${from.x},${from.y} A${rx},${ry} 0 1,1 ${to.x},${to.y}')`;
-      plane.style.transform = "translateY(-25px)";
+      plane.style.transform = "translateY(-25px) scaleX(-1)";
       plane.style.display = "block";
       this.flying = true;
     }

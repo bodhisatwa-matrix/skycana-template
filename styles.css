@@ -386,7 +386,7 @@ body {
   top: 17%;
   left: 50%;
   font-size: 31px;
-  transform: translate(-50%, 0px);
+  transform: translate(-50%, 0px) scaleX(-1);
 }
 
 .nuestra-flota {
@@ -707,11 +707,12 @@ body {
 }
 
 .plane_img {
-  margin: -25px 0px 10px 35px;
+  margin: 5px 0px 10px 35px;
+  width: 150px;
 }
 
 .path_img {
-  margin-top: -50px;
+  /* margin-top: -50px; */
 }
 
 .city-data__pop-up {
