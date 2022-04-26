@@ -36,7 +36,7 @@ const animationTime = {
   big_shutter_window: 3,
   small_shutter_window: 3,
 };
-
+var t;
 localStorage.setItem("animation", JSON.stringify(animationTime));
 /*********************************/
 var elem = document.documentElement;
@@ -94,7 +94,7 @@ var animationStarted = false;
 var animationStopped = false;
 document.addEventListener("keydown", function (e) {
   if(mapIsZommedIn) {
-    console.log(mapIsZommedIn, e.key, pressedKey)
+    window.clearTimeout(t);
     switch(e.key) {
       case "1": {
         if(e.key == pressedKey) {
@@ -132,6 +132,7 @@ document.addEventListener("keydown", function (e) {
       }
     }
   } else {
+    window.clearTimeout(t);
     switch(e.key) {
       case "1": {
         if(e.key == pressedKey) {
@@ -177,7 +178,7 @@ document.addEventListener("keydown", function (e) {
 /************************/
 /********** Keyboard Events for 1,2,3 key press ***********/
 function openWindow(windowNumber) {
-  console.log(windowNumber, "I pressed")
+  console.log(mapIsZommedIn)
   pressedKey = 0;
   stopAnimation();
   switch (windowNumber) {
@@ -190,9 +191,11 @@ function openWindow(windowNumber) {
       gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
       if (!mapIsZommedIn) {
-        mapZoomIn();
+        setTimeout(function () {
+          mapZoomIn();
+          clickSmallShutter(1);
+        }, 2000);
       }
-      clickSmallShutter(1);
 
       break;
     }
@@ -205,9 +208,11 @@ function openWindow(windowNumber) {
       gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
       if (!mapIsZommedIn) {
-        mapZoomIn();
+        setTimeout(function () {
+          mapZoomIn();
+          clickSmallShutter(1);
+        }, 2000);
       }
-      clickSmallShutter(2);
       break;
     }
     case "3": {
@@ -234,7 +239,7 @@ function closeWindow(windowNumber) {
 }
 
 /**** Transition end event listener ******/
-var t;
+
 document.body.addEventListener('transitionend', function(event) {
   
   if(event.target.id == "Path_511_first_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
@@ -263,13 +268,15 @@ document.body.addEventListener('transitionend', function(event) {
     animationStopped = true;
     t = setTimeout(function(){
       stopSmallWindowAnimation()
+      backToHome();
       pressedKey = 0;
     }, 2000);
   } else if(event.target.id == "Rectangle_i3" && event.target.getAttribute("height") == "62.119") {
     window.clearTimeout(t);
     animationStopped = true;
     t = setTimeout(function(){
-      stopSmallWindowAnimation()
+      stopSmallWindowAnimation();
+      backToHome();
       pressedKey = 0;
     }, 2000);
   } else if(event.target.id == "Rectangle__3" && event.target.getAttribute("height") == "58.208") {
@@ -278,7 +285,7 @@ document.body.addEventListener('transitionend', function(event) {
     t = setTimeout(function(){
       stopSmallWindowAnimation()
       pressedKey = 0;
-      
+      backToHome();
     }, 2000);
   }
 });
@@ -326,6 +333,7 @@ function stopAnimation() {
   document.getElementById('win2para2').style.backgroundColor = "";
   document.getElementById('win3para3').style.backgroundColor = "";
 }
+
 function startSmallWindowAnimation(windowNumber) {
   stopSmallWindowAnimation();
   switch(windowNumber) {
@@ -349,10 +357,6 @@ function stopSmallWindowAnimation() {
   smallFirstWindowMouseOut();
   smallSecondWindowMouseOut();
   smallThirdWindowMouseOut();
-  window.clearTimeout(tt)
-  tt = setTimeout(function() {
-    backToHome();
-  }, 3000);
 }
 
 /**********************************************************/
