@@ -21,9 +21,9 @@ const second_window = document.querySelector("#Path_511_second_window");
 const second_window_line = document.querySelector("#Line_11_second_window");
 const third_window = document.querySelector("#Path_511_third_window");
 const third_window_line = document.querySelector("#Line_11_third_window");
-const shutter_image1 = document.querySelector("#Vuelos_Actuales_Open");
-const shutter_image2 = document.querySelector("#Destinos_Open");
-const shutter_image3 = document.querySelector("#Flota_Open");
+const shutter_image1 = document.querySelector("#Vuelos_Actuales_Closed");
+const shutter_image2 = document.querySelector("#Destinos_Closed");
+const shutter_image3 = document.querySelector("#Flota_Closed");
 const small_first_window = document.querySelector("#Path___484");
 const small_first_window_line = document.querySelector("#Line___3");
 const small_second_window = document.querySelector("#Rectangle_i3");
@@ -73,13 +73,7 @@ function loadFirstTime() {
 /************************************************ */
 /***** Enter Button Press to start mouse cursor */
 window.addEventListener("keypress", function (e) {
-  if(e.key == "49") {
-    alert("1 pressed!");
-  } else if(e.key == "50") {
-    alert("2 pressed!");
-  } else if(e.key == "51") {
-    alert("3 pressed!");
-  }
+  
   /*if (e.key == "Enter") {
     choose_option.style.pointerEvents = "all";
     document.body.style.cursor = "url('./Assets/Images/icon_walking_40.png'), auto";
@@ -93,12 +87,14 @@ var pressedKey = 0;
 var animationStarted = false;
 var animationStopped = false;
 document.addEventListener("keydown", function (e) {
+  console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey);
   if(mapIsZommedIn) {
     window.clearTimeout(t);
     switch(e.key) {
       case "1": {
         if(e.key == pressedKey) {
-          clickSmallShutter(1);
+          backToHome();
+          // clickSmallShutter(1);
         } else {
           smallFirstWindowMouseOver();
           smallSecondWindowMouseOut();
@@ -108,7 +104,8 @@ document.addEventListener("keydown", function (e) {
       }
       case "2": {
         if(e.key == pressedKey) {
-          clickSmallShutter(2);
+          backToHome();
+          // clickSmallShutter(2);
         } else {
           smallFirstWindowMouseOut();
           smallSecondWindowMouseOver();
@@ -118,7 +115,8 @@ document.addEventListener("keydown", function (e) {
       }
       case "3": {
         if(e.key == pressedKey) {
-          clickSmallShutter(3);
+          backToHome();
+          // clickSmallShutter(3);
         } else {
           smallFirstWindowMouseOut();
           smallSecondWindowMouseOut();
@@ -136,7 +134,8 @@ document.addEventListener("keydown", function (e) {
     switch(e.key) {
       case "1": {
         if(e.key == pressedKey) {
-          openWindow(e.key);
+          backToHome();
+          // openWindow(e.key);
         } else {
           startAnimation(e.key);
           // pressedKey = e.key;
@@ -145,7 +144,8 @@ document.addEventListener("keydown", function (e) {
       }
       case "2": {
         if(e.key == pressedKey) {
-          openWindow(e.key);
+          backToHome();
+          // openWindow(e.key);
         } else {
           startAnimation(e.key);
           // pressedKey = e.key;
@@ -154,7 +154,8 @@ document.addEventListener("keydown", function (e) {
       }
       case "3": {
         if(e.key == pressedKey) {
-          openWindow(e.key);
+          backToHome();
+          // openWindow(e.key);
         } else {
           startAnimation(e.key);
           // pressedKey = e.key;
@@ -178,8 +179,8 @@ document.addEventListener("keydown", function (e) {
 /************************/
 /********** Keyboard Events for 1,2,3 key press ***********/
 function openWindow(windowNumber) {
-  console.log(mapIsZommedIn)
-  pressedKey = 0;
+  // console.log(mapIsZommedIn)
+  // pressedKey = 0;
   stopAnimation();
   switch (windowNumber) {
     case "1": {
@@ -196,7 +197,6 @@ function openWindow(windowNumber) {
           clickSmallShutter(1);
         }, 2000);
       }
-
       break;
     }
     case "2": {
@@ -210,7 +210,7 @@ function openWindow(windowNumber) {
       if (!mapIsZommedIn) {
         setTimeout(function () {
           mapZoomIn();
-          clickSmallShutter(1);
+          clickSmallShutter(2);
         }, 2000);
       }
       break;
@@ -241,52 +241,61 @@ function closeWindow(windowNumber) {
 /**** Transition end event listener ******/
 
 document.body.addEventListener('transitionend', function(event) {
-  
+  console.log(event.target.id, event.target.getAttribute("d"));
   if(event.target.id == "Path_511_first_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
-    window.clearTimeout(t);
+    // window.clearTimeout(t);
     animationStopped = true;
-    t = setTimeout(function(){
-      stopAnimation();
-      pressedKey = 0;
-    }, 2000);
+    openWindow("1");
+    smallFirstWindowMouseOver();
+    pressedKey = 1;
+    // t = setTimeout(function(){
+    //   stopAnimation();
+    //   pressedKey = 0;
+    // }, 2000);
   } else if(event.target.id == "Path_511_second_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
-    window.clearTimeout(t);
     animationStopped = true;
-    t = setTimeout(function(){
-      stopAnimation();
-      pressedKey = 0;
-    }, 2000);
+    openWindow("2");
+    smallSecondWindowMouseOver();
+    pressedKey = 2;
+    // window.clearTimeout(t);
+    // t = setTimeout(function(){
+    //   stopAnimation();
+    //   pressedKey = 0;
+    // }, 2000);
   } else if(event.target.id == "Path_511_third_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
-    window.clearTimeout(t);
     animationStopped = true;
-    t = setTimeout(function(){
-      stopAnimation();
-      pressedKey = 0;
-    }, 2000);
+    openWindow("3");
+    smallThirdWindowMouseOver();
+    pressedKey = 3;
+    // window.clearTimeout(t);
+    // t = setTimeout(function(){
+    //   stopAnimation();
+    //   pressedKey = 0;
+    // }, 2000);
   } else if(event.target.id == "Path___484" && event.target.getAttribute("d") == "M0,0H175.7V57.532H0Z") {
-    window.clearTimeout(t);
-    animationStopped = true;
-    t = setTimeout(function(){
-      stopSmallWindowAnimation()
-      backToHome();
-      pressedKey = 0;
-    }, 2000);
+    // window.clearTimeout(t);
+    // animationStopped = true;
+    // t = setTimeout(function(){
+    //   stopSmallWindowAnimation()
+    //   pressedKey = 0;
+    //   // backToHome();
+    // }, 2000);
   } else if(event.target.id == "Rectangle_i3" && event.target.getAttribute("height") == "62.119") {
-    window.clearTimeout(t);
-    animationStopped = true;
-    t = setTimeout(function(){
-      stopSmallWindowAnimation();
-      backToHome();
-      pressedKey = 0;
-    }, 2000);
+    // window.clearTimeout(t);
+    // animationStopped = true;
+    // t = setTimeout(function(){
+    //   stopSmallWindowAnimation();
+    //   // backToHome();
+    //   pressedKey = 0;
+    // }, 2000);
   } else if(event.target.id == "Rectangle__3" && event.target.getAttribute("height") == "58.208") {
-    window.clearTimeout(t);
-    animationStopped = true;
-    t = setTimeout(function(){
-      stopSmallWindowAnimation()
-      pressedKey = 0;
-      backToHome();
-    }, 2000);
+    // window.clearTimeout(t);
+    // animationStopped = true;
+    // t = setTimeout(function(){
+    //   stopSmallWindowAnimation()
+    //   pressedKey = 0;
+    //   // backToHome();
+    // }, 2000);
   }
 });
 
@@ -564,7 +573,7 @@ function openShutterWindowThree() {
 /************************ */
 /* Function for auto click on small shutter window*/
 function clickSmallShutter(which) {
-  pressedKey = 0;
+  // pressedKey = 0;
   const isVisible = document.getElementsByClassName(
     "world-map__map-img-zoom"
   )[0].style.display;
