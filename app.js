@@ -53,6 +53,8 @@ function backToHome() {
   gsap.to(".world-map", { opacity: 0, display: "none", duration: 0.01 })
   gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
   choose_option.style.display = "block";
+  mapZoomOut();
+  mapIsZommedIn = false;
 }
 /*********** App is loaded for first time */
 function loadFirstTime() {
