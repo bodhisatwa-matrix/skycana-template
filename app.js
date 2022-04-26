@@ -91,39 +91,74 @@ var pressedKey = 0;
 var animationStarted = false;
 var animationStopped = false;
 document.addEventListener("keydown", function (e) {
-  switch(e.key) {
-    case "1": {
-      if(e.key == pressedKey) {
-        openWindow(e.key);
-      } else {
-        startAnimation(e.key);
-        pressedKey = e.key;
+  if(mapIsZommedIn) {
+    console.log(mapIsZommedIn, e.key, pressedKey)
+    switch(e.key) {
+      case "1": {
+        clickSmallShutter(1);
+        // if(e.key == pressedKey) {
+        // } else {
+        //   startSmallWindowAnimation(e.key);
+        // }
+        break;
       }
-      break;
-    }
-    case "2": {
-      if(e.key == pressedKey) {
-        openWindow(e.key);
-      } else {
-        startAnimation(e.key);
-        pressedKey = e.key;
+      case "2": {
+        clickSmallShutter(2);
+        // if(e.key == pressedKey) {
+        // } else {
+        //   startSmallWindowAnimation(e.key);
+        // }
+        break;
       }
-      break;
-    }
-    case "3": {
-      if(e.key == pressedKey) {
-        openWindow(e.key);
-      } else {
-        startAnimation(e.key);
-        pressedKey = e.key;
+      case "3": {
+        clickSmallShutter(3);
+        // if(e.key == pressedKey) {
+        // } else {
+        //   startSmallWindowAnimation(e.key);
+        // }
+        break;
       }
-      break;
+      default: {
+        console.log("Other key pressed!");
+        break;
+      }
     }
-    default: {
-      console.log("other key pressed!");
-      break;
+  } else {
+    switch(e.key) {
+      case "1": {
+        if(e.key == pressedKey) {
+          openWindow(e.key);
+        } else {
+          startAnimation(e.key);
+          // pressedKey = e.key;
+        }
+        break;
+      }
+      case "2": {
+        if(e.key == pressedKey) {
+          openWindow(e.key);
+        } else {
+          startAnimation(e.key);
+          // pressedKey = e.key;
+        }
+        break;
+      }
+      case "3": {
+        if(e.key == pressedKey) {
+          openWindow(e.key);
+        } else {
+          startAnimation(e.key);
+          // pressedKey = e.key;
+        }
+        break;
+      }
+      default: {
+        console.log("other key pressed!");
+        break;
+      }
     }
   }
+  pressedKey = e.key;
   /*if (e.key === "Escape" || e.key === 'Esc') {
     const timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
     timeline.to('.world-map', {opacity: 0, display: "none", duration: 0});
@@ -134,6 +169,8 @@ document.addEventListener("keydown", function (e) {
 /************************/
 /********** Keyboard Events for 1,2,3 key press ***********/
 function openWindow(windowNumber) {
+  console.log(windowNumber, "I pressed")
+  pressedKey = 0;
   stopAnimation();
   switch (windowNumber) {
     case "1": {
@@ -144,6 +181,11 @@ function openWindow(windowNumber) {
       gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
       gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
+      if (!mapIsZommedIn) {
+        mapZoomIn();
+      }
+      clickSmallShutter(1);
+
       break;
     }
     case "2": {
@@ -154,6 +196,10 @@ function openWindow(windowNumber) {
       gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
       gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
+      if (!mapIsZommedIn) {
+        mapZoomIn();
+      }
+      clickSmallShutter(2);
       break;
     }
     case "3": {
@@ -164,6 +210,7 @@ function openWindow(windowNumber) {
       gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
       gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 1, display: "block", duration: 2 });
+      clickSmallShutter(3);
       break;
     }
     default: {
@@ -173,13 +220,15 @@ function openWindow(windowNumber) {
   }
 }
 
+
 function closeWindow(windowNumber) {
 
 }
+
 /**** Transition end event listener ******/
 var t;
 document.body.addEventListener('transitionend', function(event) {
-  
+  console.log(event.target.id, event.target.getAttribute("d"), event.target.getAttribute("height"));
   if(event.target.id == "Path_511_first_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
     window.clearTimeout(t);
     animationStopped = true;
@@ -199,6 +248,27 @@ document.body.addEventListener('transitionend', function(event) {
     animationStopped = true;
     t = setTimeout(function(){
       stopAnimation();
+      pressedKey = 0;
+    }, 2000);
+  } else if(event.target.id == "Path___484" && event.target.getAttribute("d") == "M0,0H175.7V57.532H0Z") {
+    window.clearTimeout(t);
+    animationStopped = true;
+    t = setTimeout(function(){
+      stopSmallWindowAnimation()
+      pressedKey = 0;
+    }, 2000);
+  } else if(event.target.id == "Rectangle_i3" && event.target.getAttribute("height") == "62.119") {
+    window.clearTimeout(t);
+    animationStopped = true;
+    t = setTimeout(function(){
+      stopSmallWindowAnimation()
+      pressedKey = 0;
+    }, 2000);
+  } else if(event.target.id == "Rectangle__3" && event.target.getAttribute("height") == "58.208") {
+    window.clearTimeout(t);
+    animationStopped = true;
+    t = setTimeout(function(){
+      stopSmallWindowAnimation()
       pressedKey = 0;
     }, 2000);
   }
@@ -230,8 +300,6 @@ function startAnimation(windowNumber) {
   }
 }
 
-
-
 function stopAnimation() {
   first_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   first_window_line.setAttribute("transform", "translate(208.29 452.211)");
@@ -239,6 +307,33 @@ function stopAnimation() {
   second_window_line.setAttribute("transform", "translate(208.29 452.211)");
   third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   third_window_line.setAttribute("transform", "translate(208.29 452.211)");
+}
+function startSmallWindowAnimation(windowNumber) {
+  stopSmallWindowAnimation();
+  switch(windowNumber) {
+    case "1": {
+      clickSmallShutter(1);
+      // smallFirstWindowMouseOver();
+    }
+    case "2": {
+      clickSmallShutter(2);
+      // smallSecondWindowMouseOver();
+    }
+    case "3": {
+      clickSmallShutter(3);
+      // smallThirdWindowMouseOver();
+    }
+    default: {
+      console.log("wrong window number!", windowNumber);
+      break;
+    }
+  }
+}
+
+function stopSmallWindowAnimation() {
+  smallFirstWindowMouseOut();
+  smallSecondWindowMouseOut();
+  smallThirdWindowMouseOut();
 }
 
 /**********************************************************/
@@ -446,6 +541,7 @@ function openShutterWindowThree() {
 /************************ */
 /* Function for auto click on small shutter window*/
 function clickSmallShutter(which) {
+  pressedKey = 0;
   const isVisible = document.getElementsByClassName(
     "world-map__map-img-zoom"
   )[0].style.display;
