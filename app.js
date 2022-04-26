@@ -236,7 +236,7 @@ function closeWindow(windowNumber) {
 /**** Transition end event listener ******/
 var t;
 document.body.addEventListener('transitionend', function(event) {
-  console.log(event.target.id, event.target.getAttribute("d"), event.target.getAttribute("height"));
+  
   if(event.target.id == "Path_511_first_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
     window.clearTimeout(t);
     animationStopped = true;
@@ -290,16 +290,22 @@ function startAnimation(windowNumber) {
     case "1": {
       first_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
       first_window_line.setAttribute("transform", "translate(208.29 122.211)");
+      document.getElementById('win1para1').style.transition = "all 2s";
+      document.getElementById('win1para1').style.backgroundColor = "#24cad2";
       break;
     }
     case "2": {
       second_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
       second_window_line.setAttribute("transform", "translate(208.29 122.211)");
+      document.getElementById('win2para2').style.transition = "all 2s";
+      document.getElementById('win2para2').style.backgroundColor = "#24cad2";
       break;
     }
     case "3": {
       third_window.setAttribute("d", "M0,0H434.544V145.361H0Z");
       third_window_line.setAttribute("transform", "translate(208.29 122.211)");
+      document.getElementById('win3para3').style.transition = "all 2s";
+      document.getElementById('win3para3').style.backgroundColor = "#24cad2";
       break;
     }
     default: {
@@ -316,22 +322,22 @@ function stopAnimation() {
   second_window_line.setAttribute("transform", "translate(208.29 452.211)");
   third_window.setAttribute("d", "M0,0H434.544V475.361H0Z");
   third_window_line.setAttribute("transform", "translate(208.29 452.211)");
+  document.getElementById('win1para1').style.backgroundColor = "";
+  document.getElementById('win2para2').style.backgroundColor = "";
+  document.getElementById('win3para3').style.backgroundColor = "";
 }
 function startSmallWindowAnimation(windowNumber) {
   stopSmallWindowAnimation();
   switch(windowNumber) {
     case "1": {
       clickSmallShutter(1);
-      // smallFirstWindowMouseOver();
-    }
+     }
     case "2": {
       clickSmallShutter(2);
-      // smallSecondWindowMouseOver();
-    }
+     }
     case "3": {
       clickSmallShutter(3);
-      // smallThirdWindowMouseOver();
-    }
+     }
     default: {
       console.log("wrong window number!", windowNumber);
       break;
