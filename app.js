@@ -93,7 +93,7 @@ window.addEventListener("keypress", function (e) {
 /***1, 2, 3 Button Press key press event */
 
 document.addEventListener("keydown", function (e) {
-  console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey, "map zoom ", mapIsZommedIn);
+  console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey, "map zoom ", mapIsZommedIn, "small window", smallWindow);
   if(mapIsZommedIn) {
     window.clearTimeout(t);
     switch(e.key) {
@@ -109,7 +109,6 @@ document.addEventListener("keydown", function (e) {
           smallFirstWindowMouseOver();
           smallSecondWindowMouseOut();
           smallThirdWindowMouseOut();
-          
         }
         break;
       }
@@ -121,6 +120,7 @@ document.addEventListener("keydown", function (e) {
           }, 3005);
           // clickSmallShutter(2);
         } else {
+          
           pressedKey = e.key;
           smallFirstWindowMouseOut();
           smallSecondWindowMouseOver();
@@ -153,13 +153,11 @@ document.addEventListener("keydown", function (e) {
     switch(e.key) {
       case "1": {
         if(e.key == pressedKey) {
-          stopAnimation();
-          pressedKey = 0;
-          // openWindow(e.key);
+            stopAnimation();
+            pressedKey = 0;
         } else {
           pressedKey = e.key;
           startAnimation(e.key);
-          // pressedKey = e.key;
         }
         break;
       }
@@ -171,20 +169,15 @@ document.addEventListener("keydown", function (e) {
         } else {
           pressedKey = e.key;
           startAnimation(e.key);
-          // pressedKey = e.key;
         }
         break;
       }
       case "3": {
         if(e.key == pressedKey) {
-          stopAnimation();
           pressedKey = 0;
-          // openWindow(e.key);
+          stopAnimation();
         } else {
-          smallWindow = true;
-          pressedKey = e.key;
           startAnimation(e.key);
-          // pressedKey = e.key;
         }
         break;
       }
@@ -194,7 +187,7 @@ document.addEventListener("keydown", function (e) {
       }
     }
   }
-
+  
   /*if (e.key === "Escape" || e.key === 'Esc') {
     const timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
     timeline.to('.world-map', {opacity: 0, display: "none", duration: 0});
@@ -289,48 +282,22 @@ document.body.addEventListener('transitionend', function(event) {
     openWindow("2");
     smallSecondWindowMouseOver();
     pressedKey = 2;
-    // window.clearTimeout(t);
-    // t = setTimeout(function(){
-    //   stopAnimation();
-    //   pressedKey = 0;
-    // }, 2000);
+    
   } else if(event.target.id == "Path_511_third_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
     animationStopped = true;
     openWindow("3");
     smallThirdWindowMouseOver();
     pressedKey = 3;
-    // window.clearTimeout(t);
-    // t = setTimeout(function(){
-    //   stopAnimation();
-    //   pressedKey = 0;
-    // }, 2000);
+    
   } else if(event.target.id == "Path___484" && event.target.getAttribute("d") == "M0,0H175.7V57.532H0Z") {
     clickSmallShutter(1);
-    // window.clearTimeout(t);
-    // animationStopped = true;
-    // t = setTimeout(function(){
-    //   stopSmallWindowAnimation()
-    //   pressedKey = 0;
-    //   // backToHome();
-    // }, 2000);
+
   } else if(event.target.id == "Rectangle_i3" && event.target.getAttribute("height") == "62.119") {
     clickSmallShutter(2);
-    // window.clearTimeout(t);
-    // animationStopped = true;
-    // t = setTimeout(function(){
-    //   stopSmallWindowAnimation();
-    //   // backToHome();
-    //   pressedKey = 0;
-    // }, 2000);
+    
   } else if(event.target.id == "Rectangle__3" && event.target.getAttribute("height") == "58.208") {
     clickSmallShutter(3);
-    // window.clearTimeout(t);
-    // animationStopped = true;
-    // t = setTimeout(function(){
-    //   stopSmallWindowAnimation()
-    //   pressedKey = 0;
-    //   // backToHome();
-    // }, 2000);
+    
   } else if(event.target.id == "Path___484" && event.target.getAttribute("d") == "M0,0H175.7V201.532H0Z") {
     // alert("go to home from 1")
   } else if(event.target.id == "Rectangle_i3" && event.target.getAttribute("height") == "199.119") {
@@ -363,6 +330,8 @@ function startAnimation(windowNumber) {
       third_window_line.setAttribute("transform", "translate(208.29 122.211)");
       document.getElementById('win3para3').style.transition = "all 2s";
       document.getElementById('win3para3').style.backgroundColor = "#24cad2";
+      mapIsZommedIn = true;
+      mapZoomInConditionLess();
       break;
     }
     default: {
@@ -600,11 +569,9 @@ function openShutterWindowTwo() {
 /* Open Third Window */
 function openShutterWindowThree() {
   console.log("third window");
-  // selected_option = e.target.id;
   selected_option = "flota-shutter";
   choose_option.style.display = "none";
   world_map_heading.innerHTML = "Nuestra flota";
-  // gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Open.png" } })
   smallThirdWindowMouseOver();
   gsap.from(".world-map", { opacity: 0 });
   gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
@@ -614,21 +581,17 @@ function openShutterWindowThree() {
 /************************ */
 /* Function for auto click on small shutter window*/
 function clickSmallShutter(which) {
-  // pressedKey = 0;
+  smallWindow = true;
   const isVisible = document.getElementsByClassName(
     "world-map__map-img-zoom"
   )[0].style.display;
   switch (which) {
     case 1:
-      // selected_option = temp_option;
       selected_option = "vuelos-shutter";
       world_map_heading.innerHTML = "Vuelos en tiempo real";
       smallFirstWindowMouseOver();
       smallSecondWindowMouseOut();
       smallThirdWindowMouseOut();
-      // gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Open.png" } })
-      // gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Closed.png" } })
-      // gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
       gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
       if (isVisible == "block") {
@@ -640,15 +603,11 @@ function clickSmallShutter(which) {
       break;
     case 2:
       hideLocations();
-      // selected_option = temp_option;
       selected_option = "destinos-shutter";
       world_map_heading.innerHTML = "Nuestros destinos";
       smallFirstWindowMouseOut();
       smallSecondWindowMouseOver();
       smallThirdWindowMouseOut();
-      // gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Closed.png" } })
-      // gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Open.png" } })
-      // gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Closed.png" } })
       gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
       if (isVisible == "block") {
@@ -660,19 +619,13 @@ function clickSmallShutter(which) {
       break;
     case 3:
       hideLocations();
-      // selected_option = temp_option;
       selected_option = "flota-shutter";
       world_map_heading.innerHTML = "Nuestra flota";
       smallThirdWindowMouseOver();
       smallFirstWindowMouseOut();
       smallSecondWindowMouseOut();
-      // gsap.to(".world-map__vuelos-pane", { attr: { src: "./Assets/Images/Vuelos_Actuales_Closed.png" } })
-      // gsap.to(".world-map__destinos-pane", { attr: { src: "./Assets/Images/Destinos_Closed.png" } })
-      // gsap.to(".world-map__flota-pane", { attr: { src: "./Assets/Images/Flota_Open.png" } })
       gsap.to(".world-map__map-img", { opacity: 0, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 1, display: "block", duration: 2 });
-      // gsap.to(".world-map__destination-point__nuestros-destinos, .destination_text__nuestros-destinos", { opacity: 0, display: "none", duration: 2 });
-      // gsap.to(".world-map__destination-point, .destination_text", { opacity: 0, display: "none", duration: 2 });
       hideDestinationPoins();
       hidePlane();
       break;
@@ -801,19 +754,19 @@ world_map_options.forEach((item) => {
       if (phrase_capital === "Vuelos") {
         // smallFirstWindowMouseOut();
         if (small_first_window.getAttribute("d") == "M0,0H175.7V57.532H0Z") {
-          clickSmallShutter(1);
-          hoverToClick(selected_option);
+         // clickSmallShutter(1);
+         // hoverToClick(selected_option);
         }
       } else if (phrase_capital === "Destinos") {
         // smallSecondWindowMouseOut();
         if (small_second_window.getAttribute("height") == "62.119") {
-          clickSmallShutter(2);
-          hoverToClick(selected_option);
+          //clickSmallShutter(2);
+         // hoverToClick(selected_option);
         }
       } else if (phrase_capital === "Flota") {
         // smallThirdWindowMouseOut();
         if (small_third_window.getAttribute("height") == "58.208") {
-          clickSmallShutter(3);
+         // clickSmallShutter(3);
         }
       } else {
         console.log(
@@ -1049,18 +1002,26 @@ readTextFile("Assets/data/SkyCanaXP-DataModel.json", function (text) {
     }
   });
 });
+/* Function for map zoom in feature without any condif\tion*/
+function mapZoomInConditionLess() {
+  gsap.from(".world-map__map-img", { opacity: 0 });
+  gsap.to(".world-map__map-img", {
+    attr: { src: "./Assets/Images/Mask Group Zoom.png" },
+  });
+  gsap.to(".world-map__map-img", { opacity: 1, duration: 0.5, delay: 0.5 });
+  mapIsZommedIn = true;
+}
+/**************************************/
 
 /* Function for map zoom in feature */
 function mapZoomIn() {
-  console.log(selected_option, mapIsZommedIn);
-  if (!mapIsZommedIn && selected_option !== "flota-shutter") {
+    if (!mapIsZommedIn && selected_option !== "flota-shutter") {
     gsap.from(".world-map__map-img", { opacity: 0 });
     gsap.to(".world-map__map-img", {
       attr: { src: "./Assets/Images/Mask Group Zoom.png" },
     });
     gsap.to(".world-map__map-img", { opacity: 1, duration: 0.5, delay: 0.5 });
     mapIsZommedIn = true;
-    console.log("zoom map called")
   }
 }
 /**************************************/
@@ -1087,7 +1048,6 @@ function showLocations() {
     });
     gsap.to(".location-point", { display: "block", duration: 0.1 });
     gsap.to(".location-point__city-name", { display: "block", duration: 0.1 });
-    console.log("Show location called", pressedKey);
   }
 }
 /**********************/
