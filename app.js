@@ -1,7 +1,8 @@
+var _$ = document.querySelector.bind(document);
 let selected_option = "";
 let mapIsZommedIn = false;
 
-const body = document.querySelector("body");
+const body = _$("body");
 const flightPath = document.querySelector(".flight-path");
 const plane = document.querySelector("#plane");
 
@@ -93,7 +94,7 @@ window.addEventListener("keypress", function (e) {
 /***1, 2, 3 Button Press key press event */
 
 document.addEventListener("keydown", function (e) {
-  console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey, "map zoom ", mapIsZommedIn, "small window", smallWindow);
+  // console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey, "map zoom ", mapIsZommedIn, "small window", smallWindow);
   if(mapIsZommedIn) {
     window.clearTimeout(t);
     switch(e.key) {
@@ -130,10 +131,16 @@ document.addEventListener("keydown", function (e) {
       }
       case "3": {
         if(e.key == pressedKey) {
-          stopSmallWindowAnimation();
-          t = setTimeout(function() {
-            backToHome();
-          }, 3005);
+          if(!smallWindow) {
+            pressedKey = 0;
+            mapIsZommedIn = false;
+            stopAnimation();
+          } else {
+            stopSmallWindowAnimation();
+            t = setTimeout(function() {
+              backToHome();
+            }, 3005);
+          }
           // clickSmallShutter(3);
         } else {
           pressedKey = e.key;
@@ -177,6 +184,7 @@ document.addEventListener("keydown", function (e) {
           pressedKey = 0;
           stopAnimation();
         } else {
+          pressedKey = e.key;
           startAnimation(e.key);
         }
         break;
@@ -1407,6 +1415,19 @@ function DestinationPoint(x, y, id, cityName) {
     p.style.left = this.x - 5 + "px";
     p.style.top = this.y + 25 + "px";
 
+    /** code for loader screen **/
+    var loader = createLoaderCircle(id);
+    loader.style.left = this.x - 15 + "px";
+    loader.style.top = this.y - 45 + "px";
+
+    // var arr = ["loader", "spin", "circle"];
+    // loaderDiv.classList.add(...arr);
+    // loaderDiv.style.left = this.x - 5 + "px";
+    // loaderDiv.style.top = this.y - 25 + "px";
+    p.insertAdjacentElement('afterend', img);
+    setListener(img);
+    parentDiv.appendChild(loader);
+    /** End here**/
     parentDiv.appendChild(img);
     parentDiv.appendChild(p);
 
@@ -1416,7 +1437,66 @@ function DestinationPoint(x, y, id, cityName) {
   };
 }
 
+function createLoaderCircle(id) {
+  var loaderDiv = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  loaderDiv.setAttributeNS(null, "viewBox", "0 0 300 300");
+  loaderDiv.setAttributeNS(null, "preserveAspectRatio", "none");
+  loaderDiv.setAttributeNS(null, "style", "width:50; height:50; top:0; left:0; position: absolute;");
+  var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circle.setAttributeNS(null, "cx", 100);
+  circle.setAttributeNS(null, "cy", 100);
+  circle.setAttributeNS(null, "r", 57);
+  circle.setAttributeNS(null, "class", id);
+  circle.setAttributeNS(null, "fill", "none");
+  circle.setAttributeNS(null, "stroke", "#e49a37");
+  circle.setAttributeNS(null, "stroke-width", 40);
+  circle.setAttributeNS(null, "stroke-dasharray", "0,20000");
+  circle.setAttributeNS(null, "transform", "rotate(-90,100,100)");
+  loaderDiv.appendChild(circle);
+  return loaderDiv;
+}
 // *********** end of utility classes ***********************************
+
+//** Destination point hover functions **//
+function setListener(el) {
+  el.addEventListener('mouseover', function(e) {
+    loaderAnimation(e.target.id.slice(4));
+  });
+  el.addEventListener('mouseout', function(e) {
+    hideLoaderAnimation(e.target.id.slice(4));
+  });
+}
+function loaderAnimation(id) {
+  var circle = _$(`.${id}`);
+  var interval = 30;
+  var angle = 0;
+  var angle_increment = 6;
+  window.timer = window.setInterval(function() {
+    // circle.setAttribute('display', "block");
+    circle.setAttribute("stroke-dasharray", angle + ", 20000");
+        if (angle >= 360) {
+          window.clearInterval(window.timer);
+          populateCityPopUp(id);
+        }
+    angle += angle_increment;
+  }.bind(this), interval);
+}
+function hideLoaderAnimation(id) {
+  var circle = _$(`.${id}`);
+  // circle.setAttribute('display', "none");
+  var interval = 30;
+  var angle = 360;
+  var angle_increment = 6;
+  window.timer = window.setInterval(function() {
+    circle.setAttribute("stroke-dasharray", angle + ", 20000");
+    if (angle <= 0) {
+      window.clearInterval(window.timer);
+      gsap.to('.city-data__pop-up', { opacity: 0, display: "none" });
+    }
+    angle -= angle_increment;
+  }.bind(this), interval);
+}
+//*************************//
 
 /****************Close plane page pop up****************/
 
