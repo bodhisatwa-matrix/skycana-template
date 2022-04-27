@@ -30,7 +30,11 @@ const small_second_window = document.querySelector("#Rectangle_i3");
 const small_second_window_line = document.querySelector("#Line_i3");
 const small_third_window = document.querySelector("#Rectangle__3");
 const small_third_window_line = document.querySelector("#Line__3");
-var isInside = false;
+
+var pressedKey = 0;
+var animationStarted = false;
+var animationStopped = false;
+
 /** LocalStorage value */
 const animationTime = {
   big_shutter_window: 3,
@@ -45,6 +49,7 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 function backToHome() {
   selected_option = "";
+  pressedKey = 0;
   hideLocations();
   hideDestinationPoins();
   smallFirstWindowMouseOut();
@@ -55,6 +60,7 @@ function backToHome() {
   choose_option.style.display = "block";
   mapZoomOut();
   mapIsZommedIn = false;
+  console.log("Reset pressed key to ", pressedKey);
 }
 /*********** App is loaded for first time */
 function loadFirstTime() {
@@ -69,6 +75,7 @@ function loadFirstTime() {
   // document.querySelector(".blink").style.display = "block";
   mapZoomOut();
   mapIsZommedIn = false;
+  pressedKey = 0;
 }
 /************************************************ */
 /***** Enter Button Press to start mouse cursor */
@@ -83,11 +90,9 @@ window.addEventListener("keypress", function (e) {
 });
 /***************************/
 /***1, 2, 3 Button Press key press event */
-var pressedKey = 0;
-var animationStarted = false;
-var animationStopped = false;
+
 document.addEventListener("keydown", function (e) {
-  console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey);
+  console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey, "map zoom ", mapIsZommedIn);
   if(mapIsZommedIn) {
     window.clearTimeout(t);
     switch(e.key) {
@@ -96,9 +101,11 @@ document.addEventListener("keydown", function (e) {
           backToHome();
           // clickSmallShutter(1);
         } else {
+          pressedKey = e.key;
           smallFirstWindowMouseOver();
           smallSecondWindowMouseOut();
           smallThirdWindowMouseOut();
+          
         }
         break;
       }
@@ -107,9 +114,11 @@ document.addEventListener("keydown", function (e) {
           backToHome();
           // clickSmallShutter(2);
         } else {
+          pressedKey = e.key;
           smallFirstWindowMouseOut();
           smallSecondWindowMouseOver();
           smallThirdWindowMouseOut();
+          
         }
         break;
       }
@@ -118,9 +127,11 @@ document.addEventListener("keydown", function (e) {
           backToHome();
           // clickSmallShutter(3);
         } else {
+          pressedKey = e.key;
           smallFirstWindowMouseOut();
           smallSecondWindowMouseOut();
           smallThirdWindowMouseOver();
+          
         }
         break;
       }
@@ -134,9 +145,11 @@ document.addEventListener("keydown", function (e) {
     switch(e.key) {
       case "1": {
         if(e.key == pressedKey) {
-          backToHome();
+          stopAnimation();
+          pressedKey = 0;
           // openWindow(e.key);
         } else {
+          pressedKey = e.key;
           startAnimation(e.key);
           // pressedKey = e.key;
         }
@@ -144,9 +157,11 @@ document.addEventListener("keydown", function (e) {
       }
       case "2": {
         if(e.key == pressedKey) {
-          backToHome();
+          stopAnimation();
+          pressedKey = 0;
           // openWindow(e.key);
         } else {
+          pressedKey = e.key;
           startAnimation(e.key);
           // pressedKey = e.key;
         }
@@ -154,9 +169,11 @@ document.addEventListener("keydown", function (e) {
       }
       case "3": {
         if(e.key == pressedKey) {
-          backToHome();
+          stopAnimation();
+          pressedKey = 0;
           // openWindow(e.key);
         } else {
+          pressedKey = e.key;
           startAnimation(e.key);
           // pressedKey = e.key;
         }
@@ -168,7 +185,7 @@ document.addEventListener("keydown", function (e) {
       }
     }
   }
-  pressedKey = e.key;
+
   /*if (e.key === "Escape" || e.key === 'Esc') {
     const timeline = gsap.timeline({ repeat: 0, repeatDelay: 0 });
     timeline.to('.world-map', {opacity: 0, display: "none", duration: 0});
@@ -179,7 +196,6 @@ document.addEventListener("keydown", function (e) {
 /************************/
 /********** Keyboard Events for 1,2,3 key press ***********/
 function openWindow(windowNumber) {
-  // console.log(mapIsZommedIn)
   // pressedKey = 0;
   stopAnimation();
   switch (windowNumber) {
@@ -237,17 +253,24 @@ function openWindow(windowNumber) {
 function closeWindow(windowNumber) {
 
 }
+/**** Transition start event listener ******/
+/*document.body.addEventListener('transitionstart', function (event) {
+  animationStarted = true;
+  if(event.target.id == "Path_511_first_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") { // window animation going upward
+    console.log("First window going upward");
+  } else if(event.target.id == "Path_511_first_window" && event.target.getAttribute("d") == "M0,0H434.544V475.361H0Z") { // window animation going down
+    console.log("First window going down");
+  }
+});*/
 
 /**** Transition end event listener ******/
-
 document.body.addEventListener('transitionend', function(event) {
-  console.log(event.target.id, event.target.getAttribute("d"));
   if(event.target.id == "Path_511_first_window" && event.target.getAttribute("d") == "M0,0H434.544V145.361H0Z") {
     // window.clearTimeout(t);
     animationStopped = true;
     openWindow("1");
     smallFirstWindowMouseOver();
-    pressedKey = 1;
+    // pressedKey = 1;
     // t = setTimeout(function(){
     //   stopAnimation();
     //   pressedKey = 0;
@@ -273,6 +296,7 @@ document.body.addEventListener('transitionend', function(event) {
     //   pressedKey = 0;
     // }, 2000);
   } else if(event.target.id == "Path___484" && event.target.getAttribute("d") == "M0,0H175.7V57.532H0Z") {
+    clickSmallShutter(1);
     // window.clearTimeout(t);
     // animationStopped = true;
     // t = setTimeout(function(){
@@ -281,6 +305,7 @@ document.body.addEventListener('transitionend', function(event) {
     //   // backToHome();
     // }, 2000);
   } else if(event.target.id == "Rectangle_i3" && event.target.getAttribute("height") == "62.119") {
+    clickSmallShutter(2);
     // window.clearTimeout(t);
     // animationStopped = true;
     // t = setTimeout(function(){
@@ -289,6 +314,7 @@ document.body.addEventListener('transitionend', function(event) {
     //   pressedKey = 0;
     // }, 2000);
   } else if(event.target.id == "Rectangle__3" && event.target.getAttribute("height") == "58.208") {
+    clickSmallShutter(3);
     // window.clearTimeout(t);
     // animationStopped = true;
     // t = setTimeout(function(){
@@ -1035,7 +1061,7 @@ function showLocations() {
     });
     gsap.to(".location-point", { display: "block", duration: 0.1 });
     gsap.to(".location-point__city-name", { display: "block", duration: 0.1 });
-    console.log("Show location called")
+    console.log("Show location called", pressedKey);
   }
 }
 /**********************/
