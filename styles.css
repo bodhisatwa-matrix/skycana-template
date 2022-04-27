@@ -1525,14 +1525,6 @@ body {
     display: none;
     visibility: hidden;
   }
-  /* from {
-    left: 20%;
-     display: block; 
-  }
-  to {
-    left: 78%;
-    opacity: 0;
-    display: none;
-    visibility: hidden;
-  } */
 }
+
+/**** circle loader css *****/

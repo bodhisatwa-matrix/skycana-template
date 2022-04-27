@@ -34,6 +34,7 @@ const small_third_window_line = document.querySelector("#Line__3");
 var pressedKey = 0;
 var animationStarted = false;
 var animationStopped = false;
+var smallWindow = false;
 
 /** LocalStorage value */
 const animationTime = {
@@ -60,7 +61,7 @@ function backToHome() {
   choose_option.style.display = "block";
   mapZoomOut();
   mapIsZommedIn = false;
-  console.log("Reset pressed key to ", pressedKey);
+  smallWindow = false;
 }
 /*********** App is loaded for first time */
 function loadFirstTime() {
@@ -98,8 +99,11 @@ document.addEventListener("keydown", function (e) {
     switch(e.key) {
       case "1": {
         if(e.key == pressedKey) {
-          backToHome();
           // clickSmallShutter(1);
+          stopSmallWindowAnimation();
+          t = setTimeout(function() {
+            backToHome();
+          }, 3005);
         } else {
           pressedKey = e.key;
           smallFirstWindowMouseOver();
@@ -111,27 +115,31 @@ document.addEventListener("keydown", function (e) {
       }
       case "2": {
         if(e.key == pressedKey) {
-          backToHome();
+          stopSmallWindowAnimation();
+          t = setTimeout(function() {
+            backToHome();
+          }, 3005);
           // clickSmallShutter(2);
         } else {
           pressedKey = e.key;
           smallFirstWindowMouseOut();
           smallSecondWindowMouseOver();
           smallThirdWindowMouseOut();
-          
         }
         break;
       }
       case "3": {
         if(e.key == pressedKey) {
-          backToHome();
+          stopSmallWindowAnimation();
+          t = setTimeout(function() {
+            backToHome();
+          }, 3005);
           // clickSmallShutter(3);
         } else {
           pressedKey = e.key;
           smallFirstWindowMouseOut();
           smallSecondWindowMouseOut();
           smallThirdWindowMouseOver();
-          
         }
         break;
       }
@@ -173,6 +181,7 @@ document.addEventListener("keydown", function (e) {
           pressedKey = 0;
           // openWindow(e.key);
         } else {
+          smallWindow = true;
           pressedKey = e.key;
           startAnimation(e.key);
           // pressedKey = e.key;
@@ -322,6 +331,12 @@ document.body.addEventListener('transitionend', function(event) {
     //   pressedKey = 0;
     //   // backToHome();
     // }, 2000);
+  } else if(event.target.id == "Path___484" && event.target.getAttribute("d") == "M0,0H175.7V201.532H0Z") {
+    // alert("go to home from 1")
+  } else if(event.target.id == "Rectangle_i3" && event.target.getAttribute("height") == "199.119") {
+    // alert("go to home from 2")
+  } else if(event.target.id == "Rectangle__3" && event.target.getAttribute("height") == "202.208") {
+    // alert("go to home from 3")
   }
 });
 
