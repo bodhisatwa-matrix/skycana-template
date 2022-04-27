@@ -915,6 +915,17 @@ function onArrowClick(event) {
 
 slider_left_arrow.addEventListener("click", onArrowClick);
 slider_right_arrow.addEventListener("click", onArrowClick);
+/** Mouse Over on Left arrow or Right arrow **/
+slider_left_arrow.addEventListener("mouseover", function(e) {
+  setTimeout(function() {
+    onArrowClick(e)
+  }, 1500);
+});
+slider_right_arrow.addEventListener("mouseover", function(e) {
+  setTimeout(function() {
+    onArrowClick(e)
+  }, 1500);
+});
 
 // *********************************************************************
 
@@ -1556,3 +1567,49 @@ function smallThirdWindowMouseOut() {
   );
 }
 /****************************************************************************/
+/*************** Mouse Over Event for show city details or plane info *****************/
+
+document.body.addEventListener('mouseover', function(event) {
+  if(event.target.id == "one") {
+    gsap.to(".asienton_pop_up", { opacity: 1, autoAlpha: 1 });
+  } 
+  if(event.target.id == "two") {
+    gsap.to(".rango_de_vuelo_pop_up", { opacity: 1, autoAlpha: 1 });
+  }
+  if(event.target.id == "three") {
+    gsap.to(".metros_de_largo_pop_up", { opacity: 1, autoAlpha: 1 });
+  }
+  if(event.target.id == "four") {
+    gsap.to(".de_capacided_pop_up", { opacity: 1, autoAlpha: 1 });
+  }
+});
+
+/****************************************************************************/
+/** Mouse Out Events **/
+var planeBtnOne = document.querySelector('#one');
+var planeBtnTwo = document.querySelector('#two');
+var planeBtnThree = document.querySelector('#three');
+var planeBtnFour = document.querySelector('#four');
+
+planeBtnOne.addEventListener('mouseout', function() {
+  setTimeout(function() {
+    gsap.to(".asienton_pop_up", { opacity: 0, autoAlpha: 0 });
+  }, 1000);
+});
+planeBtnTwo.addEventListener('mouseout', function() {
+  setTimeout(function() {
+    gsap.to(".rango_de_vuelo_pop_up", { opacity: 0, autoAlpha: 0 });
+  }, 1000);
+});
+planeBtnThree.addEventListener('mouseout', function() {
+  setTimeout(function() {
+    gsap.to(".metros_de_largo_pop_up", { opacity: 0, autoAlpha: 0 });
+  }, 1000);
+});
+planeBtnFour.addEventListener('mouseout', function() {
+  setTimeout(function() {
+    gsap.to(".de_capacided_pop_up", { opacity: 0, autoAlpha: 0 });
+  }, 1000);
+});
+/****************************************************************************/
+

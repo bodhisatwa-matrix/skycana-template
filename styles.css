@@ -434,6 +434,7 @@ body {
   top: 24%;
   width: 16%;
   left: 26%;
+  animation: move 15s infinite;
 }
 
 .nuestra-flota__clouds__bottom {
@@ -441,6 +442,7 @@ body {
   top: 51%;
   width: 18%;
   right: 35%;
+  animation: move 10s infinite;
 }
 
 .nuestra-flota__plus-buttons img {
@@ -1039,7 +1041,7 @@ body {
   border-radius: 29px;
   opacity: 1;
   top: 65%;
-  left: 55%;
+  left: 48%;
   transform: translate(-50%, -50%);
   /* display: none; */
   display: flex;
@@ -1078,7 +1080,7 @@ body {
   visibility: hidden;
   position: absolute;
   top: 0;
-  width: 345px;
+  width: 340px;
   height: 175px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
@@ -1086,8 +1088,8 @@ body {
   border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
-  top: 65%;
-  left: 40%;
+  top: 62%;
+  left: 55%;
   transform: translate(-50%, -50%);
   /* display: none; */
   display: flex;
@@ -1494,4 +1496,43 @@ body {
 
 #skeletonsCanvas{
   /* opacity: {parameter:showSkeletons}; */
+}
+@keyframes move {
+   /* 0% {
+     transform: translatex(-40px);
+  }
+  100% {
+    transform: translatex(0);
+  }  */
+  0% {
+    left: 20%;
+  }
+  40% {
+    opacity: 1;
+    z-index: -2;
+  }
+  60% {
+    opacity: 1;
+    z-index: -2;
+  }
+  80% {
+    opacity: 1;
+    z-index: -2;
+  }
+  100% {
+    left: 62%;
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+  /* from {
+    left: 20%;
+     display: block; 
+  }
+  to {
+    left: 78%;
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  } */
 }
