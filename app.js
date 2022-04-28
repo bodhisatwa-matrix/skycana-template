@@ -1419,12 +1419,7 @@ function DestinationPoint(x, y, id, cityName) {
     var loader = createLoaderCircle(id);
     loader.style.left = this.x - 15 + "px";
     loader.style.top = this.y - 45 + "px";
-
-    // var arr = ["loader", "spin", "circle"];
-    // loaderDiv.classList.add(...arr);
-    // loaderDiv.style.left = this.x - 5 + "px";
-    // loaderDiv.style.top = this.y - 25 + "px";
-    p.insertAdjacentElement('afterend', img);
+    parentDiv.insertAdjacentElement('afterend', img);
     setListener(img);
     parentDiv.appendChild(loader);
     /** End here**/
@@ -1467,12 +1462,12 @@ function setListener(el) {
   });
 }
 function loaderAnimation(id) {
+  window.clearInterval(window.timer);
   var circle = _$(`.${id}`);
   var interval = 30;
   var angle = 0;
   var angle_increment = 6;
   window.timer = window.setInterval(function() {
-    // circle.setAttribute('display', "block");
     circle.setAttribute("stroke-dasharray", angle + ", 20000");
         if (angle >= 360) {
           window.clearInterval(window.timer);
@@ -1482,8 +1477,8 @@ function loaderAnimation(id) {
   }.bind(this), interval);
 }
 function hideLoaderAnimation(id) {
+  window.clearInterval(window.timer);
   var circle = _$(`.${id}`);
-  // circle.setAttribute('display', "none");
   var interval = 30;
   var angle = 360;
   var angle_increment = 6;
