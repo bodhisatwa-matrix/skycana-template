@@ -9,7 +9,7 @@
       "id": "sdq",
       "name": "Santo Domingo",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 700,
+      "x": 500,
       "y": 330,
       "picts": [
         "http://host/pict11.jpg",
@@ -20,8 +20,8 @@
       "id": "mia",
       "name": "Miami",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 680,
-      "y": 130,
+      "x": 880,
+      "y": 610,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -31,8 +31,8 @@
       "id": "cub",
       "name": "Cuba",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 1030,
-      "y": 360,
+      "x": 970,
+      "y": 710,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -42,8 +42,8 @@
       "id": "mex",
       "name": "Mexico",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 444,
-      "y": 236,
+      "x": 665,
+      "y": 765,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -53,8 +53,8 @@
       "id": "nic",
       "name": "Nicaragua",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 890,
-      "y": 551,
+      "x": 830,
+      "y": 851,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"
@@ -64,8 +64,8 @@
       "id": "col",
       "name": "Colombia",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "x": 870,
-      "y": 441,
+      "x": 970,
+      "y": 1001,
       "picts": [
         "http://host/pict21.jpg",
         "http://host/pict22.jpg"

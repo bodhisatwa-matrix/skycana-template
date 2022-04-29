@@ -102,6 +102,7 @@ window.addEventListener("keypress", function (e) {
 /***1, 2, 3 Button Press key press event */
 
 document.addEventListener("keydown", function (e) {
+  
   // console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey, "map zoom ", mapIsZommedIn, "small window", smallWindow);
   if(mapIsZommedIn) {
     window.clearTimeout(t);
