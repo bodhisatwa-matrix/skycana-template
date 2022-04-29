@@ -165,7 +165,7 @@ document.addEventListener("keydown", function (e) {
       case "ArrowLeft":
       case "ArrowUp":
       case "ArrowDown": {
-        hidePlane();
+        disapparePlane();
       }
       break;
       default: {
@@ -1397,7 +1397,7 @@ function FlyingPlane(from, to) {
   };
 }
 
-function hidePlane() {
+function disapparePlane() {
   flightPath.setAttribute("d", "");
   document.querySelector(".flight-path-container").style.display = "none";
   plane.style.offsetPath = ``;
