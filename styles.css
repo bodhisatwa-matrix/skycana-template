@@ -223,7 +223,7 @@ body {
   position: relative;
   width: 100%;
   max-height: 99vh;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: none;
   cursor: pointer;
 }
@@ -468,21 +468,21 @@ body {
 
 .nuestra-flota__plus-buttons__two {
   position: absolute;
-  top: 54%;
+  top: 53%;
   right: 48%;
   width: 34px;
 }
 
 .nuestra-flota__plus-buttons__three {
   position: absolute;
-  top: 54%;
+  top: 53%;
   left: 41%;
   width: 34px;
 }
 
 .nuestra-flota__plus-buttons__four {
   position: absolute;
-  top: 54%;
+  top: 53%;
   right: 41%;
   width: 34px;
 }
@@ -505,7 +505,7 @@ body {
   width: 101px;
   position: absolute;
   top: 42%;
-  left: 25%;
+  left: 22%;
   z-index: 4;
 }
 
@@ -513,7 +513,7 @@ body {
   width: 101px;
   position: absolute;
   top: 42%;
-  right: 25%;
+  right: 22%;
   z-index: 4;
 }
 
@@ -1032,16 +1032,16 @@ body {
   visibility: hidden;
   position: absolute;
   top: 0;
-  width: 276px;
-  height: 247px;
+  width: 250px;
+  height: 200px;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 4px solid var(--unnamed-color-24cad2);
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 4px solid #24cad2;
   border-radius: 29px;
   opacity: 1;
-  top: 65%;
-  left: 48%;
+  top: 63%;
+  left: 50%;
   transform: translate(-50%, -50%);
   /* display: none; */
   display: flex;
@@ -1137,7 +1137,7 @@ body {
   border-radius: 29px;
   opacity: 1;
   top: 30%;
-  left: 35%;
+  left: 31%;
   transform: translate(-50%, -50%);
   /* display: none; */
   display: flex;
@@ -1229,7 +1229,7 @@ body {
   /* border-radius: 50%; */
 }
 
-.location-point {
+.location-point-old {
   position: absolute;
   height: 20px;
   width: 20px;
@@ -1239,7 +1239,7 @@ body {
   z-index: 3;
 }
 
-.location-point__city-name {
+.location-point__city-name-old {
   position: absolute;
   text-align: center;
   font: normal normal bold 20px Montserrat;
@@ -1358,7 +1358,33 @@ body {
   .rango_de_vuelo_pop_up {
     zoom: 60%;
   }
+  .nuestra-flota__destination {
+    transform: translate(-50%, 0px) scale(0.6);
+  }
+  .nuestra-flota__left-arrow, .nuestra-flota__right-arrow {
+    transform: scale(0.7);
+  }
+  .nuestra-flota__all-planes__plane-slider {
+    margin-top: 20px;
+  }
+  #Destinos, #Flota, #Vuelos {
+    transform: scale(0.8);
+  }
+  .world-map__heading {
+    margin-top: 36px;
+  }
+  .nuestra-flota__airplane_name {
+    font-size: 28px;
+    margin-top: 14px;
+  }
+  .world-map__single-window {
+    margin: 0;
+  }
+  .nuestra-flota__plus-buttons__three, .nuestra-flota__plus-buttons__four, .nuestra-flota__plus-buttons__two {
+    top: 58%;
+  }
 }
+
 
 .position-viewer {
   position: absolute;
@@ -1527,3 +1553,56 @@ body {
   }
 }
 
+/******** New map styles ********/
+.location-point {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #e59c26;
+  display: block;
+  z-index: 3;
+  
+}
+
+.location-point__city-name {
+  position: absolute;
+  text-align: center;
+  font: normal normal bold 20px Montserrat;
+  color: #e59c26;
+  user-select: none;
+  
+}
+@keyframes fadeIn {
+  100% {
+      opacity: 1;
+  }
+}
+#Map {
+  transition: all 0.6s;
+}
+.container{
+  height: min(80vh, 784px);
+  width: 50vw;
+  overflow: scroll;
+  border: 3px solid #3FC1CC;
+  outline: 6px solid #3FC1CC;
+  outline-offset: 10px;
+  border-radius: 25%;
+  margin: 25px 0px 0px 20px;
+  position: relative;
+  /* transform: translateX(50%); */
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+.nuestra-flota__plus-icon-popups__seats {
+  display: none;
+}
+.parent-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
