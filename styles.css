@@ -90,6 +90,7 @@ body {
   font-family: "Montserrat", sans-serif;
   color: white;
   cursor: url("./Assets/Images/icon_walking_40.png"), auto;
+  overflow: hidden;
 }
 
 .window-shutter {
