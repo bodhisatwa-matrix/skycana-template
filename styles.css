@@ -1591,6 +1591,7 @@ body {
   border-radius: 25%;
   margin: 25px 0px 0px 20px;
   position: relative;
+  transition: all 0.6s;
   /* transform: translateX(50%); */
 }
 .container::-webkit-scrollbar {

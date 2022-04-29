@@ -33,6 +33,11 @@ const small_second_window = document.querySelector("#Rectangle_i3");
 const small_second_window_line = document.querySelector("#Line_i3");
 const small_third_window = document.querySelector("#Rectangle__3");
 const small_third_window_line = document.querySelector("#Line__3");
+var mainDiv = _$('.container');
+
+var initialScale = 0.3;
+var currentScale = 0.3;
+var endScale = 10.0;
 
 var pressedKey = 0;
 var animationStarted = false;
@@ -46,6 +51,7 @@ const animationTime = {
 };
 var t;
 localStorage.setItem("animation", JSON.stringify(animationTime));
+
 /*********************************/
 var elem = document.documentElement;
 window.addEventListener("DOMContentLoaded", function () {
@@ -206,6 +212,35 @@ document.addEventListener("keydown", function (e) {
   }*/
 });
 /************************/
+
+/****Center map */
+function setMapToCenter() {
+  mainDiv.setAttribute("tabindex", 1);
+  mainDiv.focus();
+  mainDiv.scrollLeft = (world_map__map_border.getBoundingClientRect().width, mainDiv.getBoundingClientRect().width) / 2;
+  mainDiv.scrollTop = (world_map__map_border.getBoundingClientRect().height, mainDiv.getBoundingClientRect().height) / 2;
+  var {width} = document.body.getBoundingClientRect();
+  if(width > 1365) {
+    initialScale = 1.0;
+    currentScale = 1.0;
+  }
+  autoZoom(world_map__map_border.getBoundingClientRect().width);
+}
+
+function autoZoom(width) {    
+  var timeline = gsap.timeline({delay: 1});
+  timeline.to('.location-point, .location-point__city-name', {opacity: 1, duration: 1});
+  
+  world_map__map_border.style.transform = `scale(2.0)`;
+  if(width == 0) {
+    world_map__map_border.style.transformOrigin = "755px 1100px";
+  } else {
+    world_map__map_border.style.transformOrigin = "400px 660px";
+  }
+}
+
+/*******************/
+
 /********** Keyboard Events for 1,2,3 key press ***********/
 function openWindow(windowNumber) {
   // pressedKey = 0;
@@ -217,7 +252,6 @@ function openWindow(windowNumber) {
       world_map_heading.innerHTML = "Vuelos en tiempo real";
       gsap.from(".world-map", { opacity: 0 });
       gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
-      // gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
       if (!mapIsZommedIn) {
         setTimeout(function () {
@@ -233,7 +267,6 @@ function openWindow(windowNumber) {
       world_map_heading.innerHTML = "Nuestros destinos";
       gsap.from(".world-map", { opacity: 0 });
       gsap.to(".world-map", { opacity: 1, display: "block", duration: 2 });
-      // gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
       if (!mapIsZommedIn) {
         setTimeout(function () {
@@ -593,14 +626,14 @@ function clickSmallShutter(which) {
       smallFirstWindowMouseOver();
       smallSecondWindowMouseOut();
       smallThirdWindowMouseOut();
-      // gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
       gsap.to('#Map', {opacity: 1, display: "block", duration: 1});
-      showFirstWindow();
+      setMapToCenter();
       // if (isVisible == "block") {
+        showFirstWindow();
       // }
       clickedButton = 1;
-      if (mapIsZommedIn) showLocations();
+      if (mapIsZommedIn) {showLocations(); };
       hideDestinationPoins();
       break;
     case 2:
@@ -613,8 +646,9 @@ function clickSmallShutter(which) {
       // gsap.to(".world-map__map-img", { opacity: 1, duration: 1 });
       gsap.to(".nuestra-flota", { opacity: 0, display: "none", duration: 2 });
       gsap.to('#Map', {opacity: 1, display: "block", duration: 1});
-      showSecondWindow();
+      setMapToCenter();
       // if (isVisible == "block") {
+        showSecondWindow();
       // }
       clickedButton = 2;
       if (mapIsZommedIn) showDestinationPoints();
@@ -1022,6 +1056,8 @@ function mapZoomIn() {
     mapIsZommedIn = true;
   }
 }
+
+
 /**************************************/
 /* Function for map zoom out in feature */
 function mapZoomOut() {
