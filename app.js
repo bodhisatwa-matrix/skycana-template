@@ -101,6 +101,8 @@ window.addEventListener("keypress", function (e) {
 /***************************/
 /***1, 2, 3 Button Press key press event */
 
+
+
 document.addEventListener("keydown", function (e) {
   
   // console.log("Entered Key: ",e.key, "Previous Key Pressed: ",pressedKey, "map zoom ", mapIsZommedIn, "small window", smallWindow);
@@ -159,6 +161,13 @@ document.addEventListener("keydown", function (e) {
         }
         break;
       }
+      case "ArrowRight":
+      case "ArrowLeft":
+      case "ArrowUp":
+      case "ArrowDown": {
+        hidePlane();
+      }
+      break;
       default: {
         console.log("Other key pressed!");
         break;
@@ -1253,6 +1262,7 @@ destination.forEach((des) => {
 
 var airport = new Airport();
 function takeOff(e) {
+  console.log(e)
   if (selected_option === "vuelos-shutter" && mapIsZommedIn) {
     airport.getFromAndToPoints(e);
     const plane = new FlyingPlane(airport.from, airport.to);
@@ -1332,6 +1342,7 @@ function LocationPoint(x, y, id, cityName) {
     p.appendChild(text);
 
     parentDiv.appendChild(p);
+    parentDiv.style.zIndex = 999;
 
     div.id = id;
     div.style.left = this.x - 10 + "px";
@@ -1384,6 +1395,15 @@ function FlyingPlane(from, to) {
     plane.style.display = "none";
     this.flying = false;
   };
+}
+
+function hidePlane() {
+  flightPath.setAttribute("d", "");
+  document.querySelector(".flight-path-container").style.display = "none";
+  plane.style.offsetPath = ``;
+  plane.style.transform = "translateY(0px)";
+  plane.style.display = "none";
+   
 }
 
 function calculateDistance(to, from) {
